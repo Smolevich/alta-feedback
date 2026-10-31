@@ -11,10 +11,10 @@ EnvironmentFile=/opt/alta-feedback/.env
 ExecStart=/opt/alta-feedback/.venv/bin/python -m uvicorn --factory alta_feedback.main:create_app --host 127.0.0.1 --port 8101 --no-server-header --proxy-headers --forwarded-allow-ips 127.0.0.1
 Restart=on-failure
 RestartSec=5
+# ProtectHome не ставим: python venv — ссылка на интерпретатор uv в /root/.local.
 NoNewPrivileges=yes
 ProtectSystem=strict
 ReadWritePaths=/opt/alta-feedback/data
-ProtectHome=yes
 PrivateTmp=yes
 
 [Install]
