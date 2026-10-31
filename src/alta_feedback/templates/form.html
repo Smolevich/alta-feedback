@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>Предложить правку</h1>
+  <p class="lead">К странице «ALTA banka: что с деньгами и что делать». Автор прочитает каждую правку и проверит её по источникам.</p>
+  {% if errors %}
+  <div class="errors" role="alert">{% for e in errors %}<p>{{ e }}</p>{% endfor %}</div>
+  {% endif %}
+  <form method="post" action="/">
+    <input type="hidden" name="s" value="{{ section_id }}">
+    <label for="section_title">Раздел страницы</label>
+    <input type="text" id="section_title" name="section_title" maxlength="200"
+           value="{{ values.section_title if values else section_title }}" placeholder="Например: Цифры банка">
+
+    <label for="text">Что исправить или добавить
+      <span class="hint">До {{ text_max }} знаков</span></label>
+    <textarea id="text" name="text" maxlength="{{ text_max }}" required
+              placeholder="Что на странице неточно и как правильно">{{ values.text or "" }}</textarea>
+
+    <label for="source">Источник или ссылка
+      <span class="hint">Необязательно, но так правку проще проверить</span></label>
+    <input type="text" id="source" name="source" maxlength="500" inputmode="url"
+           value="{{ values.source or "" }}" placeholder="https://…">
+
+    <label for="contact">Как с вами связаться
+      <span class="hint">Необязательно. Не публикуется, нужно только если будет вопрос</span></label>
+    <input type="text" id="contact" name="contact" maxlength="200" autocomplete="off"
+           value="{{ values.contact or "" }}" placeholder="Telegram, почта или телефон">
+
+    <div class="trap" aria-hidden="true">
+      <label for="website">Не заполняйте это поле</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <button type="submit">Отправить</button>
+  </form>
+  <a class="back" href="{{ return_url }}">← вернуться к странице</a>
+</div>
+<p class="foot">Без рекламы и трекеров. Правки видит только автор страницы.</p>
+{% endblock %}
