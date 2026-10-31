@@ -32,7 +32,7 @@ jobs:
           echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
           echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v7
         with:
           version: ${{ env.UV_VERSION }}
 
