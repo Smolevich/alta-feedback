@@ -1,0 +1,6286 @@
+{
+ "generated_at": "2026-11-01",
+ "banks": {
+  "intesa": {
+   "source": "https://www.bancaintesa.rs/stanovnistvo/lokacije-ekspozitura-i-bankomata.html",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Ada",
+     "name": "",
+     "address": "Vuka Karadžića 18"
+    },
+    {
+     "city": "Aleksinac",
+     "name": "",
+     "address": "Knjaza Miloša 115"
+    },
+    {
+     "city": "Apatin",
+     "name": "",
+     "address": "Petefi Šandora 2"
+    },
+    {
+     "city": "Aranđelovac",
+     "name": "",
+     "address": "Knjaza Miloša 192"
+    },
+    {
+     "city": "Bačka Palanka",
+     "name": "",
+     "address": "Žarka Zrenjanina 80"
+    },
+    {
+     "city": "Bačka Topola",
+     "name": "",
+     "address": "Glavna 29"
+    },
+    {
+     "city": "Bački Petrovac",
+     "name": "",
+     "address": "Maršala Tita 4"
+    },
+    {
+     "city": "Bajina Bašta",
+     "name": "",
+     "address": "Svetosavska 19a"
+    },
+    {
+     "city": "Bečej",
+     "name": "",
+     "address": "Novosadska 3"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bore Stankovića 9"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Braće Jerković 137b"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Arsenija Čarnojevića 54 (SBO HUB)"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Kralja Aleksandra 330"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Kralja Aleksandra 79"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar maršala Tolbuhina 34"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar oslobođenja 3"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Cara Dušana 35"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Crnotravska 7-9"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Glavna 30"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Gornjogradska 38"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Hercegovačka 21"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Ilije Garašanina 4"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Ivana Milutinovića 73"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Jurija Gagarina 14"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Jurija Gagarina 36b"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Južni Bulevar 84"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Knez Mihailova 30"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kneza Miloša 23"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kolarčeva 5 Magnifica CENTAR"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kumodraška 174"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Majke Jugovića 1"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Marijane Gregoran 60"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Milentija Popovića 7b"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Milutina Milankovića 134g"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Mirijevski venac 23"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Nedeljka Gvozdenovića 24a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Omladinskih brigada 90"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Otona Župančića 1"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Partizanske avijacije 14"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Požeška 65a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Požeška 65b"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Studentski trg 7 (SBO HUB)"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Trgovačka 15"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Ustanička 69"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vase Pelagića 48b"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vidikovački venac 80b"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vojvode Stepe 77"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vojvođanska 85"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vukasovićeva 50a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Milentija Popovića 7v (Affluent)"
+    },
+    {
+     "city": "Beograd – Novi Beograd",
+     "name": "",
+     "address": "(SBO HUB) Vladimira Popovića 8"
+    },
+    {
+     "city": "Bogatić",
+     "name": "",
+     "address": "Vojvode Stepe 35"
+    },
+    {
+     "city": "Bor",
+     "name": "",
+     "address": "Đorđa Vajferta 3"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Kuželjeva 1"
+    },
+    {
+     "city": "Gornji Milanovac",
+     "name": "",
+     "address": "Vojvode Milana Obrenovića 1"
+    },
+    {
+     "city": "Inđija",
+     "name": "",
+     "address": "Novosadska 21"
+    },
+    {
+     "city": "Ivanjica",
+     "name": "",
+     "address": "Majora Ilića 1"
+    },
+    {
+     "city": "Jagodina",
+     "name": "",
+     "address": "Kneza Lazara 5-6"
+    },
+    {
+     "city": "Kanjiža",
+     "name": "",
+     "address": "Glavna 3"
+    },
+    {
+     "city": "Kikinda",
+     "name": "",
+     "address": "Braće Tatić 16"
+    },
+    {
+     "city": "Kladovo",
+     "name": "",
+     "address": "22. septembra 9"
+    },
+    {
+     "city": "Kovin",
+     "name": "",
+     "address": "Cara Lazara 73"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Dr Zorana Đinđića 11a"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Save Kovačevića 12b"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "",
+     "address": "Trg Jovana Sarića 8"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Vidovdanska 4"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Vidovdanska 46"
+    },
+    {
+     "city": "Lajkovac",
+     "name": "",
+     "address": "Vojvode Mišića 84"
+    },
+    {
+     "city": "Lazarevac",
+     "name": "",
+     "address": "Karađorđeva 41"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Trg Revolucije 7"
+    },
+    {
+     "city": "Ljubovija",
+     "name": "",
+     "address": "Vojvode Mišića 44"
+    },
+    {
+     "city": "Loznica",
+     "name": "",
+     "address": "Trg Vuka Karadžića bb"
+    },
+    {
+     "city": "Mionica",
+     "name": "",
+     "address": "Dr Jove Aleksića bb"
+    },
+    {
+     "city": "Mladenovac",
+     "name": "",
+     "address": "Kralja Petra I 217"
+    },
+    {
+     "city": "Negotin",
+     "name": "",
+     "address": "Trg Đorđa Stanojevića 70/II"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Bulevar Nemanjića 28-32"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Milojka Lešjanina 1"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Nade Tomić 8a (SBO HUB)"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Obrenovićeva 82/2"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Sinđelićev trg 18"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Vizantijski bulevar 21"
+    },
+    {
+     "city": "Novi Bečej",
+     "name": "",
+     "address": "Trg Oslobođenja 5"
+    },
+    {
+     "city": "Novi Pazar",
+     "name": "",
+     "address": "AVNOJ-a 6"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bate Brkića 10a"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar Cara Lazara 79a"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar Mihajla Pupina 4"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar Oslobođenja 76a"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar Oslobođenja 8"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Fruškogorska 10"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Rumenačka 33 (SBO HUB)"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Zmaj Jovina 15"
+    },
+    {
+     "city": "Obrenovac",
+     "name": "",
+     "address": "Miloša Obrenovića 133-135"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Karađorđeva 2-4"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Miloša Crnjanskog 1"
+    },
+    {
+     "city": "Paraćin",
+     "name": "",
+     "address": "Kralja Petra I 4"
+    },
+    {
+     "city": "Petrovac na Mlavi",
+     "name": "",
+     "address": "Bate Bulića 37"
+    },
+    {
+     "city": "Pirot",
+     "name": "",
+     "address": "Branka Radičevića 18"
+    },
+    {
+     "city": "Požarevac",
+     "name": "",
+     "address": "Drinska 17"
+    },
+    {
+     "city": "Požega",
+     "name": "",
+     "address": "Knjaza Miloša 6"
+    },
+    {
+     "city": "Priboj",
+     "name": "",
+     "address": "Nemanjina 48-50"
+    },
+    {
+     "city": "Prijepolje",
+     "name": "",
+     "address": "Sandžačkih brigada 39"
+    },
+    {
+     "city": "Prokuplje",
+     "name": "",
+     "address": "9. oktobra 6"
+    },
+    {
+     "city": "Raška",
+     "name": "",
+     "address": "Miluna Ivanovića 8"
+    },
+    {
+     "city": "Ruma",
+     "name": "",
+     "address": "15. maja 143"
+    },
+    {
+     "city": "Ruma",
+     "name": "",
+     "address": "Glavna 170"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Gospodar Jevremova 44"
+    },
+    {
+     "city": "Smederevo",
+     "name": "",
+     "address": "Dr Jovana Cvijića 3"
+    },
+    {
+     "city": "Smederevska Palanka",
+     "name": "",
+     "address": "Vuka Karadžića 4"
+    },
+    {
+     "city": "Sombor",
+     "name": "",
+     "address": "Venac Stepe Stepanovića 32"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "",
+     "address": "Kralja Petra I 6 (SBO HUB)"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "",
+     "address": "Svetog Dimitrija 2"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "",
+     "address": "Ćirila i Metodija 2"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Dimitrija Tucovića 2"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Štrosmajerova 6"
+    },
+    {
+     "city": "Temerin",
+     "name": "",
+     "address": "Novosadska 403"
+    },
+    {
+     "city": "Topola",
+     "name": "",
+     "address": "Tomislava Karađorđevića 3"
+    },
+    {
+     "city": "Trstenik",
+     "name": "",
+     "address": "Cara Dušana bb"
+    },
+    {
+     "city": "Ub",
+     "name": "",
+     "address": "Kralja Petra I 44"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Dimitrija Tucovića 129"
+    },
+    {
+     "city": "Valjevo",
+     "name": "",
+     "address": "Železnička 7"
+    },
+    {
+     "city": "Velika Plana",
+     "name": "",
+     "address": "Momira Gajića 2"
+    },
+    {
+     "city": "Veliko Gradište",
+     "name": "",
+     "address": "Kneza Lazara 35"
+    },
+    {
+     "city": "Veternik",
+     "name": "",
+     "address": "Kralja Petra I 7a"
+    },
+    {
+     "city": "Vladičin Han",
+     "name": "",
+     "address": "Svetosavska 16a"
+    },
+    {
+     "city": "Vlasotince",
+     "name": "",
+     "address": "Nemanjina 2"
+    },
+    {
+     "city": "Vranje",
+     "name": "",
+     "address": "Dr Dimitrija Jovčića 2"
+    },
+    {
+     "city": "Vrbas",
+     "name": "",
+     "address": "Maršala Tita 66"
+    },
+    {
+     "city": "Vrnjačka Banja",
+     "name": "",
+     "address": "Kruševačka 1"
+    },
+    {
+     "city": "Vršac",
+     "name": "",
+     "address": "Sterijina 19a"
+    },
+    {
+     "city": "Žabalj",
+     "name": "",
+     "address": "Nikole Tesle 47"
+    },
+    {
+     "city": "Zaječar",
+     "name": "",
+     "address": "Nikole Pašića 70"
+    },
+    {
+     "city": "Zlatibor",
+     "name": "",
+     "address": "Kraljev trg bb"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Kralja Aleksandra I Karađorđevića bb"
+    }
+   ]
+  },
+  "otp": {
+   "source": "https://www.otpbanka.rs/lokacije-ekspozitura-i-bankomata/",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Ada",
+     "name": "",
+     "address": "Lenjinova 6"
+    },
+    {
+     "city": "Aleksandrovac",
+     "name": "",
+     "address": "29. novembra 21"
+    },
+    {
+     "city": "Aleksinac",
+     "name": "",
+     "address": "Momčila Popovića 40"
+    },
+    {
+     "city": "Apatin",
+     "name": "",
+     "address": "Srpskih vladara 7"
+    },
+    {
+     "city": "Aranđelovac",
+     "name": "",
+     "address": "Knjaza Miloša 229"
+    },
+    {
+     "city": "Babušnica",
+     "name": "",
+     "address": "Živojina Nikolića Brke 20"
+    },
+    {
+     "city": "Bačka Palanka",
+     "name": "",
+     "address": "Kralja Petra I 13"
+    },
+    {
+     "city": "Bačka Topola",
+     "name": "",
+     "address": "Maršala Tita 48b"
+    },
+    {
+     "city": "Bajina Bašta",
+     "name": "",
+     "address": "Trg Dušana Jerkovića 2"
+    },
+    {
+     "city": "Bajmok",
+     "name": "",
+     "address": "JNA 16"
+    },
+    {
+     "city": "Banatski Karlovac",
+     "name": "",
+     "address": "Nemanjina 58"
+    },
+    {
+     "city": "Batajnica",
+     "name": "",
+     "address": "Milenka Pavlovića 12"
+    },
+    {
+     "city": "Bečej",
+     "name": "",
+     "address": "Novosadska 1a"
+    },
+    {
+     "city": "Bela Palanka",
+     "name": "",
+     "address": "Srpskih vladara 60-2"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Andre Nikolića 2a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bratstva i jedinstva 73"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar despota Stefana 112"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar kralja Aleksandra 223"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Maršala Tolbuhina 10-12"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Mihajla Pupina 111"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Vudroa Vilsona 14"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Zorana Đinđića 141"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Zorana Đinđića 50a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Cara Dušana 37a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Ive Lole Ribara 149"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Jurija Gagarina 153a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Jurija Gagarina 76"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Južni bulevar 39"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Katanićeva 18"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kralja Milana 33"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kralja Petra 21"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kralja Petra I 1"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kraljice Marije 14"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Neznanog junaka 5"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Omladinskih brigada 88b"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Partizanske avijacije 10"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Požeška 156"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Rableova 19"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Save Mašković 2a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Trg Nikole Pašića 5a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Trgovačka 9"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Ustanička 128"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vidikovački venac 80b"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vojislava Ilića 94b"
+    },
+    {
+     "city": "Beograd",
+     "name": "Surčin",
+     "address": "Trg Zorana Đinđića 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zemun",
+     "address": "Glavna 46"
+    },
+    {
+     "city": "Bor",
+     "name": "",
+     "address": "Đorđa Vajferta 5"
+    },
+    {
+     "city": "Bujanovac",
+     "name": "",
+     "address": "Karađorđa Petrovića bb"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Gospodar Jovanova 26"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Župana Stracimira 8"
+    },
+    {
+     "city": "Čoka",
+     "name": "",
+     "address": "Maršala Tita 22"
+    },
+    {
+     "city": "Crvenka",
+     "name": "",
+     "address": "Moše Pijade 57"
+    },
+    {
+     "city": "Ćuprija",
+     "name": "",
+     "address": "Cara Lazara 2"
+    },
+    {
+     "city": "Despotovac",
+     "name": "",
+     "address": "Moravska 24"
+    },
+    {
+     "city": "Gornji Milanovac",
+     "name": "",
+     "address": "Kneza Aleksandra 1"
+    },
+    {
+     "city": "Inđija",
+     "name": "",
+     "address": "Vojvode Stepe 16"
+    },
+    {
+     "city": "Irig",
+     "name": "",
+     "address": "Nikole Tesle 6"
+    },
+    {
+     "city": "Ivanjica",
+     "name": "",
+     "address": "Perse Rajević 2"
+    },
+    {
+     "city": "Jagodina",
+     "name": "",
+     "address": "Kneginje Milice 80"
+    },
+    {
+     "city": "Kać",
+     "name": "",
+     "address": "Kralja Petra I 9a"
+    },
+    {
+     "city": "Kanjiža",
+     "name": "",
+     "address": "Glavna 13"
+    },
+    {
+     "city": "Kikinda",
+     "name": "",
+     "address": "Trg srpskih dobrovoljaca 14"
+    },
+    {
+     "city": "Kovin",
+     "name": "",
+     "address": "Cara Lazara 92"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Atinska bb"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kralja Aleksandra I Karađorđevića 25"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kralja Petra I 46"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kraljice Marije 54b"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "",
+     "address": "Trg srpskih ratnika 30"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Trg kosturnica bb"
+    },
+    {
+     "city": "Kula",
+     "name": "",
+     "address": "Maršala Tita 244-246"
+    },
+    {
+     "city": "Kuršumlija",
+     "name": "",
+     "address": "Palih boraca 8"
+    },
+    {
+     "city": "Lazarevac",
+     "name": "",
+     "address": "Karađorđeva 2"
+    },
+    {
+     "city": "Lebane",
+     "name": "",
+     "address": "Cara Dušana 93"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Bulevar Oslobođenja 25"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Bulevar oslobođenja 73"
+    },
+    {
+     "city": "Loznica",
+     "name": "",
+     "address": "Vojvode Mišića 4"
+    },
+    {
+     "city": "Mladenovac",
+     "name": "",
+     "address": "Kralja Aleksandra Obrenovića 52"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Bulevar Nemanjića 67a"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Bulevar Zorana Đinđića 35"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Nikole Pašića 28a"
+    },
+    {
+     "city": "Niš 2",
+     "name": "",
+     "address": "Trg kralja Milana bb"
+    },
+    {
+     "city": "Nova Varoš",
+     "name": "",
+     "address": "Svetog Save 38"
+    },
+    {
+     "city": "Novi Bečej",
+     "name": "",
+     "address": "Sonje Marinković 1-3"
+    },
+    {
+     "city": "Novi Pazar",
+     "name": "",
+     "address": "Stevana Nemanje 110"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar oslobođenja 60"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar oslobođenja 80"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Radnička 2"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Rumenačka 1"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Slobodana Jovanovića 15"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Trg slobode 5"
+    },
+    {
+     "city": "Obrenovac",
+     "name": "",
+     "address": "Karađorđeva 6"
+    },
+    {
+     "city": "Odžaci",
+     "name": "",
+     "address": "Železnička 26"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Trg Kralja Petra 6"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Trg kralja Petra I 11"
+    },
+    {
+     "city": "Paraćin",
+     "name": "",
+     "address": "Kralja Petra I 67"
+    },
+    {
+     "city": "Pećinci",
+     "name": "",
+     "address": "Slobodana Bajića 3"
+    },
+    {
+     "city": "Pirot",
+     "name": "",
+     "address": "Trg Dobrice Milutinovića bb"
+    },
+    {
+     "city": "Plandište",
+     "name": "",
+     "address": "Vojvode Putnika 45"
+    },
+    {
+     "city": "Požarevac",
+     "name": "",
+     "address": "Trg oslobođenja 4"
+    },
+    {
+     "city": "Požega",
+     "name": "",
+     "address": "Knjaza Miloša Obrenovića 1"
+    },
+    {
+     "city": "Priboj",
+     "name": "",
+     "address": "Nemanjina 47"
+    },
+    {
+     "city": "Prijepolje",
+     "name": "",
+     "address": "Sandžačkih brigada 15"
+    },
+    {
+     "city": "Prokuplje",
+     "name": "",
+     "address": "21. srpske divizije 1"
+    },
+    {
+     "city": "Raška",
+     "name": "",
+     "address": "Nemanjina 13"
+    },
+    {
+     "city": "Ruma",
+     "name": "",
+     "address": "Železnička 5-7"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Masarikova 7"
+    },
+    {
+     "city": "Sečanj",
+     "name": "",
+     "address": "Vožda Karađorđa 74"
+    },
+    {
+     "city": "Senta",
+     "name": "",
+     "address": "Glavni trg 7-9"
+    },
+    {
+     "city": "Šid",
+     "name": "",
+     "address": "Svetog Save 8"
+    },
+    {
+     "city": "Sjenica",
+     "name": "",
+     "address": "Milorada Jovanovića bb"
+    },
+    {
+     "city": "Smederevo",
+     "name": "",
+     "address": "Trg Republike 11"
+    },
+    {
+     "city": "Smederevska Palanka",
+     "name": "",
+     "address": "Svetog Save 25"
+    },
+    {
+     "city": "Sokobanja",
+     "name": "",
+     "address": "Alekse Markišića 9"
+    },
+    {
+     "city": "Sombor",
+     "name": "",
+     "address": "Sonje Marinković 1-3"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "",
+     "address": "Trg vojvođanskih brigada bb"
+    },
+    {
+     "city": "Srpska Crnja",
+     "name": "",
+     "address": "Patrijarha Arsenija Čarnojevića bb"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "",
+     "address": "Svetosavska 2"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Korzo 12"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Trg Lazara Nešića 3"
+    },
+    {
+     "city": "Subotica 1",
+     "name": "",
+     "address": "Trg slobode 1"
+    },
+    {
+     "city": "Surdulica",
+     "name": "",
+     "address": "Srpskih vladara bb"
+    },
+    {
+     "city": "Svilajnac",
+     "name": "",
+     "address": "Svetog Save bb"
+    },
+    {
+     "city": "Svrljig",
+     "name": "",
+     "address": "Radetova 5"
+    },
+    {
+     "city": "Temerin",
+     "name": "",
+     "address": "Novosadska 324"
+    },
+    {
+     "city": "Trstenik",
+     "name": "",
+     "address": "Miodraga Čajetinca Čajke 1"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Trg Svetog Save 7"
+    },
+    {
+     "city": "Valjevo",
+     "name": "",
+     "address": "Karađorđeva 181a"
+    },
+    {
+     "city": "Velika Plana",
+     "name": "",
+     "address": "Miloša Velikog 107"
+    },
+    {
+     "city": "Vlasotince",
+     "name": "",
+     "address": "Lole Ribara 2"
+    },
+    {
+     "city": "Vranje",
+     "name": "",
+     "address": "Stefana Prvovenčanog 61"
+    },
+    {
+     "city": "Vrbas",
+     "name": "",
+     "address": "Maršala Tita 79"
+    },
+    {
+     "city": "Vrnjačka Banja",
+     "name": "",
+     "address": "Kneza Miloša 17-19"
+    },
+    {
+     "city": "Vršac",
+     "name": "",
+     "address": "Dositejeva 2"
+    },
+    {
+     "city": "Zaječar",
+     "name": "",
+     "address": "Svetozara Markovića 1"
+    },
+    {
+     "city": "Žitište",
+     "name": "",
+     "address": "Cara Dušana 6"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Bulevar Veljka Vlahovića 14"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Kralja Aleksandra I Karađorđevića 2"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Trg dr Zorana Đinđića bb"
+    }
+   ]
+  },
+  "raiffeisen": {
+   "source": "https://www.raiffeisenbank.rs/sr/stanovnistvo/lokacije.html",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Aleksinac",
+     "name": "",
+     "address": "Knjaza Miloša 153"
+    },
+    {
+     "city": "Aranđelovac",
+     "name": "",
+     "address": "Knjaza Miloša 259"
+    },
+    {
+     "city": "Arilje",
+     "name": "",
+     "address": "Svetog Ahilija 20"
+    },
+    {
+     "city": "Bačka Palanka",
+     "name": "",
+     "address": "Kralja Petra I 19"
+    },
+    {
+     "city": "Bečej",
+     "name": "",
+     "address": "Zelena 52"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar kralja Aleksandra 518"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Jurija Gagarina 76"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Resavska 1"
+    },
+    {
+     "city": "Beograd",
+     "name": "27.marta",
+     "address": "27.marta 31"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ada Mall",
+     "address": "Radnička 9"
+    },
+    {
+     "city": "Beograd",
+     "name": "Banjica",
+     "address": "Crnotravska 7-9"
+    },
+    {
+     "city": "Beograd",
+     "name": "Banovo brdo",
+     "address": "Požeška 81a"
+    },
+    {
+     "city": "Beograd",
+     "name": "BEO centar-Denkova bašta",
+     "address": "Vojislava Ilića 141"
+    },
+    {
+     "city": "Beograd",
+     "name": "Bežanija",
+     "address": "Partizanske avijacije 12"
+    },
+    {
+     "city": "Beograd",
+     "name": "Bezistan",
+     "address": "Terazije 27"
+    },
+    {
+     "city": "Beograd",
+     "name": "Borča",
+     "address": "Ivana Milutinovića 54"
+    },
+    {
+     "city": "Beograd",
+     "name": "Bulevar",
+     "address": "Bulevar kralja Aleksandra 171"
+    },
+    {
+     "city": "Beograd",
+     "name": "Cara Dušana",
+     "address": "Cara Dušana 78"
+    },
+    {
+     "city": "Beograd",
+     "name": "Galerija BW",
+     "address": "Vudro Vilson 12"
+    },
+    {
+     "city": "Beograd",
+     "name": "GTC",
+     "address": "Bulevar Zorana Đinđića 64a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Head Office",
+     "address": "Đorđa Stanojevića 16"
+    },
+    {
+     "city": "Beograd",
+     "name": "Južni bulevar",
+     "address": "Maksima Gorkog 75"
+    },
+    {
+     "city": "Beograd",
+     "name": "Kalenić",
+     "address": "Kursulina 41"
+    },
+    {
+     "city": "Beograd",
+     "name": "Karaburma",
+     "address": "Marijane Gregoran 58"
+    },
+    {
+     "city": "Beograd",
+     "name": "Kralja Petra",
+     "address": "Kralja Petra 14"
+    },
+    {
+     "city": "Beograd",
+     "name": "Lazarevac",
+     "address": "Dimitrija Tucovica 1b"
+    },
+    {
+     "city": "Beograd",
+     "name": "Leštane",
+     "address": "Smederevski put 3V"
+    },
+    {
+     "city": "Beograd",
+     "name": "Lion",
+     "address": "Bulevar kralja Aleksandra 332"
+    },
+    {
+     "city": "Beograd",
+     "name": "Makenzijeva",
+     "address": "Makenzijeva 37"
+    },
+    {
+     "city": "Beograd",
+     "name": "Mercator BG",
+     "address": "Bulevar umetnosti 4"
+    },
+    {
+     "city": "Beograd",
+     "name": "Mirijevo",
+     "address": "Mirijevski venac 27"
+    },
+    {
+     "city": "Beograd",
+     "name": "Mladenovac",
+     "address": "Kralja Petra I 241a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Navigator",
+     "address": "Milutina Milankovića 1ž"
+    },
+    {
+     "city": "Beograd",
+     "name": "Obrenovac",
+     "address": "Kneza Mihaila 6"
+    },
+    {
+     "city": "Beograd",
+     "name": "Piramida",
+     "address": "Jurija Gagarina 151"
+    },
+    {
+     "city": "Beograd",
+     "name": "Rakovica",
+     "address": "Patrijarha Dimitrija 14"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ruzveltova",
+     "address": "Ruzveltova 10"
+    },
+    {
+     "city": "Beograd",
+     "name": "Slavija",
+     "address": "Bulevar oslobođenja 7-9"
+    },
+    {
+     "city": "Beograd",
+     "name": "Stari Merkator",
+     "address": "Bulevar Mihaila Pupina 181"
+    },
+    {
+     "city": "Beograd",
+     "name": "Surčin",
+     "address": "Vojvođanska 100"
+    },
+    {
+     "city": "Beograd",
+     "name": "Trgovačka",
+     "address": "Trgovačka 5"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ušće",
+     "address": "Bulevar Mihaila Pupina 4"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ustanička",
+     "address": "Ustanička 64a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Vidikovac",
+     "address": "Vidikovački venac 80b"
+    },
+    {
+     "city": "Beograd",
+     "name": "Vojvode Milenka",
+     "address": "Vojvode Milenka 38"
+    },
+    {
+     "city": "Beograd",
+     "name": "VOJVODE STEPE",
+     "address": "Vojvode Stepe 214"
+    },
+    {
+     "city": "Beograd",
+     "name": "Voždovac",
+     "address": "Vojvode Stepe 71"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zemun",
+     "address": "Glavna 21"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zemun II",
+     "address": "Prvomajska 101"
+    },
+    {
+     "city": "Bor",
+     "name": "",
+     "address": "Nikole Pašića 30"
+    },
+    {
+     "city": "Čačak",
+     "name": "Čačak II",
+     "address": "Gradsko šetalište bb"
+    },
+    {
+     "city": "Čačak",
+     "name": "Mercator Čačak",
+     "address": "Avaldžinica 1"
+    },
+    {
+     "city": "Ćuprija",
+     "name": "",
+     "address": "Kneza Miloša 24"
+    },
+    {
+     "city": "Gornji Milanovac",
+     "name": "",
+     "address": "Vojvode Milana Obrenovića 25"
+    },
+    {
+     "city": "Inđija",
+     "name": "",
+     "address": "Novosadska 1"
+    },
+    {
+     "city": "Jagodina",
+     "name": "",
+     "address": "Kneginje Milice 16a"
+    },
+    {
+     "city": "Kikinda",
+     "name": "",
+     "address": "Trg srpskih dobrovoljaca 28"
+    },
+    {
+     "city": "Knjaževac",
+     "name": "",
+     "address": "Knjaza Miloša 41"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kralja Petra I 7"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Trg narodnih heroja 2"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "",
+     "address": "Cara Lazara 31"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Čolak Antina 1V"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Koste Stamenkovića 2"
+    },
+    {
+     "city": "Loznica",
+     "name": "",
+     "address": "Kneza Miloša 2"
+    },
+    {
+     "city": "Niš",
+     "name": "Merkator Niš",
+     "address": "Vizantijski bulevar 1"
+    },
+    {
+     "city": "Niš",
+     "name": "Nemanjići",
+     "address": "Bulevar Nemanjića 30"
+    },
+    {
+     "city": "Niš",
+     "name": "Niš I",
+     "address": "Balkanska 13"
+    },
+    {
+     "city": "Niš",
+     "name": "Nis III",
+     "address": "Obrenovićeva 35"
+    },
+    {
+     "city": "Novi Pazar",
+     "name": "",
+     "address": "AVNOJ-a 7/3"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Futoški put",
+     "address": "Futoški put 42-44"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Mihajla Pupina",
+     "address": "Narodnih heroja 3"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Novi Sad I",
+     "address": "Bulevar oslobođenja 56a"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Novi Sad. Detelinara",
+     "address": "Veselina Masleše 30"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "NS-APOLO",
+     "address": "Pozorišni trg 3"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "NS-MAXTON",
+     "address": "Bulevar cara Lazara bb"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Park City",
+     "address": "Narodnog fronta 25D"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Generala Petra Aračića 4 - 6"
+    },
+    {
+     "city": "Paraćin",
+     "name": "",
+     "address": "Vožda Karađorđa 31"
+    },
+    {
+     "city": "Pirot",
+     "name": "",
+     "address": "Srpskih vladara 70B"
+    },
+    {
+     "city": "Požarevac",
+     "name": "",
+     "address": "Moše Pijade 10"
+    },
+    {
+     "city": "Požega",
+     "name": "",
+     "address": "Knjaza Miloša 3"
+    },
+    {
+     "city": "Prijepolje",
+     "name": "",
+     "address": "Vladimira Perića Valtera 22"
+    },
+    {
+     "city": "Prokuplje",
+     "name": "",
+     "address": "Jug Bogdanova 100"
+    },
+    {
+     "city": "Ruma",
+     "name": "",
+     "address": "Orlovićeva 4"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Cara Dušana 1"
+    },
+    {
+     "city": "Smederevo",
+     "name": "",
+     "address": "Vojvode Đuše 13"
+    },
+    {
+     "city": "Smederevska Palanka",
+     "name": "",
+     "address": "Prvog srpskog ustanka 89"
+    },
+    {
+     "city": "Sombor",
+     "name": "",
+     "address": "Avrama Mrazovića 1"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "",
+     "address": "Kralja Petra I 20"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "",
+     "address": "Kralja Petra I 1"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Trg republike 12"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Trg slobode 5"
+    },
+    {
+     "city": "Svilajnac",
+     "name": "",
+     "address": "Ustanička 1"
+    },
+    {
+     "city": "Temerin",
+     "name": "",
+     "address": "Novosadska 326"
+    },
+    {
+     "city": "Trstenik",
+     "name": "",
+     "address": "Kneginje Milice 12"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Dimitrija Tucovića 91"
+    },
+    {
+     "city": "Valjevo",
+     "name": "",
+     "address": "Karađorđeva 123"
+    },
+    {
+     "city": "Velika Plana",
+     "name": "",
+     "address": "Miloša Velikog 79"
+    },
+    {
+     "city": "Vranje",
+     "name": "",
+     "address": "Stefana Prvovenčanog 58"
+    },
+    {
+     "city": "Vrbas",
+     "name": "",
+     "address": "Maršala Tita 91"
+    },
+    {
+     "city": "Vršac",
+     "name": "",
+     "address": "Trg Svetog Teodora Vršačkog 37"
+    },
+    {
+     "city": "Zaječar",
+     "name": "",
+     "address": "Nikole Pašića 1"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Kralja Aleksandra Karađorđevića 41"
+    }
+   ]
+  },
+  "unicredit": {
+   "source": "https://www.unicreditbank.rs/rs/pi.html (PDF «Spisak ekspozitura»)",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Aleksinac",
+     "name": "",
+     "address": "Knjaza Miloša 44"
+    },
+    {
+     "city": "Aranđelovac",
+     "name": "",
+     "address": "Knjaza Miloša 212"
+    },
+    {
+     "city": "Bačka Palanka",
+     "name": "",
+     "address": "Kralja Petra I 3"
+    },
+    {
+     "city": "Bečej",
+     "name": "",
+     "address": "Novosadska 1a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Borča",
+     "address": "Ivana Milutinovića 22"
+    },
+    {
+     "city": "Beograd",
+     "name": "Čukarica",
+     "address": "Požeška 83a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Čukarica",
+     "address": "Ratka Mitrovića 160"
+    },
+    {
+     "city": "Beograd",
+     "name": "Čukarica",
+     "address": "Trgovačka 15"
+    },
+    {
+     "city": "Beograd",
+     "name": "Dorćol",
+     "address": "Višnjićeva 18"
+    },
+    {
+     "city": "Beograd",
+     "name": "Karaburma",
+     "address": "Uralska 3"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Jurija Gagarina 12"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Jurija Gagarina 30b"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Maršala Tolbuhina 36"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Španskih Boraca 3"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Španskih Boraca 75"
+    },
+    {
+     "city": "Beograd",
+     "name": "Palilula",
+     "address": "Đušina 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Savski Venac",
+     "address": "Bulevar Vudroa Vilsona 8v"
+    },
+    {
+     "city": "Beograd",
+     "name": "Savski Venac",
+     "address": "Resavska 28"
+    },
+    {
+     "city": "Beograd",
+     "name": "Stari Grad",
+     "address": "Francuska 6"
+    },
+    {
+     "city": "Beograd",
+     "name": "Stari Grad",
+     "address": "Rajićeva 27-29"
+    },
+    {
+     "city": "Beograd",
+     "name": "Surčin",
+     "address": "Vojvođanska 95"
+    },
+    {
+     "city": "Beograd",
+     "name": "Voždovac",
+     "address": "Save Maškovića 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Voždovac",
+     "address": "Ustanička 262"
+    },
+    {
+     "city": "Beograd",
+     "name": "Voždovac",
+     "address": "Vojvode Stepe 74"
+    },
+    {
+     "city": "Beograd",
+     "name": "Vračar",
+     "address": "Kneginje Zorke 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Vračar",
+     "address": "Trnska 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zemun",
+     "address": "Glavna 31"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zvezdara",
+     "address": "BULEVAR KRALJA ALEKSANDRA 142i"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zvezdara",
+     "address": "Rableova 1"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Kursulina 1"
+    },
+    {
+     "city": "Ćuprija",
+     "name": "",
+     "address": "Kneza Miloša 24"
+    },
+    {
+     "city": "Gornji Milanovac",
+     "name": "",
+     "address": "Kneza Aleksandra 6"
+    },
+    {
+     "city": "Inđija",
+     "name": "",
+     "address": "Vojvode Stepe 16"
+    },
+    {
+     "city": "Jagodina",
+     "name": "",
+     "address": "Kneza Lazara 1"
+    },
+    {
+     "city": "Kikinda",
+     "name": "",
+     "address": "Trg Srpskih Dobrovoljaca 28"
+    },
+    {
+     "city": "Knjaževac",
+     "name": "",
+     "address": "Knjaza Miloša 72"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kosovska 4"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kralja Aleksandra I Karađorđevića 43"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kralja Petra I 23"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Srete Mladenovića 2"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "",
+     "address": "Oktobarskih Žrtava 22"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Trg Kosturnica 16v"
+    },
+    {
+     "city": "Lazarevac",
+     "name": "",
+     "address": "Dula Karaklajića 3"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Bulevar Oslobođenja bb"
+    },
+    {
+     "city": "Loznica",
+     "name": "",
+     "address": "Kneza Miloša 2"
+    },
+    {
+     "city": "Negotin",
+     "name": "",
+     "address": "Jna 1"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Nikole Pašića 63"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Vizantijski Bulevar 80"
+    },
+    {
+     "city": "Niš",
+     "name": "Crveni Krst",
+     "address": "Trg Kralja Milana bb"
+    },
+    {
+     "city": "Niš",
+     "name": "Mediana",
+     "address": "Bulevar Dr Zorana Đinđića 15"
+    },
+    {
+     "city": "Novi Pazar",
+     "name": "",
+     "address": "Avnoj-a 10"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Braće Popović 3g"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar Oslobođenja 30"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Katolička Porta 2"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Narodnih Heroja 3"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Narodnog Fronta 21"
+    },
+    {
+     "city": "Obrenovac",
+     "name": "",
+     "address": "Vuka Karadžića 39"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Vojvode Radomira Putnika 22"
+    },
+    {
+     "city": "Paraćin",
+     "name": "",
+     "address": "Kralja Petra I bb"
+    },
+    {
+     "city": "Pirot",
+     "name": "",
+     "address": "Srpskih Vladara 70"
+    },
+    {
+     "city": "Požarevac",
+     "name": "",
+     "address": "Radomira Vujovica 12"
+    },
+    {
+     "city": "Požega",
+     "name": "",
+     "address": "Kralja Aleksandra 2"
+    },
+    {
+     "city": "Prijepolje",
+     "name": "",
+     "address": "Vladimira Perića Valtera 108"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Gospodar Jevremova 42"
+    },
+    {
+     "city": "Senta",
+     "name": "",
+     "address": "Narodne Bašte 4"
+    },
+    {
+     "city": "Smederevo",
+     "name": "",
+     "address": "Kralja Petra Prvog br. 2"
+    },
+    {
+     "city": "Smederevska Palanka",
+     "name": "",
+     "address": "Svetog Save 5-9"
+    },
+    {
+     "city": "Sombor",
+     "name": "",
+     "address": "Venac Vojvode Stepe Stepanovića 20"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "",
+     "address": "Svetog Dimitrija 19"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "",
+     "address": "Kralja Petra I 20"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Park Rajhl Ferenca 7"
+    },
+    {
+     "city": "Trstenik",
+     "name": "",
+     "address": "Vuka Karadžića 32"
+    },
+    {
+     "city": "Ub",
+     "name": "",
+     "address": "Radnička 3"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Dimitrija Tucovića 97"
+    },
+    {
+     "city": "Valjevo",
+     "name": "",
+     "address": "Karađorđeva 32"
+    },
+    {
+     "city": "Vranje",
+     "name": "",
+     "address": "Stefana Prvovenčanog 270"
+    },
+    {
+     "city": "Vrbas",
+     "name": "",
+     "address": "Maršala Tita 93"
+    },
+    {
+     "city": "Vrnjačka Banja",
+     "name": "",
+     "address": "Kneza Miloša 13"
+    },
+    {
+     "city": "Vršac",
+     "name": "",
+     "address": "Sterijina 22"
+    },
+    {
+     "city": "Zaječar",
+     "name": "",
+     "address": "Nikole Pašića 68"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Kralja Aleksandra I Karađorđevića 1"
+    }
+   ]
+  },
+  "aik": {
+   "source": "https://www.aikbank.rs/lokacije/",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Apatin",
+     "name": "",
+     "address": "Petefi Šandora 7"
+    },
+    {
+     "city": "Aranđelovac",
+     "name": "",
+     "address": "Knjaza Miloša 230"
+    },
+    {
+     "city": "Arilje",
+     "name": "",
+     "address": "Svetog Ahilija 24"
+    },
+    {
+     "city": "Bačka Palanka",
+     "name": "",
+     "address": "Kralja Petra I 7"
+    },
+    {
+     "city": "Batajnica",
+     "name": "",
+     "address": "Majora Zorana Radosavljevića 175"
+    },
+    {
+     "city": "Batočina",
+     "name": "",
+     "address": "Kralja Petra I 10"
+    },
+    {
+     "city": "Bečej",
+     "name": "",
+     "address": "Zelena 54-54A"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "27 marta 26-28"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Balkanska 49"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Borska 44"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar despota Stefana 102"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar kralja Aleksandra 18"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Kralja Aleksandra 334"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Cara Dušana 58"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Dečanska 4"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Jurija Gagarina 32"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kralja Milana 10"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Neznanog junaka 23"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Palata nauke, Kralja Milana 11-Digital spot"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Paunova 9"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Petrogradska 1"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Pilota Mihaila Petrovića 72"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Pjarona de Mondezira 4"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Požeška 66"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Resavska 49"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Terazije 7-9"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Trg Zorana Đinđića 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Trgovačka 9"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Ustanička 182A"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Ustanička 264"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vojvode Stepe 2L"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vuka Karadžića 10"
+    },
+    {
+     "city": "Beograd",
+     "name": "Grawe",
+     "address": "Bulevar Mihajla Pupina 115đ"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ive Lole Ribara 154a",
+     "address": "Ive Lole Ribara 154a (Železnik)"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Bulevar Arsenija Čarnojevića 59A"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Bulevar Mihaila Pupina 165g"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Galerija - Vudroa Vilsona 14"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Otona Župančića 1"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Partizanske avijacije 10"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Uroša Martinovića 19N"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ranka Miljića 3",
+     "address": "Ranka Miljića 3 (Borča)"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zemun",
+     "address": "Glavna 37"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zemun",
+     "address": "Prvomajska 86"
+    },
+    {
+     "city": "Bor",
+     "name": "",
+     "address": "Đorđa Vajferta 21"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Kuželjeva 2"
+    },
+    {
+     "city": "Ćuprija",
+     "name": "",
+     "address": "Karađorđeva 37"
+    },
+    {
+     "city": "Gornji Milanovac",
+     "name": "",
+     "address": "Kneza Aleksandra 11"
+    },
+    {
+     "city": "Inđija",
+     "name": "",
+     "address": "Vojvode Stepe 13"
+    },
+    {
+     "city": "Ivanjica",
+     "name": "",
+     "address": "Milinka Kušića 23"
+    },
+    {
+     "city": "Jagodina",
+     "name": "",
+     "address": "Kneginje Milice 73"
+    },
+    {
+     "city": "Kikinda",
+     "name": "",
+     "address": "Trg srpskih dobrovoljaca 6"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kneza Miloša 2"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kralja Petra I 26"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Trg Radomira Putnika 3"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "",
+     "address": "Miloša Velikog 44"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Gazimestanska bb"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Vidovdanska bb"
+    },
+    {
+     "city": "Lazarevac",
+     "name": "",
+     "address": "Karađorđeva 58"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Bulevar oslobođenja bb"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Trg Revolucije 15"
+    },
+    {
+     "city": "Loznica",
+     "name": "",
+     "address": "Pašićeva 8"
+    },
+    {
+     "city": "Mionica",
+     "name": "",
+     "address": "Vojvode Mišića 52"
+    },
+    {
+     "city": "Mladenovac",
+     "name": "",
+     "address": "Kralja Petra I 239"
+    },
+    {
+     "city": "Negotin",
+     "name": "",
+     "address": "Trg Đorđa Stanojevića 68/1"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Bulevar Dr Zorana Đinđića 4"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Bulevar Nemanjića 25"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Generala Milojka Lešjanina 19"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Knjaževačka 11"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Nade Tomić 25"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Nikole Pašića 42"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Obrenovićeva 33"
+    },
+    {
+     "city": "Nova Varoš",
+     "name": "",
+     "address": "Solunskih boraca 16"
+    },
+    {
+     "city": "Novi Pazar",
+     "name": "",
+     "address": "Stevana Nemanje 148a"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar Mihajla Pupina 14"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar Mihajla Pupina 2"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar Oslobođenja 97"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Futoška 1a"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Teodora Pavlovića 36"
+    },
+    {
+     "city": "Novi Sad",
+     "name": ".",
+     "address": "Bulevar Jovana Dučića 5"
+    },
+    {
+     "city": "Obrenovac",
+     "name": "",
+     "address": "Miloša Obrenovića 109"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Ulica generala Petra Aračića 2"
+    },
+    {
+     "city": "Paraćin",
+     "name": "",
+     "address": "Svetog Save 2a"
+    },
+    {
+     "city": "Pirot",
+     "name": "",
+     "address": "Save Kovačevića 7"
+    },
+    {
+     "city": "Požarevac",
+     "name": "",
+     "address": "Trg Radomira Vujovića 12"
+    },
+    {
+     "city": "Požega",
+     "name": "",
+     "address": "Nikole Pašića 6"
+    },
+    {
+     "city": "Priboj",
+     "name": "",
+     "address": "Trg FAP-a 1"
+    },
+    {
+     "city": "Prijepolje",
+     "name": "",
+     "address": "Sandžačkih brigada 19"
+    },
+    {
+     "city": "Prokuplje",
+     "name": "",
+     "address": "Topličkih junaka 1"
+    },
+    {
+     "city": "Rača",
+     "name": "",
+     "address": "Karađorđeva 44"
+    },
+    {
+     "city": "Raška",
+     "name": "",
+     "address": "Miluna Ivanovića 13"
+    },
+    {
+     "city": "Ruma",
+     "name": "",
+     "address": "Orlovićeva 2"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Trg šabačkih žrtava bb"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Vlade Jovanovića 22"
+    },
+    {
+     "city": "Smederevo",
+     "name": "",
+     "address": "Trg Republike 12"
+    },
+    {
+     "city": "Smederevska palanka",
+     "name": "",
+     "address": "I srpskog ustanka 17"
+    },
+    {
+     "city": "Sombor",
+     "name": "",
+     "address": "Staparski put 6a"
+    },
+    {
+     "city": "Sopot",
+     "name": "",
+     "address": "Kneza Miloša 39"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "",
+     "address": "Kralja Petra I 9"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "",
+     "address": "Kralja Petra I Karađorđevića 1a"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Korzo 6"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Trg Republike 16"
+    },
+    {
+     "city": "Surdulica",
+     "name": "",
+     "address": "5 septembra 2"
+    },
+    {
+     "city": "Svilajnac",
+     "name": "",
+     "address": "Trg Stevana Sinđelića bb"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Dimitrija Tucovića 42"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Petra Ćelovića 2"
+    },
+    {
+     "city": "Valjevo",
+     "name": "",
+     "address": "Karađorđeva 127"
+    },
+    {
+     "city": "Vranje",
+     "name": "",
+     "address": "Kralja Stefana Prvovenčanog 169"
+    },
+    {
+     "city": "Vrbas",
+     "name": "",
+     "address": "Maršala Tita 57"
+    },
+    {
+     "city": "Vrnjačka Banja",
+     "name": "",
+     "address": "Nemanjina 2"
+    },
+    {
+     "city": "Vršac",
+     "name": "",
+     "address": "Dvorska 2"
+    },
+    {
+     "city": "Zaječar",
+     "name": "",
+     "address": "Krfska 16"
+    },
+    {
+     "city": "Zlatibor",
+     "name": "",
+     "address": "Rujanska 2"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Kralja Aleksandra I Karađorđevića 8"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Nikole Pašića 12"
+    }
+   ]
+  },
+  "nlb": {
+   "source": "https://www.nlb.rs/poslovnice",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Aleksandrovac",
+     "name": "",
+     "address": "29. novembra 102"
+    },
+    {
+     "city": "Aleksinac",
+     "name": "",
+     "address": "Drakčeta Milovanovića 6"
+    },
+    {
+     "city": "Apatin",
+     "name": "",
+     "address": "Petefi Šandora 2"
+    },
+    {
+     "city": "Aranđelovac",
+     "name": "",
+     "address": "Knjaza Miloša 176"
+    },
+    {
+     "city": "Arilje",
+     "name": "",
+     "address": "Svetog Ahilija 20"
+    },
+    {
+     "city": "Bačka Palanka",
+     "name": "",
+     "address": "Trg Bratstva i jedinstva 30-32"
+    },
+    {
+     "city": "Bajina Bašta",
+     "name": "",
+     "address": "Milenka Topalovića 3"
+    },
+    {
+     "city": "Bečej",
+     "name": "",
+     "address": "Zelena 41"
+    },
+    {
+     "city": "Bela Crkva",
+     "name": "",
+     "address": "1. oktobra 50"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Beogradska 167a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Birčaninova 34"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Blagoja Parovića 25a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bratstva i jedinstva 105a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Kralja Aleksandra 142ž"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Maršala Tolbuhina 36"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar Mihajla Pupina 165v"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar oslobođenja 9"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Cara Dušana 35"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Čelebićka 11"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Jurija Gagarina 16"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Jurija Gagarina 36"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kneza Mihaila 38"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kneza Miloša 83"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kneza Višeslava 49"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kolarčeva 1"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Majora Zorana Radosavljevića 252"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Makenzijeva 43"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Marijane Gregoran 56"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Milana Uzelca 23a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Milentija Popovića 9"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Partizanske avijacije 4a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Paunova 9"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Požeška 42a"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Rableova 19b"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Rajačićeva 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Smederevski put 101"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Starine Novaka 25"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Svetog Save 14"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Svetogorska 42-44"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Svetosavska 20"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Titova 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Trg Nikole Pašića 7"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Ustanička 194"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Ustanička 63"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vojvode Stepe 101"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Vojvođanska 126-128"
+    },
+    {
+     "city": "Bor",
+     "name": "",
+     "address": "Zeleni Bulevar 4"
+    },
+    {
+     "city": "Bujanovac",
+     "name": "",
+     "address": "Trg Karađorđa Petrovića bb"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Gradsko šetalište 10-14"
+    },
+    {
+     "city": "Ćuprija",
+     "name": "",
+     "address": "Karađorđeva 67"
+    },
+    {
+     "city": "Despotovac",
+     "name": "",
+     "address": "Kralja Milana 11"
+    },
+    {
+     "city": "Gornji Milanovac",
+     "name": "",
+     "address": "Karađorđeva 5"
+    },
+    {
+     "city": "Inđija",
+     "name": "",
+     "address": "Blok 44"
+    },
+    {
+     "city": "Ivanjica",
+     "name": "",
+     "address": "Milinka Kušića 9"
+    },
+    {
+     "city": "Jagodina",
+     "name": "",
+     "address": "Skver narodne omladine bb"
+    },
+    {
+     "city": "Kanjiža",
+     "name": "",
+     "address": "Glavna 16"
+    },
+    {
+     "city": "Kikinda",
+     "name": "",
+     "address": "Braće Tatić 7"
+    },
+    {
+     "city": "Kladovo",
+     "name": "",
+     "address": "22. septembra 11"
+    },
+    {
+     "city": "Knjaževac",
+     "name": "",
+     "address": "Trg oslobođenja 16"
+    },
+    {
+     "city": "Kosjerić",
+     "name": "",
+     "address": "Karađorđeva 41"
+    },
+    {
+     "city": "Kostolac",
+     "name": "",
+     "address": "Trg Bratstva i jedinstva 6"
+    },
+    {
+     "city": "Kovin",
+     "name": "",
+     "address": "JNA 26"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kralja Aleksandra I Karađorđevića 41a"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Save Kovačevića 1"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "",
+     "address": "Trg srpskih ratnika 1"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Trg fontana 1"
+    },
+    {
+     "city": "Kula",
+     "name": "",
+     "address": "Lenjinova 14"
+    },
+    {
+     "city": "Kuršumlija",
+     "name": "",
+     "address": "Svete Ane 10"
+    },
+    {
+     "city": "Lajkovac",
+     "name": "",
+     "address": "Vojvode Mišića 8"
+    },
+    {
+     "city": "Lapovo",
+     "name": "",
+     "address": "Njegoševa 15"
+    },
+    {
+     "city": "Lazarevac",
+     "name": "",
+     "address": "Dimitrija Tucovića 1"
+    },
+    {
+     "city": "Lebane",
+     "name": "",
+     "address": "Cara Dušana 12"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Bulevar oslobođenja bb"
+    },
+    {
+     "city": "Loznica",
+     "name": "",
+     "address": "Gimnazijska 1"
+    },
+    {
+     "city": "Lučani",
+     "name": "",
+     "address": "Jugoslovenske armije 6a"
+    },
+    {
+     "city": "Majdanpek",
+     "name": "",
+     "address": "28. marta 2"
+    },
+    {
+     "city": "Mladenovac",
+     "name": "",
+     "address": "Kralja Aleksandra Obrenovića 52"
+    },
+    {
+     "city": "Negotin",
+     "name": "",
+     "address": "Trg Đorđa Stanojevića 11-3"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Episkopska 32"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Nikole Pašića 32b"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Trg kralja Aleksandra 2"
+    },
+    {
+     "city": "Novi Pazar",
+     "name": "",
+     "address": "Njegoševa 1"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar oslobođenja 102"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar oslobođenja 60"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar oslobođenja 88"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Ilije Ognjanovića 24"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Ložionička 10"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Trg mladenaca 1-3"
+    },
+    {
+     "city": "Obrenovac",
+     "name": "",
+     "address": "Vojvode Mišića 201"
+    },
+    {
+     "city": "Odžaci",
+     "name": "",
+     "address": "Železnička 18"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Generala Petra Aračića 4-6"
+    },
+    {
+     "city": "Paraćin",
+     "name": "",
+     "address": "Tome Živanovića 5"
+    },
+    {
+     "city": "Petrovac na Mlavi",
+     "name": "",
+     "address": "Srpskih vladara 240"
+    },
+    {
+     "city": "Pirot",
+     "name": "",
+     "address": "Trg pirotskih oslobodilaca 15a"
+    },
+    {
+     "city": "Požarevac",
+     "name": "",
+     "address": "Moše Pijade 8"
+    },
+    {
+     "city": "Požega",
+     "name": "",
+     "address": "Nikole Pašića 2"
+    },
+    {
+     "city": "Preševo",
+     "name": "",
+     "address": "Save Kovačevića 2"
+    },
+    {
+     "city": "Priboj",
+     "name": "",
+     "address": "Meše Selimovića 1"
+    },
+    {
+     "city": "Prijepolje",
+     "name": "",
+     "address": "Polimska 21"
+    },
+    {
+     "city": "Prokuplje",
+     "name": "",
+     "address": "Ratka Pavlovića 15"
+    },
+    {
+     "city": "Raška",
+     "name": "",
+     "address": "Nemanjina 10"
+    },
+    {
+     "city": "Ruma",
+     "name": "",
+     "address": "Poslovni centar bb"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Gospodar Jevremova 2"
+    },
+    {
+     "city": "Senta",
+     "name": "",
+     "address": "Glavni trg 8"
+    },
+    {
+     "city": "Šid",
+     "name": "",
+     "address": "Cara Dušana 2"
+    },
+    {
+     "city": "Smederevo",
+     "name": "",
+     "address": "Karađorđeva 14"
+    },
+    {
+     "city": "Smederevska Palanka",
+     "name": "",
+     "address": "Prvog srpskog ustanka 57"
+    },
+    {
+     "city": "Sombor",
+     "name": "",
+     "address": "Vojvođanska 3"
+    },
+    {
+     "city": "Sopot",
+     "name": "",
+     "address": "Milosava Vlajića 1"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "",
+     "address": "Kralja Petra I 5-7"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "",
+     "address": "Kralja Petra I Karađorđevića 22"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Korzo 10"
+    },
+    {
+     "city": "Surdulica",
+     "name": "",
+     "address": "V septembar bb"
+    },
+    {
+     "city": "Svilajnac",
+     "name": "",
+     "address": "Ustanička 1"
+    },
+    {
+     "city": "Temerin",
+     "name": "",
+     "address": "Novosadska 318"
+    },
+    {
+     "city": "Topola",
+     "name": "",
+     "address": "Bulevar kralja Aleksandra 26"
+    },
+    {
+     "city": "Trstenik",
+     "name": "",
+     "address": "Vuka Karadžića 46"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Dimitrija Tucovića 93"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Petra Ćelovića 4"
+    },
+    {
+     "city": "Valjevo",
+     "name": "",
+     "address": "Vuka Karadžića 7"
+    },
+    {
+     "city": "Velika Plana",
+     "name": "",
+     "address": "Miloša Velikog 77"
+    },
+    {
+     "city": "Veliko Gradište",
+     "name": "",
+     "address": "Kneza Lazara 47"
+    },
+    {
+     "city": "Vladičin Han",
+     "name": "",
+     "address": "Svetosavska 35"
+    },
+    {
+     "city": "Vranje",
+     "name": "",
+     "address": "Kralja Stefana Prvovenčanog 58"
+    },
+    {
+     "city": "Vrbas",
+     "name": "",
+     "address": "Maršala Tita 49"
+    },
+    {
+     "city": "Vrnjačka Banja",
+     "name": "",
+     "address": "Nemanjina 11"
+    },
+    {
+     "city": "Vršac",
+     "name": "",
+     "address": "Trg Svetog Teodora Vršačkog 2"
+    },
+    {
+     "city": "Zaječar",
+     "name": "",
+     "address": "Nikole Pašića 25"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Trg slobode 5"
+    }
+   ]
+  },
+  "postanska": {
+   "source": "https://www.posted.co.rs/o-nama/ekspoziture.html",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Aleksandrovac Župski",
+     "name": "Ekspozitura Aleksandrovac Župski 1",
+     "address": "29.novembra 66"
+    },
+    {
+     "city": "Aleksinac",
+     "name": "Ekspozitura Aleksinac 1",
+     "address": "Momčila Popovića 46"
+    },
+    {
+     "city": "Alibunar",
+     "name": "Ekspozitura Alibunar 1",
+     "address": "Trg Slobode 19"
+    },
+    {
+     "city": "Apatin",
+     "name": "Ekspozitura Apatin 1",
+     "address": "Trg Nikole Tesle 4"
+    },
+    {
+     "city": "Aranđelovac",
+     "name": "Ekspozitura Aranđelovac 1",
+     "address": "Knjaza Miloša 142"
+    },
+    {
+     "city": "Arilje",
+     "name": "Ekspozitura Arilje 1",
+     "address": "Braće Mihajlović 23"
+    },
+    {
+     "city": "Bačka Palanka",
+     "name": "Ekspozitura Bačka Palanka 1",
+     "address": "Kralja Petra I 19"
+    },
+    {
+     "city": "Bačka Topola",
+     "name": "Ekspozitura Bačka Topola 1",
+     "address": "Glavna 21"
+    },
+    {
+     "city": "Bački Petrovac",
+     "name": "Ekspozitura Bački Petrovac 1",
+     "address": "Maršala Tita 20"
+    },
+    {
+     "city": "Bajina Bašta",
+     "name": "Ekspozitura Bajina Bašta 1",
+     "address": "Trg Dušana Jerkovića 2"
+    },
+    {
+     "city": "Barajevo",
+     "name": "Ekspozitura Barajevo 1",
+     "address": "Svetosavska 56"
+    },
+    {
+     "city": "Batočina",
+     "name": "Ekspozitura Batočina 1",
+     "address": "Kralja Petra Prvog 23v"
+    },
+    {
+     "city": "Bečej",
+     "name": "Ekspozitura Bečej 1",
+     "address": "Trg oslobođenja 1"
+    },
+    {
+     "city": "Bela Crkva",
+     "name": "Ekspozitura Bela Crkva 1",
+     "address": "Prvog oktobra 54"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 1 - Banovo brdo",
+     "address": "Kirovljeva 5"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 10 - Filmski Grad",
+     "address": "Kneza Višeslava 136"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 11 -Karaburma",
+     "address": "Drenovačka 11"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 12 - YU Biznis Centar",
+     "address": "Bulevar M.Pupina 10/b"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 13 -Konjarnik",
+     "address": "Ustanička 240 b"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 14 -Borča",
+     "address": "Ivana Milutinovića 39"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 15 -Kneza Mihaila",
+     "address": "Kneza Mihaila 7"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 16 -Vma",
+     "address": "Crnotravska 17"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 17 - Mirijevo",
+     "address": "Rableova 19"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 18 -Carina Beograd Novi Beograd",
+     "address": "Narodnih Heroja 63"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 19 - Bulevar Kralja Aleksandra",
+     "address": "Bulevar kralja Aleksandra 64"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 2 -Bežanijska Kosa",
+     "address": "Ljubinke Bobić 28"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 20 - Vidikovac",
+     "address": "Vidikovački venac 79"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 21 - Vojvode Stepe",
+     "address": "Vojvode Stepe 81"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 22-Retenzija",
+     "address": "Džona Kenedija 31/v lamela 3 lok 6"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 23 - Prokop",
+     "address": "Zorana Žunkovića 15 lok 12 (L12)"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 24 -Beograd Zemun (Muhar)",
+     "address": "Trg Branka Radičevića 4"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 25 - Šest kaplara",
+     "address": "Bulevar M.Pupina 3/L4"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 27 -Železnik",
+     "address": "Darinke Radović 21"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 28 -Sremčica",
+     "address": "Beogradska 98"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 29 Kotež",
+     "address": "Anke Matić 4"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 3 - Blok 70a",
+     "address": "Omladinskih brigada 65v"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 30 - Centar",
+     "address": "Vase Čarapića 18"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 31 - Đeram pijaca",
+     "address": "Bulevar Kralja Aleksandra 158"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 32 - Dorćol",
+     "address": "Cara Dušana 6"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 33 - Beograd na vodi",
+     "address": "Hercegovačka 19"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 34 - Trošarina",
+     "address": "Save Maškovića 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 4 - Blok 62",
+     "address": "Nehruova 56a - levo"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 5 -Beograd Zemun",
+     "address": "Milana Uzelca 23a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 6 - Miljakovac",
+     "address": "Bogdana Žerajića 24a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 7 - Južni Bulevar",
+     "address": "Južni bulevar 116"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 8 - Centrala Banke",
+     "address": "Kraljice Marije 3"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Beograd 9 - Batajnica",
+     "address": "ul.Majora Zorana Radosavljevića 96"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Dobanovci 1",
+     "address": "Maršala Tita 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspozitura Umka 1",
+     "address": "13. oktobra 37"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Banjica",
+     "address": "Crnotravska 13a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Beograd 8",
+     "address": "Kraljice Marije 1a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Crveni krst",
+     "address": "Jovana Rajića 5/L2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Goce Delčeva",
+     "address": "Bulevar Maršala Tolbuhina 46"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan",
+     "address": "Danijelova 33"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan",
+     "address": "dr Aleksandra Kostića 15a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan",
+     "address": "dr Nedeljka Ercegovca 27"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan",
+     "address": "Ilije Garašanina 5"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan",
+     "address": "Narodnih heroja 30"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan",
+     "address": "Njegoševa 84"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan",
+     "address": "Subotička 16"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan",
+     "address": "Ustanička 53"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan Beograd Čukarica",
+     "address": "Šumadijski trg 6"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan Beograd Novi Beograd 2",
+     "address": "Dušana Vukasovića 31"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan Beograd Rakovica",
+     "address": "Miška Kranjca 12"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Infostan Beograd Stari Grad",
+     "address": "Kneginje Ljubice 3"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Makedonska",
+     "address": "Makedonska 30"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Novi Beograd",
+     "address": "Jurija Gagarina 1"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Sanu",
+     "address": "Kneza Mihaila 35"
+    },
+    {
+     "city": "Beograd",
+     "name": "Samostalni šalter Veletržnica",
+     "address": "Autoput b.b."
+    },
+    {
+     "city": "Blace",
+     "name": "Ekspozitura Blace 1",
+     "address": "Karađorđeva 25"
+    },
+    {
+     "city": "Bogatić",
+     "name": "Ekspozitura Bogatić 1",
+     "address": "Mike Vitomirovića 1"
+    },
+    {
+     "city": "Bojnik",
+     "name": "Ekspozitura Bojnik 1",
+     "address": "Trg slobode 44B"
+    },
+    {
+     "city": "Boljevac",
+     "name": "Ekspozitura Boljevac 1",
+     "address": "Kneza Miloša 1"
+    },
+    {
+     "city": "Bor",
+     "name": "Ekspozitura Bor 1",
+     "address": "Nikole Pašića 35"
+    },
+    {
+     "city": "Bor",
+     "name": "Samostalni šalter Zlot",
+     "address": "Trg Petra Radovanovića bb"
+    },
+    {
+     "city": "Bosilegrad",
+     "name": "Samostalni šalter Bosilegrad",
+     "address": "Georgi Dimitrova 74"
+    },
+    {
+     "city": "Brus",
+     "name": "Ekspozitura Brus 1",
+     "address": "Kralja Petra I 41"
+    },
+    {
+     "city": "Bujanovac",
+     "name": "Ekspozitura Bujanovac 1",
+     "address": "Karađorđa Petrovića 103"
+    },
+    {
+     "city": "Čačak",
+     "name": "Ekspozitura Čačak 1",
+     "address": "Gospodar Jovanova 22"
+    },
+    {
+     "city": "Čačak",
+     "name": "Samostalni šalter Čačak",
+     "address": "Skadarska 15"
+    },
+    {
+     "city": "Čačak",
+     "name": "Samostalni šalter Mrčajevci",
+     "address": "Ibarski put b.b."
+    },
+    {
+     "city": "Čajetina",
+     "name": "Ekspozitura Čajetina 1",
+     "address": "Kralja Aleksandra Karađorđevića 10"
+    },
+    {
+     "city": "Čajetina",
+     "name": "Samostalni šalter Zlatibor",
+     "address": "Rujanska b.b."
+    },
+    {
+     "city": "Ćićevac",
+     "name": "Samostalni šalter Ćićevac",
+     "address": "Karađorđeva bb"
+    },
+    {
+     "city": "Ćuprija",
+     "name": "Ekspozitura Ćuprija 1",
+     "address": "Cara Lazara 2"
+    },
+    {
+     "city": "Debeljača",
+     "name": "Samostalni šalter - Debeljača",
+     "address": "Trg Maršala Tita 1"
+    },
+    {
+     "city": "Despotovac",
+     "name": "Ekspozitura Despotovac 1",
+     "address": "Despota Stefana Lazarevića 49"
+    },
+    {
+     "city": "Dimitrovgrad",
+     "name": "Ekspozitura Dimitrovgrad 1",
+     "address": "Balkanska 16"
+    },
+    {
+     "city": "Doljevac",
+     "name": "Ekspozitura Doljevac 1",
+     "address": "Nikole Tesle 97"
+    },
+    {
+     "city": "Golubac",
+     "name": "Ekspozitura Golubac 1",
+     "address": "Golubački trg 1"
+    },
+    {
+     "city": "Gornji Milanovac",
+     "name": "Ekspozitura Gornji Milanovac 1",
+     "address": "Vojvode Milana 4"
+    },
+    {
+     "city": "Grocka",
+     "name": "Ekspozitura Grocka 1",
+     "address": "Vučka Milićevića 5"
+    },
+    {
+     "city": "Inđija",
+     "name": "Ekspozitura Inđija 1",
+     "address": "Novosadska 1"
+    },
+    {
+     "city": "Inđija",
+     "name": "Samostalni šalter Beška",
+     "address": "Kneza Miloša 21"
+    },
+    {
+     "city": "Irig",
+     "name": "Ekspozitura Irig 1",
+     "address": "Borislava Mihajlovića Mihiza 2"
+    },
+    {
+     "city": "Ivanjica",
+     "name": "Ekspozitura Ivanjica 1",
+     "address": "Milinka Kušića 39"
+    },
+    {
+     "city": "Jagodina",
+     "name": "Ekspozitura Jagodina 1",
+     "address": "Ljubiše Uroševića 10"
+    },
+    {
+     "city": "Kikinda",
+     "name": "Ekspozitura Kikinda 1",
+     "address": "Svetosavska 43"
+    },
+    {
+     "city": "Kladovo",
+     "name": "Ekspozitura Kladovo 1",
+     "address": "Ivana Kosančića 7B"
+    },
+    {
+     "city": "Knić",
+     "name": "Ekspozitura Knić 1",
+     "address": "Dimitrija Mihailovića 1"
+    },
+    {
+     "city": "Knjaževac",
+     "name": "Ekspozitura Knjaževac 1",
+     "address": "Trg oslobođenja 18"
+    },
+    {
+     "city": "Knjaževac",
+     "name": "Samostalni šalter Stara Planina",
+     "address": "Jabučko ravnište bb, lokal 3"
+    },
+    {
+     "city": "Koceljeva",
+     "name": "Ekspozitura Koceljeva 1",
+     "address": "Nemanjina 99"
+    },
+    {
+     "city": "Kosjerić",
+     "name": "Ekspozitura Kosjerić 1",
+     "address": "Karađorđeva 60"
+    },
+    {
+     "city": "Kosovska Mitrovica",
+     "name": "Ekspozitura Kosovska Mitrovica 2",
+     "address": "Kralja Petra I 165"
+    },
+    {
+     "city": "Kostolac",
+     "name": "Ekspozitura Kostolac 1",
+     "address": "Nikole Tesle 5"
+    },
+    {
+     "city": "Kovačica",
+     "name": "Ekspozitura Kovačica 1",
+     "address": "Maršala Tita 40"
+    },
+    {
+     "city": "Kovačica",
+     "name": "Samostalni šalter Crepaja",
+     "address": "Trg oslobođenja 5"
+    },
+    {
+     "city": "Kovin",
+     "name": "Ekspozitura Kovin 1",
+     "address": "Jna 10 -12"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "Ekspozitura Kragujevac 1",
+     "address": "dr Zorana Đinđića 11"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "Ekspozitura Kragujevac 2",
+     "address": "Kralja Milana IV 24"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "Ekspozitura Kraljevo 1",
+     "address": "Oktobarskih žrtava 5"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "Ekspozitura Kraljevo 2",
+     "address": "Proleterska 1"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "Samostalni šalter Aerodrom Morava",
+     "address": "Aerodrom Morava, Tavnik bb, Lađevci"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "Samostalni šalter Kraljevo 1",
+     "address": "Oktobarskih žrtava 14"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "Samostalni šalter Kraljevo 2",
+     "address": "Vojvode Stepe 45"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "Samostalni šalter Ušće",
+     "address": "23. novembra 14"
+    },
+    {
+     "city": "Krupanj",
+     "name": "Ekspozitura Krupanj 1",
+     "address": "Maršala Tita 16"
+    },
+    {
+     "city": "Kruševac",
+     "name": "Ekspozitura Kruševac 1",
+     "address": "Stevana Sinđelića 2"
+    },
+    {
+     "city": "Kučevo",
+     "name": "Ekspozitura Kučevo 1",
+     "address": "Svetog Save broj 78"
+    },
+    {
+     "city": "Kula",
+     "name": "Ekspozitura Kula1",
+     "address": "Lenjinova 14"
+    },
+    {
+     "city": "Kula",
+     "name": "Samostalni šalter Sivac",
+     "address": "Maršala Tita 148"
+    },
+    {
+     "city": "Kuršumlija",
+     "name": "Ekspozitura Kuršumlija 1",
+     "address": "Koste Vojinovića 16"
+    },
+    {
+     "city": "Kuršumlija",
+     "name": "Samostalni šalter Merdare",
+     "address": "Administrativni prelaz Merdare"
+    },
+    {
+     "city": "Lajkovac",
+     "name": "Ekspozitura Lajkovac 1",
+     "address": "Vojvode Mišića 8"
+    },
+    {
+     "city": "Lazarevac",
+     "name": "Ekspozitura Lazarevac 1",
+     "address": "Branka Radičevića 8"
+    },
+    {
+     "city": "Leposavić",
+     "name": "Ekspozitura Leposavić 1",
+     "address": "24. novembra bb"
+    },
+    {
+     "city": "Leposavić",
+     "name": "Samostalni šalter Jarinje",
+     "address": "Administrativni prelaz Jarinje"
+    },
+    {
+     "city": "Leskovac",
+     "name": "Ekspozitura Leskovac 1",
+     "address": "Trg Revolucije 33"
+    },
+    {
+     "city": "Ljig",
+     "name": "Ekspozitura Ljig 1",
+     "address": "Karađorđeva 7"
+    },
+    {
+     "city": "Ljubovija",
+     "name": "Ekspozitura Ljubovija 1",
+     "address": "Milana Tešića 1"
+    },
+    {
+     "city": "Loznica",
+     "name": "Ekspozitura Banja Koviljača 1",
+     "address": "Maršala Tita 146ž"
+    },
+    {
+     "city": "Loznica",
+     "name": "Ekspozitura Lešnica 1",
+     "address": "Kralja Petra I 23"
+    },
+    {
+     "city": "Loznica",
+     "name": "Ekspozitura Loznica 1",
+     "address": "Pop Lukina 8"
+    },
+    {
+     "city": "Lučani",
+     "name": "Ekspozitura Guča 1",
+     "address": "Republike 65"
+    },
+    {
+     "city": "Lučani",
+     "name": "Ekspozitura Lučani 1",
+     "address": "Dositejeva 1"
+    },
+    {
+     "city": "Majdanpek",
+     "name": "Ekspozitura Donji Milanovac 1",
+     "address": "Kralja Petra I 77"
+    },
+    {
+     "city": "Majdanpek",
+     "name": "Ekspozitura Majdanpek 1",
+     "address": "28.marta 15"
+    },
+    {
+     "city": "Majdanpek",
+     "name": "Samostalni šalter Rudna Glava",
+     "address": "Rudna Glava bb"
+    },
+    {
+     "city": "Mali Zvornik",
+     "name": "Ekspozitura Mali Zvornik 1",
+     "address": "Kralja Petra I 26b"
+    },
+    {
+     "city": "Medveđa",
+     "name": "Ekspozitura Medveđa 1",
+     "address": "Kralja Milana 61"
+    },
+    {
+     "city": "Mionica",
+     "name": "Ekspozitura Mionica 1",
+     "address": "dr.Jove Aleksić 12"
+    },
+    {
+     "city": "Mladenovac",
+     "name": "Ekspozitura Mladenovac 1",
+     "address": "Kralja Petra I 162"
+    },
+    {
+     "city": "Negotin",
+     "name": "Ekspozitura Negotin 1",
+     "address": "Stanka Paunovića 3"
+    },
+    {
+     "city": "Niš",
+     "name": "Ekspozitura Niš 1 - Centar",
+     "address": "Generala Milojka Lešjanina 10"
+    },
+    {
+     "city": "Niš",
+     "name": "Ekspozitura Niš 2 - Lutkarsko pozorište",
+     "address": "Bulevar dr Zorana Đinđića 15v"
+    },
+    {
+     "city": "Niš",
+     "name": "Ekspozitura Niš 3",
+     "address": "Strahinjića Bana 8"
+    },
+    {
+     "city": "Niš",
+     "name": "Ekspozitura Niš 4 -Naselje Durlan",
+     "address": "Knjaževačka 112"
+    },
+    {
+     "city": "Niš",
+     "name": "Samostalni šalter Niš",
+     "address": "Nikole Pašića 32a"
+    },
+    {
+     "city": "Niš",
+     "name": "Samostalni šalter Niš 1",
+     "address": "Generala Milojka Lešjanina 10/2l"
+    },
+    {
+     "city": "Nova Varoš",
+     "name": "Ekspozitura Nova Varoš 1",
+     "address": "Solunskih boraca 14"
+    },
+    {
+     "city": "Novi Kneževac",
+     "name": "Ekspozitura Novi Kneževac 1",
+     "address": "Kralja Petra I Karađorđevića 8"
+    },
+    {
+     "city": "Novi Pazar",
+     "name": "Ekspozitura Novi Pazar 1",
+     "address": "AVNOJ-a 31"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Ekspozitura Novi Sad 1 - Bulevar",
+     "address": "Bulevar oslobođenja 13"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Ekspozitura Novi Sad 2 - Novo Naselje",
+     "address": "Đorđa Nikšića Johana 16"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Ekspozitura Novi Sad 3 - Liman",
+     "address": "Bulevar Cara Lazara 7a"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Ekspozitura Novi Sad 4-S.Kamenica",
+     "address": "Železnička 1"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Ekspozitura Novi Sad 5 - Centar (Dunavska)",
+     "address": "Dunavska 5"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Ekspozitura Novi Sad 6-Veternik",
+     "address": "Kralja Petra I 22v"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Ekspozitura Novi Sad 7 - Bulevar Evrope",
+     "address": "Bulevar Evrope 11"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Samostalni šalter Begeč",
+     "address": "Kralja Petra I 1"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Samostalni šalter Klisa",
+     "address": "Temerinska 173"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Samostalni šalter Železnička stanica",
+     "address": "Bulevar Jaše Tomića 4"
+    },
+    {
+     "city": "Obrenovac",
+     "name": "Ekspozitura Obrenovac 1",
+     "address": "Vuka Karadžića 65"
+    },
+    {
+     "city": "Odžaci",
+     "name": "Ekspozitura Odžaci 1",
+     "address": "Želznička 26"
+    },
+    {
+     "city": "Opovo",
+     "name": "Ekspozitura Opovo 1",
+     "address": "Borisa Kidriča 9"
+    },
+    {
+     "city": "Osečina",
+     "name": "Ekspozitura Osečina 1",
+     "address": "Karađorđeva 152"
+    },
+    {
+     "city": "Padina",
+     "name": "Samostalni šalter Padina",
+     "address": "Trg oslobođenja 9"
+    },
+    {
+     "city": "Pančevo",
+     "name": "Ekspozitura Pančevo 1 - Centar",
+     "address": "Trg Slobode 2-6"
+    },
+    {
+     "city": "Pančevo",
+     "name": "Ekspozitura Pančevo 3 - Tesla",
+     "address": "Kralja Milana Obrenovića 7"
+    },
+    {
+     "city": "Pančevo",
+     "name": "Ekspozitura Pančevo 4 - Kotež 2",
+     "address": "Vojvođanski bulevar 30a"
+    },
+    {
+     "city": "Pančevo",
+     "name": "Ekspozitura Pančevo 5 -Strelište",
+     "address": "Veljka Vlahovića 18"
+    },
+    {
+     "city": "Pančevo",
+     "name": "Samostalni šalter Omoljica",
+     "address": "Vojvode Živojina Mišića 2"
+    },
+    {
+     "city": "Paraćin",
+     "name": "Ekspozitura Paraćin 1",
+     "address": "Kralja Petra I 53/a"
+    },
+    {
+     "city": "Pećinci",
+     "name": "Ekspozitura Šimanovci 1",
+     "address": "Prhovačka 2"
+    },
+    {
+     "city": "Petrovac Na Mlavi",
+     "name": "Ekspozitura Petrovac NA Mlavi 1",
+     "address": "Srpskih vladara 236"
+    },
+    {
+     "city": "Pirot",
+     "name": "Ekspozitura Pirot 1",
+     "address": "Srpskih Vladara 38"
+    },
+    {
+     "city": "Požarevac",
+     "name": "Ekspozitura Požarevac 1- Centar",
+     "address": "Tabačka čaršija 11"
+    },
+    {
+     "city": "Požarevac",
+     "name": "Ekspozitura Požarevac 2- Čede Vasovića",
+     "address": "Čede Vasovića 36"
+    },
+    {
+     "city": "Požega",
+     "name": "Ekspozitura Požega 1",
+     "address": "Nikole Pašića 2/b"
+    },
+    {
+     "city": "Priboj",
+     "name": "Ekspozitura Priboj 1",
+     "address": "Meše Selimovića 2"
+    },
+    {
+     "city": "Prijepolje",
+     "name": "Ekspozitura Prijepolje 1",
+     "address": "Nijazije Musabegovića 13"
+    },
+    {
+     "city": "Prokuplje",
+     "name": "Ekspozitura Prokuplje 1",
+     "address": "Jug Bogdanova 18"
+    },
+    {
+     "city": "Raška",
+     "name": "Ekspozitura Kosovska Mitrovica 1",
+     "address": "Savatija Miloševića 14"
+    },
+    {
+     "city": "Raška",
+     "name": "Ekspozitura Raška 1",
+     "address": "Predraga Vilimonovića 15"
+    },
+    {
+     "city": "Raška",
+     "name": "Samostalni šalter Kopaonik",
+     "address": "JAT Apartmani Kopaonik, Nikole Tesle 1"
+    },
+    {
+     "city": "Ražanj",
+     "name": "Ekspozitura Ražanj 1",
+     "address": "Trg Svetog Save 23/3"
+    },
+    {
+     "city": "Rekovac",
+     "name": "Ekspozitura Rekovac 1",
+     "address": "Kralja Petra I b.b."
+    },
+    {
+     "city": "Ruma",
+     "name": "Ekspozitura Ruma 1",
+     "address": "Glavna 188"
+    },
+    {
+     "city": "Šabac",
+     "name": "Ekspozitura Šabac 1",
+     "address": "Pop Lukina 10"
+    },
+    {
+     "city": "Senta",
+     "name": "Ekspozitura Senta 1",
+     "address": "Glavni trg 4"
+    },
+    {
+     "city": "Šid",
+     "name": "Ekspozitura Šid 1",
+     "address": "Karađorđeva 43"
+    },
+    {
+     "city": "Sjenica",
+     "name": "Ekspozitura Sjenica 1",
+     "address": "Kralja Petra I bb"
+    },
+    {
+     "city": "Smederevo",
+     "name": "Ekspozitura Smederevo 1",
+     "address": "Karađorđev dud E-1"
+    },
+    {
+     "city": "Smederevska Palanka",
+     "name": "Ekspozitura Smed. Palanka 1",
+     "address": "Vuka Karadžića 8"
+    },
+    {
+     "city": "Sokobanja",
+     "name": "Ekspozitura Sokobanja 1",
+     "address": "Branka Đurića 8"
+    },
+    {
+     "city": "Sombor",
+     "name": "Ekspozitura Sombor 1",
+     "address": "Samka Radosavljevića 15"
+    },
+    {
+     "city": "Sopot",
+     "name": "Ekspozitura Sopot 1",
+     "address": "Kosmajski trg 6"
+    },
+    {
+     "city": "Srbobran",
+     "name": "Ekspozitura Srbobran 1",
+     "address": "Jovana Jovanovića Zmaja 18"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "Ekspozitura Sr.mitrovica 1",
+     "address": "Kralja Petra I 48"
+    },
+    {
+     "city": "Sremski Karlovci",
+     "name": "Samostalni šalter Sremski Karlovci",
+     "address": "Trg patrijarha Brankovića bb"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "Ekspozitura Nova Pazova 1",
+     "address": "Cara Dušana 2"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "Ekspozitura Stara Pazova 1",
+     "address": "Svetosavska 10/1"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "Samostalni šalter Novi Banovci",
+     "address": "Vidovdanski trg bb"
+    },
+    {
+     "city": "Subotica",
+     "name": "Ekspozitura Subotica 1",
+     "address": "Trg slobode 1"
+    },
+    {
+     "city": "Subotica",
+     "name": "Samostalni šalter Čantavir",
+     "address": "Jožefa Atile 1A"
+    },
+    {
+     "city": "Svilajnac",
+     "name": "Ekspozitura Svilajnac 1",
+     "address": "Svetog Save 10"
+    },
+    {
+     "city": "Svrljig",
+     "name": "Ekspozitura Svrljig1",
+     "address": "dr Milenka Hadžića 16"
+    },
+    {
+     "city": "Temerin",
+     "name": "Ekspozitura Temerin 1",
+     "address": "Novosadska 320"
+    },
+    {
+     "city": "Titel",
+     "name": "Ekspozitura Titel 1",
+     "address": "Mihajla Krestića 8a"
+    },
+    {
+     "city": "Topola",
+     "name": "Ekspozitura Topola 1",
+     "address": "Princa Tomislava Karađorđevića 2"
+    },
+    {
+     "city": "Trgovište",
+     "name": "Ekspozitura Trgovište 1",
+     "address": "Kralja Petra I Karađorđevića 1"
+    },
+    {
+     "city": "Trstenik",
+     "name": "Ekspozitura Trstenik 1",
+     "address": "Miodraga Čajetinca Čajke 11"
+    },
+    {
+     "city": "Trstenik",
+     "name": "Samostalni šalter Stopanja",
+     "address": "selo Stopanja"
+    },
+    {
+     "city": "Tutin",
+     "name": "Ekspozitura Tutin",
+     "address": "Pešterska 3"
+    },
+    {
+     "city": "Ub",
+     "name": "Ekspozitura UB 1",
+     "address": "Prvog maja 11"
+    },
+    {
+     "city": "Užice",
+     "name": "Ekspozitura Užice 1",
+     "address": "Slanuška 7"
+    },
+    {
+     "city": "Užice",
+     "name": "Ekspozitura Užice 2",
+     "address": "Trg Svetog Save 50"
+    },
+    {
+     "city": "Užice Sevojno",
+     "name": "Samostalni šalter Sevojno",
+     "address": "Aleksandra Vučkovića 2a"
+    },
+    {
+     "city": "Valjevo",
+     "name": "Ekspozitura Valjevo 1",
+     "address": "dr Pantića 99"
+    },
+    {
+     "city": "Varvarin",
+     "name": "Ekspozitura Varvarin 1",
+     "address": "Trg slobode b.b."
+    },
+    {
+     "city": "Velika Plana",
+     "name": "Ekspozitura Velika Plana 1",
+     "address": "Miloša Velikog 34"
+    },
+    {
+     "city": "Veliki Šiljegovac",
+     "name": "Samostalni šalter Veliki Šiljegovac",
+     "address": "Glavi put bb"
+    },
+    {
+     "city": "Veliko Gradište",
+     "name": "Ekspozitura Veliko Gradište 1",
+     "address": "Kneza Lazara 48"
+    },
+    {
+     "city": "Vladimirci",
+     "name": "Ekspozitura Vladimirci 1",
+     "address": "Svetog Save 46"
+    },
+    {
+     "city": "Vlasotince",
+     "name": "Ekspozitura Vlasotince 1",
+     "address": "Nemanjina 17"
+    },
+    {
+     "city": "Vranje",
+     "name": "Ekspozitura Vranje 1",
+     "address": "Ive Lole Ribara 2"
+    },
+    {
+     "city": "Vranje",
+     "name": "Samostalni šalter Končulj",
+     "address": "Pane Đukića b.b."
+    },
+    {
+     "city": "Vrbas",
+     "name": "Ekspozitura Vrbas 1",
+     "address": "Maršala Tita 80"
+    },
+    {
+     "city": "Vrnjačka Banja",
+     "name": "Ekspozitura Vrnjačka Banja 1",
+     "address": "Beogradska 7"
+    },
+    {
+     "city": "Vršac",
+     "name": "Ekspozitura Vršac 1",
+     "address": "Sterijina 19"
+    },
+    {
+     "city": "Žabalj",
+     "name": "Ekspozitura Čurug 1",
+     "address": "Kralja Petra I 74"
+    },
+    {
+     "city": "Žabari",
+     "name": "Samostalni šalter Žabari",
+     "address": "Kneza Miloša 56/a"
+    },
+    {
+     "city": "Žagubica",
+     "name": "Ekspozitura Žagubica 1",
+     "address": "Trg Jovana Šerbanovića 5"
+    },
+    {
+     "city": "Žagubica",
+     "name": "Samostalni šalter Krepoljin",
+     "address": "Cara Lazara 33"
+    },
+    {
+     "city": "Zaječar",
+     "name": "Ekspozitura Zaječar 1",
+     "address": "Hajduk Veljkova 1"
+    },
+    {
+     "city": "Žitište",
+     "name": "Ekspozitura Žitište 1",
+     "address": "Cara Dušana 6"
+    },
+    {
+     "city": "Žitorađa",
+     "name": "Ekspozitura Žitorađa 1",
+     "address": "Vojvode Stepe 2B"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "Ekspozitura Zrenjanin 1",
+     "address": "Vojvode Petra Bojovića 2a"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "Samostalni šalter Mužlja",
+     "address": "Hunjadi Janoša 34"
+    },
+    {
+     "city": "Zubin Potok",
+     "name": "Ekspozitura Zubin Potok 1",
+     "address": "Kolašinskih kneževa bb"
+    },
+    {
+     "city": "Zubin Potok",
+     "name": "Samostalni šalter Brnjak",
+     "address": "Administrativni prelaz BRNJAK"
+    },
+    {
+     "city": "Zvečan",
+     "name": "Ekspozitura Zvečan 1",
+     "address": "Karađorđeva 5"
+    }
+   ]
+  },
+  "erste": {
+   "source": "https://www.erstebank.rs/sr/filijale-i-bankomati",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Bač",
+     "name": "Filijala Bač",
+     "address": "Maršala Tita 7"
+    },
+    {
+     "city": "Bačka Palanka",
+     "name": "Filijala Bačka Palanka",
+     "address": "Kralja Petra I 15"
+    },
+    {
+     "city": "Bački Petrovac",
+     "name": "Filijala Bački Petrovac",
+     "address": "Maršala Tita 5-7"
+    },
+    {
+     "city": "Bečej",
+     "name": "Filijala Bečej",
+     "address": "Zelena 60"
+    },
+    {
+     "city": "Beočin",
+     "name": "Filijala Beočin",
+     "address": "Trg Cara Lazara 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspres ekspozitura Bulevar Kralja Aleksandra",
+     "address": "Bul. Kralja Aleksandra 314"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspres ekspozitura Cara Dušana",
+     "address": "Cara Dušana 3"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspres ekspozitura Gospodara Vučića",
+     "address": "Ravanička 52"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspres ekspozitura Savska",
+     "address": "Savska 27"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ekspres ekspozitura Vojvode Stepe",
+     "address": "Vojvode Stepe 95"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Birčaninova",
+     "address": "Birčaninova 37"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala BW Metropolitan",
+     "address": "Bulevar Vudroa Vilsona, 4a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Crveni Krst",
+     "address": "Vojvode Šupljikca 53-55"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Jurija Gagarina",
+     "address": "Jurija Gagarina 149"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Knez Mihailova",
+     "address": "Knez Mihailova 39"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Kraljice Marije",
+     "address": "Kraljice Marije 10"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Madridska",
+     "address": "Madridska 8"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Merin Plaza",
+     "address": "Mome Kapora 12"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Požeška",
+     "address": "Požeška 65b"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Ratka Mitrovića",
+     "address": "Ratka Mitrovića 158"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Sirius",
+     "address": "Milutina Milankovića 3a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Takovska",
+     "address": "Takovska 36"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala VIG Plaza",
+     "address": "Trešnjinog cveta 1 (VIG Plaza)"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Voždovac",
+     "address": "Save Maškovića 3-5"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala Zemun",
+     "address": "Glavna 42"
+    },
+    {
+     "city": "Čačak",
+     "name": "Filijala Čačak",
+     "address": "Gradsko šetalište 81"
+    },
+    {
+     "city": "Futog",
+     "name": "Filijala Futog",
+     "address": "Cara Lazara 42"
+    },
+    {
+     "city": "Gornji Milanovac",
+     "name": "Ekspres ekspozitura Gornji Milanovac",
+     "address": "Vuka Karadžića 1b"
+    },
+    {
+     "city": "Inđija",
+     "name": "Filijala Inđija",
+     "address": "Vojvode Stepe 14"
+    },
+    {
+     "city": "Jagodina",
+     "name": "Filijala Jagodina",
+     "address": "Kneginje Milice 65"
+    },
+    {
+     "city": "Kikinda",
+     "name": "Filijala Kikinda",
+     "address": "Braće Tatića 6"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "Filijala Kragujevac",
+     "address": "Kralja Petra I 23"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "Filijala Kragujevac 2",
+     "address": "Kralja Aleksandra Karađorđevića 34"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "Filijala Kraljevo",
+     "address": "Hajduk Veljkova 16"
+    },
+    {
+     "city": "Kruševac",
+     "name": "Filijala Kruševac",
+     "address": "Gazimestanska 14"
+    },
+    {
+     "city": "Kula",
+     "name": "Filijala Kula",
+     "address": "Lenjinova 2"
+    },
+    {
+     "city": "Lazarevac",
+     "name": "Filijala Lazarevac",
+     "address": "Branka Radičevića 22"
+    },
+    {
+     "city": "Loznica",
+     "name": "Filijala Loznica",
+     "address": "Gimnazijska 8"
+    },
+    {
+     "city": "Niš",
+     "name": "Ekspres ekspozitura Niš",
+     "address": "Sedmog jula 22"
+    },
+    {
+     "city": "Niš",
+     "name": "Ekspres ekspozitura Niš 2",
+     "address": "Obilićev venac 15a"
+    },
+    {
+     "city": "Niš",
+     "name": "Filijala Niš",
+     "address": "Sinđelićev trg 20"
+    },
+    {
+     "city": "Nova Pazova",
+     "name": "Filijala Nova Pazova",
+     "address": "Cara Dušana 1"
+    },
+    {
+     "city": "Novi Banovci",
+     "name": "Filijala Novi Banovci",
+     "address": "Vidovdanski trg bb"
+    },
+    {
+     "city": "Novi Pazar",
+     "name": "Filijala Novi Pazar",
+     "address": "28. Novembra 49"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Filijala Bistrica",
+     "address": "Jovana Dučića 15"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Filijala Bulevar Cara Lazara",
+     "address": "Bulevar Cara Lazara 19"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Filijala Bulevar Mihajla Pupina",
+     "address": "Bulevar Mihaila Pupina 12"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Filijala Bulevar Oslobođenja 69",
+     "address": "Bulevar Oslobođenja 69"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Filijala Bulevar Oslobođenja 7",
+     "address": "Bulevar Oslobođenja 7"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Filijala Erste Nova",
+     "address": "Industrijska 3J"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Filijala Njegoševa",
+     "address": "Njegoševa 2"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Filijala Park City Novi Sad",
+     "address": "Narodnog fronta 23"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Filijala Pupinova palata",
+     "address": "Narodnih heroja 3"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Šalter Klinički centar",
+     "address": "Hajduk Veljkova 1-3"
+    },
+    {
+     "city": "Obrenovac",
+     "name": "Ekspres ekspozitura Obrenovac",
+     "address": "Vuka Karadžića 51"
+    },
+    {
+     "city": "Odžaci",
+     "name": "Filijala Odžaci",
+     "address": "Željeznička 26"
+    },
+    {
+     "city": "Pančevo",
+     "name": "Ekspres ekspozitura Pančevo",
+     "address": "Miloša Obrenovića 12-III/4"
+    },
+    {
+     "city": "Pančevo",
+     "name": "Filijala Pančevo",
+     "address": "Trg Kralja Petra 10"
+    },
+    {
+     "city": "Petrovaradin",
+     "name": "Filijala Petrovaradin",
+     "address": "Preradovićeva 38"
+    },
+    {
+     "city": "Pirot",
+     "name": "Ekspres ekspozitura Pirot",
+     "address": "Branka Radičevića 12"
+    },
+    {
+     "city": "Plandište",
+     "name": "Filijala Plandište",
+     "address": "Vojvode Putnika 45"
+    },
+    {
+     "city": "Požarevac",
+     "name": "Filijala Požarevac",
+     "address": "Tabačka čaršija 8"
+    },
+    {
+     "city": "Požega",
+     "name": "Filijala Požega",
+     "address": "Kralja Petra I broj 1"
+    },
+    {
+     "city": "Ruma",
+     "name": "Ekspres ekspozitura Ruma",
+     "address": "Glavna 163"
+    },
+    {
+     "city": "Šabac",
+     "name": "Filijala Šabac",
+     "address": "Masarikova 6"
+    },
+    {
+     "city": "Šid",
+     "name": "Filijala Šid",
+     "address": "Karađorđeva 4"
+    },
+    {
+     "city": "Smederevo",
+     "name": "Ekspres ekspozitura Smederevo",
+     "address": "Karađorđeva 30"
+    },
+    {
+     "city": "Smederevo",
+     "name": "Filijala Smederevo",
+     "address": "17. Oktobar 13"
+    },
+    {
+     "city": "Sombor",
+     "name": "Filijala Sombor",
+     "address": "Kralja Petra I br.3"
+    },
+    {
+     "city": "Srbobran",
+     "name": "Filijala Srbobran",
+     "address": "Zmaj Jovina 16"
+    },
+    {
+     "city": "Sremska Kamenica",
+     "name": "Šalter Sremska Kamenica Institut",
+     "address": "Institut Sremska Kamenica"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "Filijala Sremska Mitrovica",
+     "address": "Sv.Dimitrija 21"
+    },
+    {
+     "city": "Sremski Karlovci",
+     "name": "Filijala Sremski Karlovci",
+     "address": "Jovana Jovanovića Zmaja 18"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "Filijala Stara Pazova",
+     "address": "Kralja Petra I 2"
+    },
+    {
+     "city": "Subotica",
+     "name": "Filijala Subotica",
+     "address": "Matka Vukovića 1"
+    },
+    {
+     "city": "Temerin",
+     "name": "Filijala Temerin",
+     "address": "Novosadska 385"
+    },
+    {
+     "city": "Ub",
+     "name": "Filijala Ub",
+     "address": "Dušana Danilovića 2"
+    },
+    {
+     "city": "Užice",
+     "name": "Filijala Užice",
+     "address": "Dimitrija Tucovića 93"
+    },
+    {
+     "city": "Valjevo",
+     "name": "Filijala Valjevo",
+     "address": "Karađorđeva 77"
+    },
+    {
+     "city": "Velika Plana",
+     "name": "Filijala Velika Plana",
+     "address": "Miloša Velikog 99"
+    },
+    {
+     "city": "Vranje",
+     "name": "Ekspres ekspozitura Vranje",
+     "address": "Dr Dimitrija Jovčića 12"
+    },
+    {
+     "city": "Vrbas",
+     "name": "Filijala Vrbas",
+     "address": "Maršala Tita 95"
+    },
+    {
+     "city": "Vršac",
+     "name": "Ekspres ekspozitura Vršac",
+     "address": "Ive Milutinovića 46"
+    },
+    {
+     "city": "Vršac",
+     "name": "Filijala Vršac",
+     "address": "Dvorska 6"
+    },
+    {
+     "city": "Žabalj",
+     "name": "Filijala Žabalj",
+     "address": "Nikole Tesle 43"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "Ekspres ekspozitura Zrenjanin",
+     "address": "Dositeja Obradovića 28"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "Filijala Zrenjanin",
+     "address": "Kralja Aleksandra 1-3"
+    }
+   ]
+  },
+  "addiko": {
+   "source": "https://www.addiko.rs/o-nama/o-addiko-banci/ekspoziture-i-bankomati/",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Bačka Palanka",
+     "name": "",
+     "address": "Kralja Petra I 33"
+    },
+    {
+     "city": "Bečej",
+     "name": "",
+     "address": "Trg oslobođenja 3"
+    },
+    {
+     "city": "Beograd",
+     "name": "Airport City",
+     "address": "Omladinskih brigada 90G"
+    },
+    {
+     "city": "Beograd",
+     "name": "Bulevar Kralja Aleksandra",
+     "address": "Bulevar Kralja Aleksandra 134"
+    },
+    {
+     "city": "Beograd",
+     "name": "Cara Dušana",
+     "address": "Cara Dušana 84-86"
+    },
+    {
+     "city": "Beograd",
+     "name": "Despota Stefana",
+     "address": "Bulevar Despota Stefana 95"
+    },
+    {
+     "city": "Beograd",
+     "name": "Gramšijeva",
+     "address": "Gramšijeva 9"
+    },
+    {
+     "city": "Beograd",
+     "name": "Hill",
+     "address": "Trgovačka 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Immocentar",
+     "address": "Blok 64"
+    },
+    {
+     "city": "Beograd",
+     "name": "Nušićeva",
+     "address": "Nušićeva 27"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zaplanjska",
+     "address": "Zaplanjska 32"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zemun",
+     "address": "Gospodska 11"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Pivarska 2"
+    },
+    {
+     "city": "Jagodina",
+     "name": "",
+     "address": "Kneginje Milice 15"
+    },
+    {
+     "city": "Kikinda",
+     "name": "",
+     "address": "Generala Drapšina 13"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kralja Petra I 11b"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "",
+     "address": "Omladinska 6"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Trg kosovskih junaka 1"
+    },
+    {
+     "city": "Lazarevac",
+     "name": "",
+     "address": "Karađorđeva 45"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Bulevar oslobođenja 53"
+    },
+    {
+     "city": "Niš",
+     "name": "Niš Dušanova",
+     "address": "Dušanova bb"
+    },
+    {
+     "city": "Niš",
+     "name": "Niš Zorana Đinđića",
+     "address": "Bulevar Dr Zorana Đinđića 25"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bul. oslobođenja 29"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "„Liman“",
+     "address": "Narodnog fronta 25a"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Generala Petra Aračića 5"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Karađorđeva 39"
+    },
+    {
+     "city": "Sombor",
+     "name": "",
+     "address": "Kralja Petra I 24"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "",
+     "address": "Kralja Petra I 19"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Korzo 15"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Dimitrija Tucovića 38"
+    },
+    {
+     "city": "Vršac",
+     "name": "",
+     "address": "Dvorska 1"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Svetozara Markovića 2"
+    }
+   ]
+  },
+  "procredit": {
+   "source": "https://www.procreditbank.rs/lokacije",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Bulevar despota Stefana 68c"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Kalenićeva 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Požeška 42a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Bulevar Milutina Milankovića 17"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zemun",
+     "address": "Ulica Glavna 47"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Gospodar Jovanova 12"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kralja Petra I 36"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Miodraga Vlajića Šuke 14"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Trg Nikole Pašića 32b"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Vizantijski bulevar bb"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar Cara Lazara 7b"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Miloša Obrenovića 19"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Gospodar Jevremova 28b"
+    },
+    {
+     "city": "Sombor",
+     "name": "",
+     "address": "Venac Radomira Putnika 24"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Cara Dušana 3"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Jevrejska 1-3"
+    }
+   ]
+  },
+  "halkbank": {
+   "source": "https://www.halkbank.rs/kontakt/lokacije/mapa-lokacija.45.html",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Aranđelovac",
+     "name": "",
+     "address": "Knjaza Miloša 152"
+    },
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Cara Dušana 78-80"
+    },
+    {
+     "city": "Beograd",
+     "name": "Beograd Knez Mihailova",
+     "address": "Knez Mihailova 29"
+    },
+    {
+     "city": "Beograd",
+     "name": "Bulevar",
+     "address": "Bulevar Kralja Aleksandra 108-110"
+    },
+    {
+     "city": "Beograd",
+     "name": "Centrala",
+     "address": "Milutina Milankovića 9e"
+    },
+    {
+     "city": "Beograd",
+     "name": "Crveni Krst",
+     "address": "Vojvode Šupljikca 51"
+    },
+    {
+     "city": "Beograd",
+     "name": "Jurija Gagarina",
+     "address": "Jurija Gagarina 28"
+    },
+    {
+     "city": "Beograd",
+     "name": "Krunska",
+     "address": "Krunska 6"
+    },
+    {
+     "city": "Beograd",
+     "name": "Makedonska",
+     "address": "Makedonska 21"
+    },
+    {
+     "city": "Beograd",
+     "name": "New Mill",
+     "address": "Bulevar Vojvode Mišića 15"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Bulevar Zorana Đinđića 144v"
+    },
+    {
+     "city": "Beograd",
+     "name": "Požeška",
+     "address": "Požeška 56"
+    },
+    {
+     "city": "Beograd",
+     "name": "Savska",
+     "address": "Bulevar kralja Aleksandra I Karađorđevića 38"
+    },
+    {
+     "city": "Beograd",
+     "name": "Vojvode Stepe",
+     "address": "Vojvode Stepe 93"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zemun",
+     "address": "Gospodska 19"
+    },
+    {
+     "city": "Čačak",
+     "name": "Auto Čačak",
+     "address": "Konjevići bb"
+    },
+    {
+     "city": "Čačak",
+     "name": "Nemanjina",
+     "address": "Nemanjina 32a"
+    },
+    {
+     "city": "Čačak",
+     "name": "Pivarska",
+     "address": "Pivarska 1"
+    },
+    {
+     "city": "Čačak",
+     "name": "Skadarska",
+     "address": "Skadarska 19"
+    },
+    {
+     "city": "Gornji Milanovac",
+     "name": "",
+     "address": "Kneza Aleksandra 2"
+    },
+    {
+     "city": "Ivanjica",
+     "name": "",
+     "address": "Milinka Kušića 14"
+    },
+    {
+     "city": "Jagodina",
+     "name": "",
+     "address": "Nikčevićeva 24"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Kralja Petra I 10"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "",
+     "address": "Trg Jovana Sarića 8"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Trg Kosturnice 64b"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Bulevar oslobođenja 49"
+    },
+    {
+     "city": "Mladenovac",
+     "name": "",
+     "address": "Kralja Petra I / 274"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Nikole Pašića 15-17"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Obrenovićeva 36"
+    },
+    {
+     "city": "Novi Pazar",
+     "name": "",
+     "address": "Stevana Nemanje 68B"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bul. Oslobođenja 30"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Novi Sad - Dunavski Park",
+     "address": "Ignjata Pavlasa 2"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Trg Kralja Petra I 8-10"
+    },
+    {
+     "city": "Paraćin",
+     "name": "",
+     "address": "Kralja Petra I 32"
+    },
+    {
+     "city": "Pirot",
+     "name": "",
+     "address": "Branka Radičevića 20"
+    },
+    {
+     "city": "Požega",
+     "name": "",
+     "address": "Knjaza Miloša 16"
+    },
+    {
+     "city": "Preševo",
+     "name": "",
+     "address": "15. Novembar br. 75"
+    },
+    {
+     "city": "Prijepolje",
+     "name": "",
+     "address": "Zore Tomašević 4"
+    },
+    {
+     "city": "Ruma",
+     "name": "",
+     "address": "Glavna 145"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Masarikova 11"
+    },
+    {
+     "city": "Šid",
+     "name": "",
+     "address": "Karađorđeva 1"
+    },
+    {
+     "city": "Sjenica",
+     "name": "",
+     "address": "Kralja Tvrtka Prvog 1"
+    },
+    {
+     "city": "Smederevo",
+     "name": "",
+     "address": "Kralja Petra I 16"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "",
+     "address": "Kralja Petra I 5a"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "",
+     "address": "Zmaj Jovina 8"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Maksima Gorkog 9"
+    },
+    {
+     "city": "Topola",
+     "name": "",
+     "address": "Bulevar Kralja Aleksandra I 16"
+    },
+    {
+     "city": "Tutin",
+     "name": "",
+     "address": "Pešterska 2"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Dimitrija Tucovića 151"
+    },
+    {
+     "city": "Valjevo",
+     "name": "",
+     "address": "Karađorđeva 32"
+    },
+    {
+     "city": "Veternik",
+     "name": "",
+     "address": "Dragoslava Srejovića bb"
+    },
+    {
+     "city": "Vranje",
+     "name": "",
+     "address": "Ive Lole Ribara 14"
+    },
+    {
+     "city": "Vrnjačka Banja",
+     "name": "",
+     "address": "Kneza Miloša 5"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Kralja Aleksandra I Karađorđevića 17"
+    }
+   ]
+  },
+  "yettel": {
+   "source": "https://www.yettelbank.rs/stanovnistvo/lokacije/yettel-bank-specijalisti/",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Aranđelovac",
+     "name": "",
+     "address": "Knjaza Miloša 182"
+    },
+    {
+     "city": "Beograd",
+     "name": "Ada Mall",
+     "address": "TC Ada Mall, Radnička 9"
+    },
+    {
+     "city": "Beograd",
+     "name": "Airport City ekspozitura",
+     "address": "Omladinskih brigada 88, Airport City"
+    },
+    {
+     "city": "Beograd",
+     "name": "Banovo Brdo",
+     "address": "Banovo Brdo, Požeška 70"
+    },
+    {
+     "city": "Beograd",
+     "name": "Beo Centar",
+     "address": "Konjarnik - TC Beo, Vojislava Ilića 141"
+    },
+    {
+     "city": "Beograd",
+     "name": "Beograd na vodi",
+     "address": "TC Galerija, Bulevar Vudro Vilsona 12"
+    },
+    {
+     "city": "Beograd",
+     "name": "BIG Karaburma",
+     "address": "TC BIG Karaburma, Višnjička 84, lokal 137"
+    },
+    {
+     "city": "Beograd",
+     "name": "Delta City",
+     "address": "Novi Beograd, TC Delta City, Jurija Gagarina 16"
+    },
+    {
+     "city": "Beograd",
+     "name": "Đeram",
+     "address": "Đeram, Bulevar kralja Aleksandra 142a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Knez Mihailova",
+     "address": "Knez Mihailova 24, Stari grad (Centar), Flagship"
+    },
+    {
+     "city": "Beograd",
+     "name": "Kralja Milana",
+     "address": "Stari grad (Centar), Kralja Milana 25"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Merkator",
+     "address": "Novi Beograd, TC Merkator, Bulevar umetnosti 4"
+    },
+    {
+     "city": "Beograd",
+     "name": "Surčin",
+     "address": "Vojvođanska 98"
+    },
+    {
+     "city": "Beograd",
+     "name": "TC Stadion",
+     "address": "TC Stadion Voždovac, Zaplanjska 32"
+    },
+    {
+     "city": "Beograd",
+     "name": "Zemun",
+     "address": "Zemun, Glavna 31"
+    },
+    {
+     "city": "Bor",
+     "name": "",
+     "address": "Moše Pijade 80"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Gradsko šetalište 19"
+    },
+    {
+     "city": "Inđija",
+     "name": "",
+     "address": "Vojvode Stepe 1"
+    },
+    {
+     "city": "Jagodina",
+     "name": "",
+     "address": "Knjeginje Milice 15"
+    },
+    {
+     "city": "Kikinda",
+     "name": "",
+     "address": "Trg srpskih dobrovoljaca 49"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "Kragujevac BIG",
+     "address": "TC BIG, Bulevar Kraljice Marije 56"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "Kragujevac, Kralja Petra I 23",
+     "address": "Kralja Petra I 23"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "",
+     "address": "Omladinska 10"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Vidovdanska 1/21"
+    },
+    {
+     "city": "Kruševac",
+     "name": "BIG Kruševac",
+     "address": "BIG, Krfska 37"
+    },
+    {
+     "city": "Lazarevac",
+     "name": "",
+     "address": "Karađorđeva 29"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Vojvode Mišića 1 / Bulevar Oslobođenja 162 (privremeno)"
+    },
+    {
+     "city": "Leskovac",
+     "name": "Leskovac Stop Shop",
+     "address": "Stop Shop, 28. Marta 10"
+    },
+    {
+     "city": "Loznica",
+     "name": "",
+     "address": "Jovana Cvijića bb"
+    },
+    {
+     "city": "Niš",
+     "name": "Niš Delta",
+     "address": "TC Delta planeta, Bulevar Nemanjića 11b"
+    },
+    {
+     "city": "Niš",
+     "name": "Niš Kalča",
+     "address": "TC Kalča, Obrenovićeva bb"
+    },
+    {
+     "city": "Niš",
+     "name": "Niš Tvrđava",
+     "address": "Trg Kralja Milana 2/15"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Novi Sad BIG CEE",
+     "address": "Sentandrejski put 11"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Novi Sad Bulevar",
+     "address": "Ognjena Price 11 (preko puta Futoške pijace)"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Novi Sad Modena",
+     "address": "Modene 1, ulaz iz Zmaj Jovine"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Novi Sad Promenada",
+     "address": "TC Promenada, Bulevar oslobođenja 119"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Vojvode Radomira Putnika 1"
+    },
+    {
+     "city": "Paraćin",
+     "name": "",
+     "address": "Vožda Karađorđa 17"
+    },
+    {
+     "city": "Požarevac",
+     "name": "",
+     "address": "Tabačka čaršija 13"
+    },
+    {
+     "city": "Ruma",
+     "name": "",
+     "address": "Glavna 162"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Gospodar Jevremova 9"
+    },
+    {
+     "city": "Sombor",
+     "name": "",
+     "address": "Kralja Petra I 16"
+    },
+    {
+     "city": "Subotica",
+     "name": "Subotica Trg slobode 2",
+     "address": "Trg slobode 2"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Ulica Lipa 1A"
+    },
+    {
+     "city": "Valjevo",
+     "name": "",
+     "address": "Trg Vojvode Mišića 4"
+    },
+    {
+     "city": "Vranje",
+     "name": "",
+     "address": "Kralja Stefana Prvovenčanog 184"
+    },
+    {
+     "city": "Vrbas",
+     "name": "",
+     "address": "Maršala Tita 91"
+    },
+    {
+     "city": "Vršac",
+     "name": "",
+     "address": "Trg pobede 4"
+    },
+    {
+     "city": "Zaječar",
+     "name": "",
+     "address": "Ljube Nešića 1"
+    }
+   ]
+  },
+  "adriatic": {
+   "source": "https://www.adriaticbank.rs/index.php/sr/o-adriaticbanci/lokacije",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Beograd",
+     "name": "",
+     "address": "Dalmatinska 22"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Bulevar Mihajla Pupina 16d"
+    },
+    {
+     "city": "Beograd",
+     "name": "Skyline",
+     "address": "Kneza Miloša 88 g-d"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Gradsko šetalište bb"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Blagoja Parovića 1J"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Braće Ribnikar 4"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Masarikova 9"
+    }
+   ]
+  },
+  "3banka": {
+   "source": "https://www.3bank.rs/filijale/",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Aleksinac",
+     "name": "",
+     "address": "Vojske Jugoslavije 1"
+    },
+    {
+     "city": "Bačka Palanka",
+     "name": "",
+     "address": "Žarka Zrenjanina 94"
+    },
+    {
+     "city": "Beograd",
+     "name": "Beograd Voždovac",
+     "address": "Save Maškovića 2a"
+    },
+    {
+     "city": "Beograd",
+     "name": "Novi Beograd",
+     "address": "Jurija Gagarina 30g"
+    },
+    {
+     "city": "Čačak",
+     "name": "",
+     "address": "Devet Jugovića 23"
+    },
+    {
+     "city": "Ivanjica",
+     "name": "",
+     "address": "13. Septembra 24"
+    },
+    {
+     "city": "Jagodina",
+     "name": "",
+     "address": "Kralja Petra I br. 3"
+    },
+    {
+     "city": "Kikinda",
+     "name": "",
+     "address": "Svetosavska 110"
+    },
+    {
+     "city": "Kragujevac",
+     "name": "",
+     "address": "Nikole Pašića 9"
+    },
+    {
+     "city": "Kraljevo",
+     "name": "",
+     "address": "Trg Kralja Petra I 2/7"
+    },
+    {
+     "city": "Kruševac",
+     "name": "",
+     "address": "Trg Kosturnica 2"
+    },
+    {
+     "city": "Leskovac",
+     "name": "",
+     "address": "Masarikov trg 21"
+    },
+    {
+     "city": "Loznica",
+     "name": "",
+     "address": "Banjska 14"
+    },
+    {
+     "city": "Mladenovac",
+     "name": "",
+     "address": "Kralja Aleksandra Obrenovića 81"
+    },
+    {
+     "city": "Niš",
+     "name": "",
+     "address": "Cara Dušana 86"
+    },
+    {
+     "city": "Novi Pazar",
+     "name": "",
+     "address": "Stane Bačanin BB"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "",
+     "address": "Bulevar oslobođenja 2A"
+    },
+    {
+     "city": "Obrenovac",
+     "name": "",
+     "address": "Vuka Karadžića 26"
+    },
+    {
+     "city": "Pančevo",
+     "name": "",
+     "address": "Braće Jovanović 40"
+    },
+    {
+     "city": "Paraćin",
+     "name": "",
+     "address": "Tome Živanovića 20"
+    },
+    {
+     "city": "Pirot",
+     "name": "",
+     "address": "Ćirila i Metodija 3"
+    },
+    {
+     "city": "Požarevac",
+     "name": "",
+     "address": "Bratstva i jedinstva 7"
+    },
+    {
+     "city": "Prijepolje",
+     "name": "",
+     "address": "Vladimira Perića Valtera bb"
+    },
+    {
+     "city": "Šabac",
+     "name": "",
+     "address": "Kralja Milutina 22b"
+    },
+    {
+     "city": "Smederevo",
+     "name": "",
+     "address": "Đure Jakšića 6"
+    },
+    {
+     "city": "Sombor",
+     "name": "",
+     "address": "Arsenija Čarnojevića 10"
+    },
+    {
+     "city": "Sremska Mitrovica",
+     "name": "",
+     "address": "Masarikova 9"
+    },
+    {
+     "city": "Stara Pazova",
+     "name": "",
+     "address": "Ćirila i Metodija 23"
+    },
+    {
+     "city": "Subotica",
+     "name": "",
+     "address": "Matije Gupca 9a"
+    },
+    {
+     "city": "Topola",
+     "name": "",
+     "address": "Vožda Karađorđa 76"
+    },
+    {
+     "city": "Užice",
+     "name": "",
+     "address": "Kneza Lazara 27"
+    },
+    {
+     "city": "Valjevo",
+     "name": "",
+     "address": "Karađorđeva 153"
+    },
+    {
+     "city": "Velika Plana",
+     "name": "",
+     "address": "Svetosavska 11"
+    },
+    {
+     "city": "Vranje",
+     "name": "",
+     "address": "Dunavska 5"
+    },
+    {
+     "city": "Vršac",
+     "name": "",
+     "address": "Đure Jakšića 3"
+    },
+    {
+     "city": "Žabalj",
+     "name": "",
+     "address": "Svetog Nikole 45a"
+    },
+    {
+     "city": "Zaječar",
+     "name": "",
+     "address": "Nikole Pašića 71"
+    },
+    {
+     "city": "Zrenjanin",
+     "name": "",
+     "address": "Jug Bogdana 4"
+    }
+   ]
+  },
+  "api": {
+   "source": "https://www.apibank.rs/kontakt-i-lokacije/",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Beograd",
+     "name": "Centrala",
+     "address": "Bulevar vojvode Bojovića 6-8"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala",
+     "address": "Balkanska 2"
+    },
+    {
+     "city": "Beograd",
+     "name": "Filijala 2",
+     "address": "Makedonska 44"
+    },
+    {
+     "city": "Novi Sad",
+     "name": "Filijala",
+     "address": "Narodnog fronta 12 (PC NIS)"
+    }
+   ]
+  },
+  "mirabank": {
+   "source": "https://www.mirabankserbia.com/rs/kontakt",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Beograd",
+     "name": "Sedište banke",
+     "address": "Španskih boraca 1"
+    }
+   ]
+  },
+  "bankofchina": {
+   "source": "https://www.bankofchina.com/rs/rs/index.html",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Beograd",
+     "name": "Sedište banke",
+     "address": "Bulevar Zorana Đinđića 2a"
+    }
+   ]
+  },
+  "srpska": {
+   "source": "https://www.srpskabanka.rs/kontakt/poslovne-jedinice.html",
+   "collected_at": "2026-11-01",
+   "status": "ok",
+   "branches": [
+    {
+     "city": "Beograd",
+     "name": "Savski venac",
+     "address": "Bulevar kralja Aleksandra I Karađorđevića 25"
+    }
+   ]
+  }
+ }
+}

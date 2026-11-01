@@ -4,13 +4,17 @@
 (() => {
   const norm = (text) => text.trim().toLocaleLowerCase("ru");
 
+  // Варианты читаем из <datalist> при каждом показе: у поля «Отделение» их меняет branch.js.
   const optionsFor = (input) => {
-    const list = document.getElementById(input.getAttribute("list"));
-    return list ? [...list.options].map((option) => option.value) : [];
+    const listId = input.getAttribute("list");
+    return () => {
+      const list = document.getElementById(listId);
+      return list ? [...list.options].map((option) => option.value) : [];
+    };
   };
 
   // Выпадающий список под полем; pick вызывается с выбранной строкой.
-  const attachList = (input, options, pick, excluded) => {
+  const attachList = (input, allOptions, pick, excluded) => {
     input.removeAttribute("list");
     input.setAttribute("role", "combobox");
     input.setAttribute("aria-autocomplete", "list");
@@ -38,6 +42,7 @@
     };
 
     const render = (showAll) => {
+      const options = allOptions();
       const query = showAll ? "" : norm(input.value);
       const skip = excluded();
       shown = options.filter((option) => !skip.includes(option) && norm(option).includes(query));
@@ -88,6 +93,8 @@
     const control = attachList(input, options, (value) => {
       input.value = value;
       control.close();
+      // Выбор из списка — тоже изменение поля: по нему branch.js обновляет подсказки отделений.
+      input.dispatchEvent(new Event("change", { bubbles: true }));
     }, noExclusions);
   };
 

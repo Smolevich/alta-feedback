@@ -28,8 +28,9 @@ the server.
 **Correction:** page section, text, source, contact (if given — never published),
 submission time.
 
-**Account report:** bank, city, personal or sole-proprietor account, outcome, visit date,
-residence status in Serbia (if given), requested documents, comment, submission time.
+**Account report:** bank, city, branch (if given), personal or sole-proprietor account,
+outcome, visit date, residence status in Serbia (if given), requested documents, comment,
+submission time.
 
 **Numbers are scrubbed from account reports before they are written.** From the comment
 and any custom-text field the server removes anything that looks like an email, IBAN,
@@ -48,7 +49,9 @@ browser name are wiped after 30 days. Used anti-bot challenges — after 30 minu
 
 **What is public.** Only account reports checked by the author, and only the answer
 fields: bank, city, account type, outcome, visit date, status, documents, comment. No
-submission time, hash or browser. Corrections are not public.
+submission time, hash or browser. The branch is shown only when at least two checked
+reports name the same branch of the same bank; otherwise it is hidden ("other branches"),
+so a single answer cannot point at one person. Corrections are not public.
 
 **Voice.** The "Голосом" (voice) button uses the browser's speech recognition: Chrome
 sends the audio to Google, Safari to Apple. We never receive or store the audio — only

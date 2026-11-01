@@ -34,11 +34,13 @@ from alta_feedback.accounts import (
     RESIDENCIES,
     RESULTS,
     labels,
+    match_label,
     parse_account_form,
 )
+from alta_feedback.branches import BRANCH_MAX, NOT_SURE, branch_options, city_key, directory
 from alta_feedback.pow import CHALLENGE_TTL, Challenge, create_challenge, derive_key, verify_payload
 from alta_feedback.site import DEFAULT_SITE_DIR, REVALIDATE, SITE_CSP, SiteFiles, index_file
-from alta_feedback.stats import account_stats
+from alta_feedback.stats import account_stats, hide_rare_branches
 from alta_feedback.store import Store
 from alta_feedback.validate import (
     STATUSES,
@@ -61,7 +63,7 @@ ADMIN_PAGE_MAX = 500
 PUBLIC_ACCOUNTS_MAX = 2000
 LOCAL_TZ = ZoneInfo("Europe/Belgrade")
 STATIC_DIR = Path(__file__).parent / "static"
-SCRIPTS = frozenset({"combo.js", "pow.js", "voice.js"})
+SCRIPTS = frozenset({"branch.js", "combo.js", "pow.js", "voice.js"})
 # Перебор запускает отметка «Я не робот»; среднее число попыток — половина, на Mac ~0,4 с, на телефоне 1–3 с.
 POW_MAX_NUMBER = 200_000
 POW_FAILED = "Не прошла проверка от ботов. Подождите пару секунд и отправьте ещё раз."
@@ -234,6 +236,7 @@ def account_context(request: Request, values: dict, errors: list[str]) -> dict:
         "banks": BANKS, "cities": CITIES, "account_types": ACCOUNT_TYPES, "results": RESULTS,
         "residencies": RESIDENCIES, "documents": DOCUMENTS, "comment_max": COMMENT_MAX,
         "free_text_max": FREE_TEXT_MAX, "values": values, "errors": errors,
+        "branch_max": BRANCH_MAX, "not_sure": NOT_SURE,
         "pow": new_challenge(request), "pow_ttl": int(CHALLENGE_TTL.total_seconds()),
     }
 
@@ -275,7 +278,7 @@ async def account_submit(request: Request) -> Response:
         return RedirectResponse("/account/spasibo", status_code=303)
     # Без JS документы приходят одной строкой через запятую, со скриптом — тегами.
     docs = [str(value) for value in raw.getlist("docs")] + form.get("docs_text", "").split(",")
-    report, errors = parse_account_form(form, docs, today_local().date())
+    report, errors = parse_account_form(form, docs, today_local().date(), directory())
     now = datetime.now(UTC)
     solved = verify_payload(request.app.state.pow_key, form.get("altcha", ""), now)
     if solved is None:
@@ -294,6 +297,16 @@ async def account_submit(request: Request) -> Response:
     return RedirectResponse("/account/spasibo", status_code=303)
 
 
+async def account_branches(request: Request) -> JSONResponse:
+    """Подсказки для поля «Отделение» по введённым банку и городу; банк не из списка — только «Не помню»."""
+    params = request.query_params
+    city_text = params.get("city", "")
+    bank_code = match_label(params.get("bank", ""), BANKS)
+    city = city_key(match_label(city_text, CITIES), city_text)
+    branches = directory().get(bank_code or "", ())
+    return JSONResponse({"branches": branch_options(branches, city)})
+
+
 async def account_thanks(request: Request) -> HTMLResponse:
     return render("account_thanks.html")
 
@@ -304,7 +317,7 @@ async def account_stats_page(request: Request) -> HTMLResponse:
 
 
 async def public_accounts(request: Request) -> JSONResponse:
-    items = request.app.state.store.public_accounts(PUBLIC_ACCOUNTS_MAX)
+    items = hide_rare_branches(request.app.state.store.public_accounts(PUBLIC_ACCOUNTS_MAX))
     return JSONResponse({"count": len(items), "items": items, "labels": labels()})
 
 
@@ -343,6 +356,7 @@ def create_app(
             Route("/account", account_page, methods=["GET"]),
             Route("/account", account_submit, methods=["POST"]),
             Route("/account/challenge", account_challenge, methods=["GET"]),
+            Route("/account/branches", account_branches, methods=["GET"]),
             Route("/account/spasibo", account_thanks, methods=["GET"]),
             Route("/account/stats", account_stats_page, methods=["GET"]),
             Route("/static/{name}", static_script, methods=["GET"]),

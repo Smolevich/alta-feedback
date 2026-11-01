@@ -146,6 +146,15 @@
     </div>
 
     <div class="field">
+      <label class="lbl" for="branch">Отделение <span class="opt">(необяз.)</span></label>
+      <div class="combo"><input type="text" id="branch" name="branch" list="branch-list" data-combo
+        maxlength="{{ branch_max }}" autocomplete="off" placeholder="Адрес или название отделения"
+        value="{{ values.branch or "" }}"></div>
+      <datalist id="branch-list"><option value="{{ not_sure }}"></datalist>
+      <p class="warn">В разных отделениях одного банка отвечают по-разному. Если не помните — оставьте пустым.</p>
+    </div>
+
+    <div class="field">
       <span class="lbl" id="result-lbl">Чем закончилось</span>
       <div class="seg" role="radiogroup" aria-labelledby="result-lbl">
         {%- for code in results %}
@@ -218,5 +227,6 @@
 <p class="foot"><a href="/account/stats">Статистика ответов</a> · Без рекламы и трекеров. IP не сохраняем — для защиты от спама только его необратимый хэш.</p>
 <script src="/static/pow.js" defer></script>
 <script src="/static/combo.js" defer></script>
+<script src="/static/branch.js" defer></script>
 <script src="/static/voice.js" defer></script>
 {% endblock %}

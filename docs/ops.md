@@ -38,7 +38,9 @@ A list response is `{"count": N, "items": [...]}`, ascending by `id`, up to 500 
 - Correction: `{id, created_at, section_id, section_title, text, source, contact, ip_hash,
   user_agent_short, status}`. `contact` is never published — the form promises that.
 - Report: `{id, created_at, bank, city, account_type, result, visit_date, residency,
-  documents, comment, ip_hash, user_agent_short, status}`.
+  documents, comment, ip_hash, user_agent_short, status, branch}`. `branch` is `null` for
+  reports sent before the field existed and when the person left it empty or chose
+  «Не помню / не важно».
 
 Only reports with status `accepted` make it into the stats and the public JSON.
 
@@ -55,9 +57,26 @@ Only reports with status `accepted` make it into the stats and the public JSON.
  "labels": {"account_type": {…}, "result": {…}, "residency": {…}, "documents": {…}}}
 ```
 
-`bank` and `city` are display names; `account_type`, `result`, `residency`, `documents`
+`branch` is shown only if at least two accepted reports name that branch of that bank,
+otherwise it is `null` (the same rule as the stats page). `bank` and `city` are display names; `account_type`, `result`, `residency`, `documents`
 are codes with captions in `labels`. `residency` and `documents` may also hold the
 person's own text if they entered a value outside the list.
+
+## Branch directory
+
+`src/alta_feedback/data/branches.json` — branches of every bank in the form, taken only from
+the banks' own sites (branch-locator JSON, page or PDF; never Google Maps). Each bank has
+`source`, `collected_at`, `status` and `branches: [{city, name, address}]`. Rebuild:
+
+```bash
+uv run scripts/build_branches.py            # all banks
+uv run scripts/build_branches.py otp erste  # only these
+```
+
+If a bank's site fails, the bank keeps its previous list and date; a bank with no list gets
+`status: "unavailable"` and the form offers only free text for it. The form asks
+`/account/branches?bank=…&city=…` for hints of that bank in that city. The file lives in the
+package, not in `data/`: `data/` is the database directory and the deploy copies only `src/`.
 
 ## Deploy
 

@@ -4,6 +4,8 @@ import re
 from dataclasses import dataclass
 from datetime import date, timedelta
 
+from alta_feedback.branches import BRANCH_MAX, NOT_SURE, Branch, Directory, fold, match_branch
+
 # Действующие банки по реестру NBS на 01.11.2026 (без ALTA), сначала самые частые у иностранцев.
 BANKS: dict[str, str] = {
     "intesa": "Banca Intesa",
@@ -81,6 +83,7 @@ class AccountReport:
     residency: str
     documents: tuple[str, ...]
     comment: str
+    branch: str | None = None
 
 
 def scrub_pii(text: str) -> str:
@@ -121,6 +124,14 @@ def pick_documents(values: list[str]) -> tuple[str, ...]:
     return tuple(unique[:DOCUMENTS_MAX])
 
 
+def pick_branch(raw: str, branches: tuple[Branch, ...]) -> str | None:
+    """Отделение из справочника банка или своё название, очищенное от личных данных; None — не указано."""
+    value = " ".join(raw.split())
+    if not value or fold(value) == fold(NOT_SURE):
+        return None
+    return match_branch(value, branches) or scrub_pii(value[:BRANCH_MAX]).strip() or None
+
+
 def parse_visit_date(raw: str, today: date) -> str | None:
     """Дата визита ISO; будущее (кроме завтра — часовые пояса) и слишком старое не принимаем."""
     try:
@@ -133,13 +144,14 @@ def parse_visit_date(raw: str, today: date) -> str | None:
 
 
 def parse_account_form(
-    form: dict[str, str], documents: list[str], today: date
+    form: dict[str, str], documents: list[str], today: date, directory: Directory | None = None
 ) -> tuple[AccountReport, list[str]]:
     """Собирает отчёт из полей формы; возвращает его и список ошибок для человека.
 
-    Банк, город, статус и документы приходят текстом из полей с подсказками: название из
-    списка превращается в справочное значение, своё сохраняется как есть после вычистки.
+    Банк, город, статус, документы и отделение приходят текстом из полей с подсказками: название
+    из списка превращается в справочное значение, своё сохраняется как есть после вычистки.
     """
+    bank_code = match_label(form.get("bank", ""), BANKS)
     bank = pick_name(form.get("bank", ""), BANKS)
     city = pick_name(form.get("city", ""), CITIES)
     account_type = form.get("account_type", "")
@@ -169,6 +181,7 @@ def parse_account_form(
         residency=pick_code(residency, RESIDENCIES),
         documents=pick_documents(documents),
         comment=scrub_pii(comment),
+        branch=pick_branch(form.get("branch", ""), (directory or {}).get(bank_code or "", ())),
     )
     return report, errors
 

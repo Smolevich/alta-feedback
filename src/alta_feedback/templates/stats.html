@@ -28,6 +28,14 @@
   .bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: #eceae4; margin: 6px 0 4px; }
   .bar i { display: block; height: 100%; }
   .group-note { font-size: 12px; color: var(--muted); }
+  .branches { margin: 6px 0 2px; padding: 4px 0 0 10px; border-left: 2px solid var(--line); }
+  .branches-title { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+  .branch { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; padding: 3px 0; }
+  .branch b { font-weight: 500; overflow-wrap: anywhere; }
+  .branch span { flex: none; color: var(--muted); white-space: nowrap; }
+  .branch i { font-style: normal; }
+  .branch .ok { color: var(--ok); }
+  .branch .no { color: var(--danger); }
   .doc { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; font-size: 14px; padding: 5px 0; }
   .doc .bar { grid-column: 1 / -1; margin: 2px 0 0; }
   .doc .bar i { background: var(--accent); }
@@ -55,6 +63,14 @@
   </div>
   <div class="group-note">открыли {{ tally.results.opened }} · отказали {{ tally.results.refused }} · в процессе {{ tally.results.pending }}
     {%- if show_types %} · личный {{ tally.types.personal }}, ИП {{ tally.types.entrepreneur }}{% endif %}</div>
+  {%- if tally.branches %}
+  <div class="branches">
+    <div class="branches-title">По отделениям (отделение видно, если о нём минимум два ответа)</div>
+    {%- for branch in tally.branches %}
+    <div class="branch"><b>{{ branch.name }}</b><span><i class="ok">открыли {{ branch.results.opened }}</i> · <i class="no">отказали {{ branch.results.refused }}</i>{% if branch.results.pending %} · в процессе {{ branch.results.pending }}{% endif %}</span></div>
+    {%- endfor %}
+  </div>
+  {%- endif %}
 </div>
 {%- endmacro %}
 {% macro answers(n) -%}
@@ -99,7 +115,7 @@
     {% for item in stats.recent %}
     <article class="entry">
       <div class="entry-head"><b>{{ item.bank }}</b><span class="badge {{ item.result }}">{{ item.result_label }}</span></div>
-      <div class="entry-meta">{{ item.city }} · {{ item.account_type }}{% if item.residency %} · {{ item.residency }}{% endif %} · {{ item.visit_date }}</div>
+      <div class="entry-meta">{{ item.city }}{% if item.branch %} · {{ item.branch }}{% endif %} · {{ item.account_type }}{% if item.residency %} · {{ item.residency }}{% endif %} · {{ item.visit_date }}</div>
       {% if item.documents %}<div class="entry-docs">Просили: {{ item.documents | join(", ") }}</div>{% endif %}
       {% if item.comment %}<p class="entry-comment">{{ item.comment }}</p>{% endif %}
     </article>

@@ -34,6 +34,12 @@
   ~0.4 s on a Mac (`POW_MAX_NUMBER = 200_000`), 1–3 s on a phone. A ticked box resets
   20 s before the challenge expires; ticking again fetches a fresh one from
   `/account/challenge`, so `/account` allows `connect-src 'self'` — same origin only.
+- **Branch: a hint list from the banks' own sites, free text allowed.** People go to
+  different branches and the answer differs between them, so the form asks which one. The
+  list comes from each bank's official branch locator (`scripts/build_branches.py`), not
+  Google Maps; hints load for the chosen bank and city, without JS the field is plain text.
+  The column is nullable: old reports stay as they were. In public output a branch shows
+  only from two reports up — one answer from a small branch could identify the person.
 - **The IP hash and browser name live 30 days.** The rate limit needs an hour; the rest is
   headroom to sort out a spam wave. After that the fields are wiped on the next
   submission of either form.
