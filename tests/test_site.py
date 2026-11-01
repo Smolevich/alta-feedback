@@ -81,3 +81,8 @@ def test_pdf_may_be_embedded_by_the_same_origin_only(client, site):
     page = client.get("/").headers["content-security-policy"]
     assert "frame-ancestors 'self'" in pdf
     assert "frame-ancestors 'none'" in page and "object-src 'self'" in page
+
+
+def test_site_may_embed_pdfs_from_aod(client):
+    csp = client.get("/").headers["content-security-policy"]
+    assert "object-src 'self' https://www.aod.rs" in csp and "frame-src 'self' https://www.aod.rs" in csp
