@@ -264,3 +264,67 @@ def test_fresh_traces_are_kept(client):
     report(client)
     client.app.state.store.forget_old_traces(datetime.now(LOCAL_TZ) - timedelta(days=30))
     assert admin_items(client)[0]["ip_hash"] != ""
+
+
+def test_form_has_optional_branch_field(client):
+    page = client.get("/account").text
+    assert re.search(r'<input[^>]*name="branch"(?![^>]*required)[^>]*>', page)
+
+
+def test_branch_script_is_served(client):
+    assert "/account/branches" in client.get("/static/branch.js").text
+
+
+def test_report_without_branch_is_accepted(client):
+    assert report(client).status_code == 303
+
+
+def test_report_without_branch_stores_none(client):
+    report(client)
+    assert admin_items(client)[0]["branch"] is None
+
+
+def test_report_with_branch_shows_it_to_admin(client):
+    report(client, branch="Ekspozitura kod Slavije")
+    assert admin_items(client)[0]["branch"] == "Ekspozitura kod Slavije"
+
+
+def test_branch_personal_numbers_are_not_stored(client):
+    report(client, branch="Филиал, менеджер +381 63 123 4567")
+    assert "123 4567" not in str(admin_items(client))
+
+
+def test_failed_submit_keeps_branch(client):
+    page = report(client, result="", branch="Ekspozitura kod Slavije").text
+    assert 'value="Ekspozitura kod Slavije"' in page
+
+
+def test_branch_hints_for_bank_and_city(client):
+    params = {"bank": "UniCredit", "city": "Белград"}
+    branches = client.get("/account/branches", params=params).json()["branches"]
+    assert branches[0] == "Не помню / не важно" and len(branches) > 1
+
+
+def test_unknown_bank_gets_only_not_sure_hint(client):
+    params = {"bank": "Мой банк", "city": "Белград"}
+    branches = client.get("/account/branches", params=params).json()["branches"]
+    assert branches == ["Не помню / не важно"]
+
+
+def test_public_json_hides_branch_of_single_report(client):
+    report(client, branch="Ekspozitura kod Slavije")
+    accept_all(client)
+    assert public_items(client)[0]["branch"] is None
+
+
+def test_stats_page_shows_branch_with_two_reports(client):
+    report(client, branch="Ekspozitura kod Slavije")
+    report(client, branch="Ekspozitura kod Slavije")
+    accept_all(client)
+    assert "Ekspozitura kod Slavije" in client.get("/account/stats").text
+
+
+def test_stats_page_hides_branch_with_one_report(client):
+    report(client, branch="Ekspozitura kod Slavije")
+    accept_all(client)
+    assert "Ekspozitura kod Slavije" not in client.get("/account/stats").text

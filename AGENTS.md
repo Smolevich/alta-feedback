@@ -11,7 +11,8 @@ and pages are in Russian; issues and PRs may be in English, Serbian or Russian.
   `src/alta_feedback/static/` — no libraries, no bundler.
 - Code: `main.py` routes and middleware, `accounts.py` account-report parsing and
   `scrub_pii`, `validate.py` correction form and IP hashing, `store.py` SQLite,
-  `pow.py` ALTCHA-style proof-of-work, `stats.py` public stats.
+  `pow.py` ALTCHA-style proof-of-work, `stats.py` public stats, `branches.py` the bank
+  branch directory (`data/branches.json`, rebuilt by `uv run scripts/build_branches.py`).
 
 ```bash
 uv sync
@@ -25,7 +26,7 @@ The database goes to `$DATA_DIR/feedback.db` (default `data/`).
 ## Rules
 
 - **No personal data is stored.** No logins, raw IPs or contacts in account reports.
-  Every free-text value of an account report (comment, custom bank/city/status/document)
+  Every free-text value of an account report (comment, custom bank/city/status/document/branch)
   goes through `accounts.scrub_pii` before it is written — a new text field without it is
   not accepted. Corrections (`/`) are not scrubbed: their optional `contact` is private
   and never published.

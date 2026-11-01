@@ -51,6 +51,11 @@ CREATE TABLE IF NOT EXISTS pow_used (
 );
 """
 
+# Колонки, добавленные после запуска: (таблица, колонка, тип). Только nullable — старые строки получают NULL.
+ADDED_COLUMNS = (
+    ("accounts", "branch", "TEXT"),
+)
+
 COLUMNS = {
     "suggestions": (
         "id", "created_at", "section_id", "section_title", "text",
@@ -58,16 +63,24 @@ COLUMNS = {
     ),
     "accounts": (
         "id", "created_at", "bank", "city", "account_type", "result", "visit_date",
-        "residency", "documents", "comment", "ip_hash", "user_agent_short", "status",
+        "residency", "documents", "comment", "ip_hash", "user_agent_short", "status", "branch",
     ),
 }
 PUBLIC_ACCOUNT_COLUMNS = (
-    "id", "visit_date", "bank", "city", "account_type", "result", "residency", "documents", "comment",
+    "id", "visit_date", "bank", "city", "branch", "account_type", "result", "residency", "documents",
+    "comment",
 )
 
 
 def iso(moment: datetime) -> str:
     return moment.astimezone(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def add_missing_columns(db: sqlite3.Connection) -> None:
+    for table, column, kind in ADDED_COLUMNS:
+        existing = {row[1] for row in db.execute(f"PRAGMA table_info({table})")}
+        if column not in existing:
+            db.execute(f"ALTER TABLE {table} ADD COLUMN {column} {kind}")
 
 
 def decode_row(row: sqlite3.Row) -> dict:
@@ -84,6 +97,7 @@ class Store:
         with self.connect() as db:
             db.execute("PRAGMA journal_mode=WAL")
             db.executescript(SCHEMA)
+            add_missing_columns(db)
 
     @contextmanager
     def connect(self) -> Iterator[sqlite3.Connection]:
@@ -110,10 +124,11 @@ class Store:
         with self.connect() as db:
             cur = db.execute(
                 "INSERT INTO accounts (created_at, bank, city, account_type, result, visit_date,"
-                " residency, documents, comment, ip_hash, user_agent_short)"
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                " residency, documents, comment, ip_hash, user_agent_short, branch)"
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (iso(now), item.bank, item.city, item.account_type, item.result, item.visit_date,
-                 item.residency, json.dumps(list(item.documents)), item.comment, ip_hash, user_agent),
+                 item.residency, json.dumps(list(item.documents)), item.comment, ip_hash, user_agent,
+                 item.branch),
             )
             return int(cur.lastrowid or 0)
 
