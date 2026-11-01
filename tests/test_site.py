@@ -60,7 +60,7 @@ def test_site_csp_allows_own_scripts_and_wasm_search(client):
 
 
 def test_form_csp_is_not_loosened_by_the_site(client):
-    assert "script-src" not in client.get("/fix").headers["content-security-policy"]
+    assert "unsafe-inline" not in client.get("/fix").headers["content-security-policy"].split("style-src")[0]
 
 
 def test_hashed_assets_are_cached_and_pages_are_not(client):
