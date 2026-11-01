@@ -1,30 +1,33 @@
-# Решения
+# Decisions
 
-- **Отдельный репо, а не страница в существующем.** Публичный сервис с собственной
-  выкаткой и своими секретами; общих частей с другими проектами нет.
-- **Серверный шаблон без сборщика.** Формы и стили отдаются из шаблонов, своих скриптов
-  три маленьких файла без зависимостей, всё с `Cache-Control: no-store`/`no-cache` —
-  проблемы версий ассетов за кешем CDN здесь нет. Вырастет интерактив — переводить на
-  сборщик.
-- **Без уведомлений в мессенджеры.** Правки и отчёты забираются через закрытое токеном
-  API (`/admin/...`), а не рассылаются.
-- **Лимит по базе, а не в памяти.** Считаем строки с тем же `ip_hash` за час: переживает
-  рестарт, отдельного состояния не нужно.
-- **Отчёты о счетах — та же база и тот же сервис.** Отдельная таблица `accounts`, тот же
-  токен и та же соль: второй сервис ради одной формы не окупается.
-- **Голос — только браузерный Web Speech API.** Бесплатно и без нашего сервера, но звук
-  уходит распознавателю браузера (Google у Chrome, Apple у Safari) — это написано под
-  кнопкой. Где API нет (встроенные браузеры Telegram/Instagram, Firefox), остаётся
-  диктовка на клавиатуре телефона. Серверный STT — только если окажется, что без него не
-  диктуют.
-- **Списки с поиском, а не чипы.** Чипы со всеми банками и документами заняли три экрана
-  телефона. Теперь поле с выпадающим списком (свой `combo.js` без библиотек, фолбэк —
-  `<datalist>`), своё значение вводится в то же поле. Свой список, а не голый
-  `datalist`: на iOS подсказки datalist неудобны, и нужны теги для документов.
-- **Proof-of-work вместо капчи.** Формат ALTCHA, но своя реализация (~100 строк): задача
-  подписана HMAC и встроена в страницу, поэтому нет внешних запросов, cookie и
-  `connect-src`. Cloudflare Turnstile не взяли — это сторонний скрипт. PoW не
-  остановит упорного бота с браузером, но делает массовую отправку дорогой; вместе с
-  лимитом частоты и ловушкой `website` этого достаточно для формы без ценности для спама.
-- **Хэш IP и браузер живут 30 дней.** Лимиту частоты нужен час, остальное — запас, чтобы
-  разобрать волну спама. Потом поля стираются при следующей отправке любой формы.
+- **A separate repo, not a page in an existing one.** A public service with its own
+  rollout and its own secrets; nothing is shared with other projects.
+- **Server-side templates, no bundler.** Forms and styles are served from templates, our
+  scripts are three small dependency-free files, everything with
+  `Cache-Control: no-store`/`no-cache` — so there is no asset-versioning problem behind a
+  CDN cache. If interactivity grows, move to a bundler.
+- **No messenger notifications.** Corrections and reports are pulled through the
+  token-protected API (`/admin/...`), not pushed out.
+- **Rate limit in the database, not in memory.** We count rows with the same `ip_hash`
+  in the last hour: survives restarts and needs no extra state.
+- **Account reports use the same database and service.** A separate `accounts` table,
+  the same token and the same salt: a second service for one form does not pay off.
+- **Voice is the browser's Web Speech API only.** Free and needs no server of ours, but
+  the audio goes to the browser's recogniser (Google for Chrome, Apple for Safari) — this
+  is stated under the button. Where the API is missing (Telegram/Instagram in-app
+  browsers, Firefox), the phone keyboard's dictation remains. Server-side STT only if it
+  turns out people do not dictate without it.
+- **Searchable lists, not chips.** Chips with every bank and document took three phone
+  screens. Now it is a field with a dropdown (our own `combo.js` without libraries,
+  `<datalist>` as the fallback), and a custom value is typed into the same field. Our own
+  list rather than a bare `datalist`: datalist suggestions are awkward on iOS, and
+  documents need tags.
+- **Proof-of-work instead of a captcha.** ALTCHA format, but our own implementation
+  (~100 lines): the challenge is HMAC-signed and embedded in the page, so there are no
+  external requests, cookies or `connect-src`. Cloudflare Turnstile was rejected — it is a
+  third-party script. PoW will not stop a persistent bot with a real browser, but it makes
+  mass submission expensive; together with the rate limit and the `website` honeypot that
+  is enough for a form with no spam value.
+- **The IP hash and browser name live 30 days.** The rate limit needs an hour; the rest is
+  headroom to sort out a spam wave. After that the fields are wiped on the next
+  submission of either form.
