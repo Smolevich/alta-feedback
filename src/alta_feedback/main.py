@@ -13,8 +13,15 @@ from starlette.applications import Starlette
 from starlette.middleware import Middleware
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
-from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
-from starlette.routing import Route
+from starlette.responses import (
+    FileResponse,
+    HTMLResponse,
+    JSONResponse,
+    PlainTextResponse,
+    RedirectResponse,
+    Response,
+)
+from starlette.routing import Mount, Route
 
 from alta_feedback.accounts import (
     ACCOUNT_STATUSES,
@@ -30,6 +37,7 @@ from alta_feedback.accounts import (
     parse_account_form,
 )
 from alta_feedback.pow import CHALLENGE_TTL, Challenge, create_challenge, derive_key, verify_payload
+from alta_feedback.site import DEFAULT_SITE_DIR, REVALIDATE, SITE_CSP, SiteFiles, index_file
 from alta_feedback.stats import account_stats
 from alta_feedback.store import Store
 from alta_feedback.validate import (
@@ -115,6 +123,16 @@ def render(
 
 def ip_hash_of(request: Request) -> str:
     return hash_ip(client_ip(request), request.app.state.ip_salt)
+
+
+async def home(request: Request) -> Response:
+    """«/» — справочник; со ссылкой «Предложить правку» (?s=…, ?t=…) и без справочника — форма."""
+    index = index_file(request.app.state.site_dir)
+    if index is None or request.query_params.keys() & {"s", "t"}:
+        return await form_page(request)
+    return FileResponse(
+        index, headers={"Content-Security-Policy": SITE_CSP, "Cache-Control": REVALIDATE}
+    )
 
 
 async def form_page(request: Request) -> HTMLResponse:
@@ -303,10 +321,13 @@ def create_app(
     admin_token: str | None = None,
     ip_salt: str | None = None,
     pow_max_number: int = POW_MAX_NUMBER,
+    site_dir: Path | None = None,
 ) -> Starlette:
+    site = site_dir or Path(os.environ.get("SITE_DIR", DEFAULT_SITE_DIR))
     app = Starlette(
         routes=[
-            Route("/", form_page, methods=["GET"]),
+            Route("/", home, methods=["GET"]),
+            Route("/fix", form_page, methods=["GET"]),
             Route("/", submit, methods=["POST"]),
             Route("/spasibo", thanks, methods=["GET"]),
             Route("/healthz", healthz, methods=["GET"]),
@@ -327,6 +348,8 @@ def create_app(
                 "/admin/accounts/{id:int}/status",
                 admin_set_status("accounts", ACCOUNT_STATUSES), methods=["POST"],
             ),
+            # Последним: всё, чего нет среди маршрутов выше, ищем в собранном справочнике.
+            Mount("/", app=SiteFiles(site), name="site"),
         ],
         middleware=[Middleware(SecurityHeaders)],
     )
@@ -338,4 +361,5 @@ def create_app(
         raise RuntimeError("IP_SALT не задан: без соли хэш IP подбирается перебором")
     app.state.pow_key = derive_key(app.state.ip_salt)
     app.state.pow_max_number = pow_max_number
+    app.state.site_dir = site
     return app
