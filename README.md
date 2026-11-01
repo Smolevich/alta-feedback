@@ -1,107 +1,89 @@
 # alta-feedback
 
-Форма «Предложить правку» для страницы про банк ALTA: `https://alta.smolevich.com/`.
+Обратная связь к публичному разбору про банк ALTA (Сербия): что случилось с банком и
+что делать вкладчикам — <https://claude.ai/artifact/RrfqFLbzQh5wEkb9RxC7UQ>.
 
-## Ссылка для кнопок на странице
+Сервис живёт на <https://alta.smolevich.com/> и собирает два вида ответов:
 
-```
-https://alta.smolevich.com/?s=<id раздела>&t=<заголовок раздела, urlencoded>
-```
+- **«Предложить правку»** (`/`) — у каждого раздела разбора есть кнопка: человек пишет,
+  что неточно, и по желанию источник.
+- **«Где открыли счёт»** (`/account`) — после отзыва лицензии у ALTA вкладчики ищут, где
+  открыть новый счёт. Анонимная форма на полминуты: банк, город, личный счёт или ИП,
+  чем закончилось, какие документы просили. Проверенные ответы видны всем на
+  [`/account/stats`](https://alta.smolevich.com/account/stats) и в JSON
+  [`/api/accounts/public`](https://alta.smolevich.com/api/accounts/public).
 
-`s` — id из `<h2 id="…">` (буквы, цифры, `_`, `-`, до 40 знаков; иначе отбрасывается),
-`t` — подставляется в поле «Раздел», человек может его поправить. Ссылка открывается в
-новой вкладке (`target="_blank" rel="noopener"`).
+Без логинов, рекламы и сторонних скриптов: страницы грузят только свои стили и три своих
+маленьких скрипта.
 
-## Как читать правки (координатор)
+## Что хранится
 
-Токен лежит в Vault `secret/alta-feedback/admin_token` (поле `token`), достаётся по ssh
-root-токеном из Keychain (см. `~/pet-projects/docs/secrets.md`). В argv токен не попадает:
-curl читает заголовок из stdin.
+Код открыт, чтобы это можно было проверить. Всё лежит в одной базе SQLite на сервере.
 
-```bash
-RT=$(security find-generic-password -s vault-hetzner-root-token -w)
-TOKEN=$(printf '%s' "$RT" | ssh -o ClearAllForwardings=yes bot-server '
-  IFS= read -r VAULT_TOKEN; export VAULT_TOKEN VAULT_ADDR=http://127.0.0.1:8200
-  vault kv get -field=token secret/alta-feedback/admin_token')
+**Правка:** раздел страницы, текст, источник, контакт (если оставили — не публикуется),
+время отправки.
 
-# новые с момента прошлого забора (ISO, UTC); status=new — только непросмотренные
-printf 'Authorization: Bearer %s\n' "$TOKEN" | curl -fsS -H @- \
-  'https://alta.smolevich.com/admin/suggestions?since=2026-10-31T00:00:00Z&status=new' | jq
-```
+**Отчёт о счёте:** банк, город, личный счёт или ИП, результат, дата визита, статус в
+Сербии (если указали), какие документы просили, комментарий, время отправки.
 
-Ответ: `{"count": N, "items": [{id, created_at, section_id, section_title, text, source,
-contact, ip_hash, user_agent_short, status}, …]}`, по возрастанию `id`, до 500 за раз.
-`since` — строго позже указанного момента; без `since` — все.
+**В отчётах о счетах номера вычищаются до записи.** Из комментария и полей со своим текстом сервер вырезает
+всё похожее на email, IBAN, номер счёта (18 цифр или 3-13-2), JMBG (13 цифр) и любые
+группы от 9 цифр — телефоны, номера паспортов. Вместо них сохраняется `[скрыто]`. Код —
+`scrub_pii` в [`src/alta_feedback/accounts.py`](src/alta_feedback/accounts.py).
 
-Сменить статус (`new`, `accepted`, `rejected`, `test`, `spam`):
+**IP не сохраняется.** Для защиты от спама (не больше 5 отправок в час с одного адреса)
+хранится только хэш: первые 32 знака `sha256("<секретная соль>:<IP>")`. Соль знает
+только сервер, поэтому по хэшу IP не восстановить. Ещё сохраняются первые 120 знаков
+названия браузера (User-Agent) — чтобы отличать ботов. В журналы сервера IP тоже не
+пишется: строки доступа выключены.
 
-```bash
-printf 'Authorization: Bearer %s\n' "$TOKEN" | curl -fsS -H @- \
-  -H 'Content-Type: application/json' -d '{"status":"accepted"}' \
-  https://alta.smolevich.com/admin/suggestions/42/status
-```
+**Сколько хранится.** Сами ответы — пока работает сервис. Хэш IP и название браузера
+стираются через 30 дней. Использованные задачи проверки от ботов — через 30 минут.
 
-`contact` не публикуется — это обещано на форме.
+**Что видно публично.** Только отчёты о счетах, которые проверил автор, и только поля
+ответа: банк, город, тип счёта, результат, дата визита, статус, документы, комментарий.
+Времени отправки, хэша и браузера в публичных данных нет. Правки публично не видны.
 
-## Форма «Где открыли счёт» — `/account`
+**Голос.** Кнопка «Голосом» использует распознавание речи браузера: Chrome отправляет
+звук в Google, Safari — в Apple. Мы голос не получаем и не храним — к нам приходит
+только итоговый текст, если вы его отправите. Можно не пользоваться кнопкой и
+надиктовать микрофоном клавиатуры.
 
-Анонимный отчёт вкладчика за 30–40 секунд, на телефоне — один экран. Банк (18 действующих
-банков по реестру NBS на 01.11.2026), город и статус в Сербии (необязательно) — поля с
-выпадающим списком: печатаешь — список фильтруется, можно выбрать или вписать своё.
-Документы — такой же список с множественным выбором (теги с ×) и своими значениями.
-Результат (открыли / отказали / в процессе) и счёт (личный / ИП) — переключатели,
-дата визита (по умолчанию сегодня, Белград), комментарий с микрофоном.
+**Проверка от ботов** — proof-of-work в формате [ALTCHA](https://altcha.org): браузер пару
+секунд решает задачу, пока вы заполняете форму. Без cookie и без запросов к сторонним
+сервисам.
 
-- **Свои значения.** Название из списка (без учёта регистра) или код превращается в
-  справочное значение; своё сохраняется текстом после вычистки, до 60 знаков. Поэтому в
-  `residency` и `documents` кроме кодов из `labels` может прийти и произвольный текст.
-- **Без JS** форма тоже работает: подсказки через `<datalist>`, документы — одной строкой
-  через запятую (`docs_text`).
-- **Голосовой ввод** в комментарий — кнопка-микрофон на Web Speech API браузера (`ru-RU`),
-  без нашего сервера. Нет `SpeechRecognition` в браузере — кнопки нет, остаётся микрофон
-  клавиатуры телефона.
-- **Личные данные** вырезаются до записи: email, IBAN, счёт 18 цифр / 3-13-2, JMBG
-  (13 цифр), любые группы от 9 цифр (телефоны, паспорта). Даты через точку не трогаются.
-- **Спам** — как у правок: скрытое поле `website`, 5 отчётов в час с хэша IP (лимит отдельный
-  от правок), тело до 16 КБ.
+## Хотите что-то поправить или добавить
 
-Ссылка для кнопки на странице: `https://alta.smolevich.com/account`.
+Открывайте [pull request](https://github.com/Smolevich/alta-feedback/pulls) — я его
+посмотрю. Ошибки и идеи — в [issues](https://github.com/Smolevich/alta-feedback/issues).
+Правки по содержанию разбора проще прислать прямо через форму на сайте.
 
-### Чтение и модерация (координатор)
+## Запуск локально
 
-Тот же токен, что для правок:
+Нужны Python 3.13+ и [uv](https://docs.astral.sh/uv/).
 
 ```bash
-printf 'Authorization: Bearer %s\n' "$TOKEN" | curl -fsS -H @- \
-  'https://alta.smolevich.com/admin/accounts?since=2026-11-01T00:00:00Z&status=new' | jq
-
-printf 'Authorization: Bearer %s\n' "$TOKEN" | curl -fsS -H @- \
-  -H 'Content-Type: application/json' -d '{"status":"accepted"}' \
-  https://alta.smolevich.com/admin/accounts/7/status
+uv sync
+IP_SALT=dev ADMIN_TOKEN=dev uv run uvicorn --factory alta_feedback.main:create_app --port 8101
+uv run ruff check src tests
+uv run pytest -q
 ```
 
-Элемент: `{id, created_at, bank, city, account_type, result, visit_date, residency,
-documents: [коды], comment, ip_hash, user_agent_short, status}`. Статусы: `new`,
-`accepted`, `rejected`, `test`, `spam`.
+Форма — <http://127.0.0.1:8101/account>, база — `data/feedback.db`.
 
-### Публичный JSON
+## Как устроено
 
-`GET https://alta.smolevich.com/api/accounts/public` — без токена, только `accepted`, свежие
-визиты сверху, до 2000:
+- Starlette + Jinja, SQLite, стили встроены в шаблоны (`src/alta_feedback/templates/`).
+- Скрипты (`src/alta_feedback/static/`): `combo.js` — списки с поиском, `pow.js` —
+  проверка от ботов, `voice.js` — голосовой ввод. Без скриптов формы тоже открываются,
+  но отчёт о счёте без проверки от ботов не примется.
+- Деплой — GitHub Actions на push в `main`: тесты и линт, затем выкладка на сервер и
+  перезапуск. Секреты — в Vault на сервере и в секретах репозитория, в коде их нет.
 
-```json
-{"count": 1,
- "items": [{"id": 7, "visit_date": "2026-10-31", "bank": "OTP banka", "city": "Нови-Сад",
-            "account_type": "entrepreneur", "result": "refused", "residency": "boravak",
-            "documents": ["passport", "apr", "Справка из налоговой"], "comment": "…"}],
- "labels": {"account_type": {…}, "result": {…}, "residency": {…}, "documents": {…}}}
-```
+Модерация, публичный JSON и детали деплоя — [`docs/ops.md`](docs/ops.md), почему сделано
+так — [`docs/decisions.md`](docs/decisions.md).
 
-`bank` и `city` — готовые названия; `account_type`, `result`, `residency`, `documents` — коды с
-подписями в `labels`, а у `residency` и `documents` ещё и свой текст человека, если он вписал своё. Времени отправки, `ip_hash` и UA в ответе нет.
+## Лицензия
 
-## Инфраструктура
-
-- Ingress `alta.smolevich.com → http://127.0.0.1:8101` и AppRole `alta-feedback-deploy` —
-  в репо `infra`.
-- Секреты Vault: `secret/alta-feedback/admin_token` (`token`), `secret/alta-feedback/ip_salt` (`salt`).
+[MIT](LICENSE) © Stanislav Shupilkin

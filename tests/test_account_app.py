@@ -1,6 +1,6 @@
 import html
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import pytest
 from starlette.testclient import TestClient
@@ -218,3 +218,23 @@ def test_stats_page_has_no_scripts(client):
 
 def test_form_links_to_stats(client):
     assert 'href="/account/stats"' in client.get("/account").text
+
+
+def test_stats_page_escapes_comment_html(client):
+    report(client, comment="<img src=x onerror=alert(1)>")
+    accept_all(client)
+    assert "<img src=x" not in client.get("/account/stats").text
+
+
+def test_traces_older_than_month_are_forgotten(client):
+    report(client)
+    store = client.app.state.store
+    store.forget_old_traces(datetime.now(LOCAL_TZ) + timedelta(days=1))
+    item = admin_items(client)[0]
+    assert (item["ip_hash"], item["user_agent_short"]) == ("", "")
+
+
+def test_fresh_traces_are_kept(client):
+    report(client)
+    client.app.state.store.forget_old_traces(datetime.now(LOCAL_TZ) - timedelta(days=30))
+    assert admin_items(client)[0]["ip_hash"] != ""

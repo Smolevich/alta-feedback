@@ -90,14 +90,16 @@ jobs:
             fi
             sudo uv sync --frozen --no-dev
 
-            # Вход AppRole alta-feedback-deploy: role_id и secret_id файлами у root
-            # (infra, vault_field_files), не секретом репо. Тело логина через stdin,
-            # токен живёт 15 минут и отзывается сразу после чтения.
+            # Вход в Vault по AppRole: role_id и secret_id лежат файлами на сервере, не секретом
+            # репо. Пути — в переменных репозитория. Тело логина через stdin, токен живёт
+            # 15 минут и отзывается сразу после чтения.
             export VAULT_ADDR=http://127.0.0.1:8200
-            ROLE_ID_FILE=/root/.config/alta-feedback/vault-role-id
-            SECRET_ID_FILE=/root/.config/alta-feedback/vault-secret-id
+            ROLE_ID_FILE="${{ vars.VAULT_ROLE_ID_FILE }}"
+            SECRET_ID_FILE="${{ vars.VAULT_SECRET_ID_FILE }}"
+            ADMIN_TOKEN_PATH="${{ vars.VAULT_ADMIN_TOKEN_PATH }}"
+            IP_SALT_PATH="${{ vars.VAULT_IP_SALT_PATH }}"
             if [ ! -r "$ROLE_ID_FILE" ] || [ ! -r "$SECRET_ID_FILE" ]; then
-              echo "ERROR: нет файлов AppRole $ROLE_ID_FILE и $SECRET_ID_FILE (их кладёт infra)" >&2
+              echo "ERROR: нет файлов AppRole (переменные VAULT_ROLE_ID_FILE / VAULT_SECRET_ID_FILE)" >&2
               exit 1
             fi
             VAULT_TOKEN=$(jq -n --rawfile r "$ROLE_ID_FILE" --rawfile s "$SECRET_ID_FILE" \
@@ -106,8 +108,8 @@ jobs:
             ADMIN_TOKEN=""
             IP_SALT=""
             if [ -n "$VAULT_TOKEN" ]; then
-              ADMIN_TOKEN=$(VAULT_TOKEN=$VAULT_TOKEN vault kv get -field=token secret/alta-feedback/admin_token 2>/dev/null || true)
-              IP_SALT=$(VAULT_TOKEN=$VAULT_TOKEN vault kv get -field=salt secret/alta-feedback/ip_salt 2>/dev/null || true)
+              ADMIN_TOKEN=$(VAULT_TOKEN=$VAULT_TOKEN vault kv get -field=token "$ADMIN_TOKEN_PATH" 2>/dev/null || true)
+              IP_SALT=$(VAULT_TOKEN=$VAULT_TOKEN vault kv get -field=salt "$IP_SALT_PATH" 2>/dev/null || true)
               VAULT_TOKEN=$VAULT_TOKEN vault token revoke -self >/dev/null 2>&1 \
                 || echo "::warning::vault token revoke -self не прошёл — токен истечёт сам через 15 минут"
             else
@@ -149,4 +151,6 @@ jobs:
               exit 1
             fi
             curl -fsS -o /dev/null -w 'form %{http_code}\n' 'http://127.0.0.1:8101/?s=a1'
+            curl -fsS -o /dev/null -w 'account form %{http_code}\n' http://127.0.0.1:8101/account
+            curl -fsS -o /dev/null -w 'account stats %{http_code}\n' http://127.0.0.1:8101/account/stats
             curl -sS -o /dev/null -w 'admin without token %{http_code}\n' http://127.0.0.1:8101/admin/suggestions

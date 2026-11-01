@@ -166,6 +166,7 @@
       <textarea id="comment" name="comment" maxlength="{{ comment_max }}" rows="3"
                 placeholder="Сколько ждали, что сказали про ИП…">{{ values.comment or "" }}</textarea>
       <p id="mic-status" class="hint" role="status"></p>
+      <p id="mic-note" class="warn" hidden>Кнопка «Голосом»: речь распознаёт ваш браузер — Chrome отправляет звук в Google, Safari — в Apple. Мы голос не получаем. Можно надиктовать и микрофоном клавиатуры.</p>
       <p class="warn">Не пишите номера паспорта, JMBG, счетов и телефоны — мы их всё равно вырежем.</p>
     </div>
 
@@ -184,7 +185,7 @@
   </form>
   <a class="back" href="{{ return_url }}">← к странице про ALTA</a>
 </div>
-<p class="foot"><a href="/account/stats">Статистика ответов</a> · Без рекламы и трекеров. IP не храним.</p>
+<p class="foot"><a href="/account/stats">Статистика ответов</a> · Без рекламы и трекеров. IP не сохраняем — для защиты от спама только его необратимый хэш.</p>
 <script src="/static/pow.js" defer></script>
 <script src="/static/combo.js" defer></script>
 <script src="/static/voice.js" defer></script>

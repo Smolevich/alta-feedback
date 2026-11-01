@@ -47,6 +47,8 @@ from alta_feedback.validate import (
 BODY_MAX = 16_384
 RATE_LIMIT = 5
 RATE_WINDOW = timedelta(hours=1)
+# Сколько держим хэш IP и браузер: лимиту хватает часа, остальное — чтобы разобрать волну спама.
+TRACE_TTL = timedelta(days=30)
 ADMIN_PAGE_MAX = 500
 PUBLIC_ACCOUNTS_MAX = 2000
 LOCAL_TZ = ZoneInfo("Europe/Belgrade")
@@ -141,6 +143,7 @@ async def submit(request: Request) -> Response:
         return render("limit.html", status_code=429)
     user_agent = request.headers.get("user-agent", "")[:UA_MAX]
     store.add(suggestion, ip_hash, user_agent, now)
+    store.forget_old_traces(now - TRACE_TTL)
     query = urlencode({"s": suggestion.section_id}) if suggestion.section_id else ""
     return RedirectResponse(f"/spasibo?{query}" if query else "/spasibo", status_code=303)
 
@@ -250,6 +253,7 @@ async def account_submit(request: Request) -> Response:
     if not store.claim_challenge(solved.challenge, solved.expires_at, now):
         return account_form(request, {**form, "docs": docs}, [POW_FAILED], status_code=400)
     store.add_account(report, ip_hash, request.headers.get("user-agent", "")[:UA_MAX], now)
+    store.forget_old_traces(now - TRACE_TTL)
     return RedirectResponse("/account/spasibo", status_code=303)
 
 

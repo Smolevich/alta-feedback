@@ -43,6 +43,8 @@
   };
 
   button.hidden = false;
+  const note = document.getElementById("mic-note");
+  if (note) note.hidden = false;
   button.addEventListener("click", () => {
     if (recognition) recognition.stop();
     else start();

@@ -165,3 +165,13 @@ class Store:
                 (challenge, expires_at),
             )
             return cur.rowcount == 1
+
+    def forget_old_traces(self, before: datetime) -> None:
+        """Стирает хэш IP и браузер у записей старше срока: лимиту частоты они нужны лишь час."""
+        with self.connect() as db:
+            for table in COLUMNS:
+                db.execute(
+                    f"UPDATE {table} SET ip_hash = '', user_agent_short = ''"
+                    " WHERE created_at < ? AND (ip_hash != '' OR user_agent_short != '')",
+                    (iso(before),),
+                )
