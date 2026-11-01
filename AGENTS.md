@@ -5,7 +5,7 @@ iframe с CSP `connect-src 'self'`, поэтому сама слать сюда 
 раздела кнопка-ссылка открывает в новой вкладке форму на `https://alta.smolevich.com/`.
 
 - Starlette + Jinja, SQLite `data/feedback.db`. Две формы: правки (`/`, без JS) и анонимный
-  отчёт «где открыли счёт» (`/account`, один свой скрипт — микрофон).
+  отчёт «где открыли счёт» (`/account`, свои скрипты: списки с поиском и микрофон).
 - Прод: `bot-server`, `/opt/alta-feedback`, юнит `alta-feedback.service`, `127.0.0.1:8101`,
   наружу — туннель `telegram-bot` (ingress в `infra/fleet/hardening/cloudflared/config.yml`),
   **без** Cloudflare Access: форма публичная.
@@ -24,8 +24,9 @@ uv run pytest -q
 ## Что знать до правок
 
 - **Никаких сторонних скриптов и трекеров.** CSP `default-src 'none'`, стили встроенные;
-  формы работают обычным POST с редиректом. JS есть только на `/account`: свой
-  `/static/voice.js` (Web Speech API), CSP там `script-src 'self'`, без скрипта форма тоже работает.
+  формы работают обычным POST с редиректом. JS есть только на `/account`: свои
+  `/static/combo.js` (списки с поиском) и `/static/voice.js` (Web Speech API), CSP там
+  `script-src 'self'`; без скриптов форма тоже работает (`<datalist>`).
 - **Отчёты о счетах анонимны.** Никаких логинов и контактов; email, JMBG, номера счетов,
   телефоны и паспорта вырезаются на сервере до записи (`accounts.scrub_pii`). Публично
   (`/api/accounts/public`) — только `accepted` и без `ip_hash`/UA/времени отправки.

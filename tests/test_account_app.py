@@ -54,6 +54,19 @@ def test_voice_script_is_served(client):
     assert "SpeechRecognition" in client.get("/static/voice.js").text
 
 
+def test_combo_script_is_served(client):
+    assert client.get("/static/combo.js").status_code == 200
+
+
+def test_unknown_static_file_is_404(client):
+    assert client.get("/static/..%2Fmain.py").status_code == 404
+
+
+def test_documents_typed_without_script_are_split_by_comma(client):
+    report(client, docs=[], docs_text="Паспорт, справка из налоговой")
+    assert admin_items(client)[0]["documents"] == ["passport", "справка из налоговой"]
+
+
 def test_submit_redirects_to_thanks(client):
     assert report(client).headers["location"] == "/account/spasibo"
 
@@ -68,9 +81,9 @@ def test_missing_choice_returns_form_with_error(client):
     assert report(client, result="").status_code == 400
 
 
-def test_failed_submit_keeps_checked_documents(client):
-    page = report(client, result="", docs=["jmbg"]).text
-    assert 'value="jmbg" checked' in page
+def test_failed_submit_keeps_chosen_documents(client):
+    page = report(client, result="", docs=["Справка из налоговой"]).text
+    assert 'name="docs" value="Справка из налоговой"' in page
 
 
 def test_comment_personal_numbers_are_not_stored(client):

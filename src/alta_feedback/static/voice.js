@@ -14,7 +14,7 @@
 
   const setListening = (on) => {
     button.classList.toggle("on", on);
-    label.textContent = on ? "Слушаю — нажмите, чтобы закончить" : "Надиктовать";
+    label.textContent = on ? "Стоп" : "Голосом";
   };
 
   const errorText = (code) => {

@@ -52,8 +52,8 @@ DOCUMENTS: dict[str, str] = {
     "statements": "Выписки из другого банка",
     "nothing": "Ничего сверх обычного",
 }
-OTHER = "other"
-OTHER_MAX = 60
+FREE_TEXT_MAX = 60
+DOCUMENTS_MAX = 15
 COMMENT_MAX = 1000
 VISIT_DAYS_BACK = 400
 ACCOUNT_STATUSES = frozenset({"new", "accepted", "rejected", "test", "spam"})
@@ -90,13 +90,35 @@ def scrub_pii(text: str) -> str:
     return text
 
 
-def pick_named(code: str, other: str, names: dict[str, str]) -> str:
-    """Имя из справочника по коду или очищенный свободный текст для «другого»."""
-    if code in names:
-        return names[code]
-    if code == OTHER:
-        return scrub_pii(" ".join(other.split())[:OTHER_MAX])
-    return ""
+def free_text(raw: str) -> str:
+    return scrub_pii(" ".join(raw.split())[:FREE_TEXT_MAX])
+
+
+def match_label(raw: str, names: dict[str, str]) -> str | None:
+    """Код справочника по коду или по подписи без учёта регистра; None — значения в справочнике нет."""
+    value = " ".join(raw.split())
+    if value in names:
+        return value
+    wanted = value.casefold()
+    return next((code for code, label in names.items() if label.casefold() == wanted), None)
+
+
+def pick_name(raw: str, names: dict[str, str]) -> str:
+    """Название из справочника или своё значение человека, очищенное от личных данных."""
+    code = match_label(raw, names)
+    return names[code] if code else free_text(raw)
+
+
+def pick_code(raw: str, names: dict[str, str]) -> str:
+    """Код справочника или своё значение человека, очищенное от личных данных."""
+    return match_label(raw, names) or free_text(raw)
+
+
+def pick_documents(values: list[str]) -> tuple[str, ...]:
+    """Коды документов из справочника и свои значения, без пустых и повторов."""
+    picked = [pick_code(value, DOCUMENTS) for value in values]
+    unique = [value for value in dict.fromkeys(picked) if value]
+    return tuple(unique[:DOCUMENTS_MAX])
 
 
 def parse_visit_date(raw: str, today: date) -> str | None:
@@ -113,9 +135,13 @@ def parse_visit_date(raw: str, today: date) -> str | None:
 def parse_account_form(
     form: dict[str, str], documents: list[str], today: date
 ) -> tuple[AccountReport, list[str]]:
-    """Собирает отчёт из полей формы; возвращает его и список ошибок для человека."""
-    bank = pick_named(form.get("bank", ""), form.get("bank_other", ""), BANKS)
-    city = pick_named(form.get("city", ""), form.get("city_other", ""), CITIES)
+    """Собирает отчёт из полей формы; возвращает его и список ошибок для человека.
+
+    Банк, город, статус и документы приходят текстом из полей с подсказками: название из
+    списка превращается в справочное значение, своё сохраняется как есть после вычистки.
+    """
+    bank = pick_name(form.get("bank", ""), BANKS)
+    city = pick_name(form.get("city", ""), CITIES)
     account_type = form.get("account_type", "")
     result = form.get("result", "")
     visit_date = parse_visit_date(form.get("visit_date", ""), today)
@@ -140,8 +166,8 @@ def parse_account_form(
         account_type=account_type,
         result=result,
         visit_date=visit_date or "",
-        residency=residency if residency in RESIDENCIES else "",
-        documents=tuple(code for code in DOCUMENTS if code in documents),
+        residency=pick_code(residency, RESIDENCIES),
+        documents=pick_documents(documents),
         comment=scrub_pii(comment),
     )
     return report, errors
