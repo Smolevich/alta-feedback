@@ -55,9 +55,9 @@ sends the audio to Google, Safari to Apple. We never receive or store the audio 
 the resulting text arrives, and only if you submit it. You can skip the button and use
 the keyboard's dictation instead.
 
-**Bot check** — proof-of-work in the [ALTCHA](https://altcha.org) format: the browser
-solves a task for a couple of seconds while you fill in the form. No cookies and no
-requests to third-party services.
+**Bot check** — proof-of-work in the [ALTCHA](https://altcha.org) format behind an
+"I'm not a robot" checkbox: ticking it makes the browser solve a task for a second or
+two. No cookies and no requests to third-party services.
 
 ## Want to fix or add something
 

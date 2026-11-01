@@ -29,7 +29,7 @@ from alta_feedback.accounts import (
     labels,
     parse_account_form,
 )
-from alta_feedback.pow import create_challenge, derive_key, verify_payload
+from alta_feedback.pow import CHALLENGE_TTL, Challenge, create_challenge, derive_key, verify_payload
 from alta_feedback.stats import account_stats
 from alta_feedback.store import Store
 from alta_feedback.validate import (
@@ -54,8 +54,8 @@ PUBLIC_ACCOUNTS_MAX = 2000
 LOCAL_TZ = ZoneInfo("Europe/Belgrade")
 STATIC_DIR = Path(__file__).parent / "static"
 SCRIPTS = frozenset({"combo.js", "pow.js", "voice.js"})
-# Среднее число попыток — половина: на телефоне это пара секунд, пока человек заполняет форму.
-POW_MAX_NUMBER = 50_000
+# Перебор запускает отметка «Я не робот»; среднее число попыток — половина, на Mac ~0,4 с, на телефоне 1–3 с.
+POW_MAX_NUMBER = 200_000
 POW_FAILED = "Не прошла проверка от ботов. Подождите пару секунд и отправьте ещё раз."
 DEFAULT_RETURN_URL = "https://claude.ai/artifact/RrfqFLbzQh5wEkb9RxC7UQ"
 
@@ -70,10 +70,12 @@ SECURITY_HEADERS = {
     "Cache-Control": "no-store",
 }
 
-# Страница отчёта о счёте грузит только свои скрипты: списки с поиском и микрофон.
+# Страница отчёта о счёте грузит только свои скрипты: списки с поиском и микрофон;
+# connect-src — только за новой задачей, когда старая протухла, пока форма была открыта.
 ACCOUNT_PAGE_HEADERS = {
     "Content-Security-Policy": (
-        "default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; "
+        "default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'unsafe-inline'; "
+        "img-src 'self' data:; "
         "form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
     ),
     "Permissions-Policy": "microphone=(self)",
@@ -206,13 +208,26 @@ def admin_set_status(table: str, statuses: frozenset[str]) -> Callable[[Request]
 
 
 def account_context(request: Request, values: dict, errors: list[str]) -> dict:
-    state = request.app.state
     return {
         "banks": BANKS, "cities": CITIES, "account_types": ACCOUNT_TYPES, "results": RESULTS,
         "residencies": RESIDENCIES, "documents": DOCUMENTS, "comment_max": COMMENT_MAX,
         "free_text_max": FREE_TEXT_MAX, "values": values, "errors": errors,
-        "pow": create_challenge(state.pow_key, datetime.now(UTC), state.pow_max_number),
+        "pow": new_challenge(request), "pow_ttl": int(CHALLENGE_TTL.total_seconds()),
     }
+
+
+def new_challenge(request: Request) -> Challenge:
+    state = request.app.state
+    return create_challenge(state.pow_key, datetime.now(UTC), state.pow_max_number)
+
+
+async def account_challenge(request: Request) -> JSONResponse:
+    challenge = new_challenge(request)
+    return JSONResponse({
+        "algorithm": challenge.algorithm, "challenge": challenge.challenge, "salt": challenge.salt,
+        "signature": challenge.signature, "maxnumber": challenge.maxnumber,
+        "ttl": int(CHALLENGE_TTL.total_seconds()),
+    })
 
 
 def account_form(request: Request, values: dict, errors: list[str], status_code: int = 200) -> HTMLResponse:
@@ -302,6 +317,7 @@ def create_app(
             ),
             Route("/account", account_page, methods=["GET"]),
             Route("/account", account_submit, methods=["POST"]),
+            Route("/account/challenge", account_challenge, methods=["GET"]),
             Route("/account/spasibo", account_thanks, methods=["GET"]),
             Route("/account/stats", account_stats_page, methods=["GET"]),
             Route("/static/{name}", static_script, methods=["GET"]),

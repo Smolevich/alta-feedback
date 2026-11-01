@@ -72,14 +72,37 @@
   .acc .warn { color: var(--muted); font-size: 12px; margin: 4px 0 0; line-height: 1.35; }
   .acc .hint { margin: 2px 0 0; }
   .acc button[type=submit] { margin-top: 10px; min-height: 46px; }
-  .pow { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; color: var(--muted); }
-  .pow-mark {
-    flex: none; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line);
+  .pow { margin-top: 14px; }
+  .pow-box {
+    display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 10px 14px;
+    background: #fafaf8; border: 1px solid var(--line); border-radius: 10px; cursor: pointer;
+    user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent;
   }
-  .pow[data-state=working] .pow-mark { border-top-color: var(--accent); animation: spin .8s linear infinite; }
-  .pow[data-state=done] { color: var(--ok); }
+  .pow-box:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .pow-mark {
+    flex: none; position: relative; width: 26px; height: 26px; border-radius: 5px;
+    background: #fff; border: 2px solid #9c998f;
+  }
+  .pow-text { flex: 1 1 auto; font-size: 16px; font-weight: 500; }
+  .pow-note { flex: none; font-size: 11px; line-height: 1.25; color: var(--muted); text-align: right; }
+  .pow-hint { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+  .pow-hint:empty { display: none; }
+  .pow[data-state=working] .pow-box { cursor: progress; }
+  .pow[data-state=working] .pow-mark {
+    border-radius: 50%; border-color: var(--line); border-top-color: var(--accent);
+    animation: spin .8s linear infinite;
+  }
+  .pow[data-state=done] .pow-box { cursor: default; }
+  .pow[data-state=done] .pow-text { color: var(--ok); }
   .pow[data-state=done] .pow-mark { background: var(--ok); border-color: var(--ok); }
-  .pow[data-state=error] { color: var(--danger); }
+  .pow[data-state=done] .pow-mark::after {
+    content: ""; position: absolute; left: 7px; top: 2px; width: 7px; height: 13px;
+    border: solid #fff; border-width: 0 3px 3px 0; transform: rotate(45deg);
+  }
+  .pow[data-state=error] .pow-hint, .pow[data-attention] .pow-hint { color: var(--danger); }
+  .pow[data-attention] .pow-box { border-color: var(--danger); background: var(--danger-bg); }
+  .pow[data-attention] .pow-mark { border-color: var(--danger); }
+  .acc button[type=submit][aria-disabled=true] { opacity: .55; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .acc-card .lead a { color: var(--accent); }
   .acc-card .back { margin-top: 12px; font-size: 14px; }
@@ -175,10 +198,17 @@
       <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
     </div>
 
-    <div id="pow" class="pow" data-algorithm="{{ pow.algorithm }}" data-challenge="{{ pow.challenge }}"
-         data-salt="{{ pow.salt }}" data-signature="{{ pow.signature }}" data-maxnumber="{{ pow.maxnumber }}">
+    <div id="pow" class="pow" data-state="idle" data-algorithm="{{ pow.algorithm }}"
+         data-challenge="{{ pow.challenge }}" data-salt="{{ pow.salt }}" data-signature="{{ pow.signature }}"
+         data-maxnumber="{{ pow.maxnumber }}" data-ttl="{{ pow_ttl }}">
       <input type="hidden" name="altcha" value="">
-      <span class="pow-mark" aria-hidden="true"></span><span id="pow-status" role="status">Нужен JavaScript для проверки от ботов</span>
+      <div id="pow-box" class="pow-box" role="checkbox" aria-checked="false" tabindex="0"
+           aria-labelledby="pow-text" aria-describedby="pow-hint">
+        <span class="pow-mark" aria-hidden="true"></span>
+        <span id="pow-text" class="pow-text" aria-live="polite">Я не робот</span>
+        <span class="pow-note">Проверка<br>от ботов</span>
+      </div>
+      <p id="pow-hint" class="pow-hint" aria-live="polite"><noscript>Для проверки от ботов нужен JavaScript.</noscript></p>
     </div>
 
     <button type="submit">Отправить</button>
