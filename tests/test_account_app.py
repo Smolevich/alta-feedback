@@ -1,9 +1,12 @@
+import html
+import re
 from datetime import datetime
 
 import pytest
 from starlette.testclient import TestClient
 
 from alta_feedback.main import LOCAL_TZ, create_app
+from alta_feedback.pow import Challenge, encode_payload, solve
 
 TOKEN = "admin-secret"
 AUTH = {"Authorization": f"Bearer {TOKEN}"}
@@ -12,11 +15,30 @@ TODAY = datetime.now(LOCAL_TZ).date().isoformat()
 
 @pytest.fixture
 def client(tmp_path) -> TestClient:
-    return TestClient(create_app(data_dir=tmp_path, admin_token=TOKEN, ip_salt="salt"))
+    return TestClient(create_app(data_dir=tmp_path, admin_token=TOKEN, ip_salt="salt", pow_max_number=50))
 
 
-def report(client: TestClient, ip: str = "203.0.113.5", docs: list[str] | None = None, **fields):
+def challenge_from_page(page: str) -> Challenge:
+    """Задача ровно так, как её видит браузер: из data-атрибутов формы."""
+    def attr(name: str) -> str:
+        return html.unescape(re.search(rf'data-{name}="([^"]*)"', page).group(1))
+
+    return Challenge(
+        attr("algorithm"), attr("challenge"), attr("salt"), attr("signature"), int(attr("maxnumber"))
+    )
+
+
+def solved_pow(client: TestClient) -> str:
+    challenge = challenge_from_page(client.get("/account").text)
+    return encode_payload(challenge, solve(challenge))
+
+
+def report(
+    client: TestClient, ip: str = "203.0.113.5", docs: list[str] | None = None, altcha: str | None = None,
+    **fields,
+):
     data = {
+        "altcha": solved_pow(client) if altcha is None else altcha,
         "bank": "otp", "city": "novisad", "account_type": "entrepreneur", "result": "refused",
         "visit_date": TODAY, "residency": "boravak", "comment": "Попросили решение APR",
         "docs": docs if docs is not None else ["passport", "apr"], **fields,
@@ -154,3 +176,45 @@ def test_unknown_account_status_is_rejected(client):
     item_id = admin_items(client)[0]["id"]
     response = client.post(f"/admin/accounts/{item_id}/status", json={"status": "x"}, headers=AUTH)
     assert response.status_code == 400
+
+
+def test_report_without_proof_of_work_is_rejected(client):
+    assert report(client, altcha="").status_code == 400
+
+
+def test_report_without_proof_of_work_is_not_stored(client):
+    report(client, altcha="")
+    assert admin_items(client) == []
+
+
+def test_wrong_number_is_rejected(client):
+    challenge = challenge_from_page(client.get("/account").text)
+    wrong = (solve(challenge) + 1) % (challenge.maxnumber + 1)
+    assert report(client, altcha=encode_payload(challenge, wrong)).status_code == 400
+
+
+def test_same_solution_cannot_be_used_twice(client):
+    payload = solved_pow(client)
+    report(client, altcha=payload)
+    assert report(client, altcha=payload).status_code == 400
+
+
+def test_stats_page_shows_empty_state(client):
+    assert "Пока нет проверенных ответов" in client.get("/account/stats").text
+
+
+def test_stats_page_counts_only_accepted(client):
+    report(client, bank="raiffeisen")
+    report(client, bank="intesa")
+    raiffeisen = admin_items(client)[0]
+    client.post(f"/admin/accounts/{raiffeisen['id']}/status", json={"status": "accepted"}, headers=AUTH)
+    page = client.get("/account/stats").text
+    assert ("Raiffeisen" in page, "Banca Intesa" in page) == (True, False)
+
+
+def test_stats_page_has_no_scripts(client):
+    assert "script-src" not in client.get("/account/stats").headers["content-security-policy"]
+
+
+def test_form_links_to_stats(client):
+    assert 'href="/account/stats"' in client.get("/account").text

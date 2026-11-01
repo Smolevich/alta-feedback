@@ -71,7 +71,17 @@
   button.mic.on { background: var(--danger); border-color: var(--danger); color: #fff; }
   .acc .warn { color: var(--muted); font-size: 12px; margin: 4px 0 0; line-height: 1.35; }
   .acc .hint { margin: 2px 0 0; }
-  .acc button[type=submit] { margin-top: 14px; min-height: 46px; }
+  .acc button[type=submit] { margin-top: 10px; min-height: 46px; }
+  .pow { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .pow-mark {
+    flex: none; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line);
+  }
+  .pow[data-state=working] .pow-mark { border-top-color: var(--accent); animation: spin .8s linear infinite; }
+  .pow[data-state=done] { color: var(--ok); }
+  .pow[data-state=done] .pow-mark { background: var(--ok); border-color: var(--ok); }
+  .pow[data-state=error] { color: var(--danger); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .acc-card .lead a { color: var(--accent); }
   .acc-card .back { margin-top: 12px; font-size: 14px; }
   .acc-card .errors { margin-bottom: 4px; }
 </style>
@@ -82,7 +92,7 @@
 {% set type_short = {"personal": "Личный", "entrepreneur": "ИП"} %}
 <div class="card acc-card">
   <h1>Где вам открыли счёт</h1>
-  <p class="lead">Анонимно, полминуты. Проверенные ответы попадут в общую таблицу.</p>
+  <p class="lead">Анонимно, полминуты. Проверенные ответы попадут в <a href="/account/stats">общую статистику</a>.</p>
   {% if errors %}
   <div class="errors" role="alert">{% for e in errors %}<p>{{ e }}</p>{% endfor %}</div>
   {% endif %}
@@ -164,11 +174,18 @@
       <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
     </div>
 
+    <div id="pow" class="pow" data-algorithm="{{ pow.algorithm }}" data-challenge="{{ pow.challenge }}"
+         data-salt="{{ pow.salt }}" data-signature="{{ pow.signature }}" data-maxnumber="{{ pow.maxnumber }}">
+      <input type="hidden" name="altcha" value="">
+      <span class="pow-mark" aria-hidden="true"></span><span id="pow-status" role="status">Нужен JavaScript для проверки от ботов</span>
+    </div>
+
     <button type="submit">Отправить</button>
   </form>
   <a class="back" href="{{ return_url }}">← к странице про ALTA</a>
 </div>
-<p class="foot">Без рекламы и трекеров. IP не храним.</p>
+<p class="foot"><a href="/account/stats">Статистика ответов</a> · Без рекламы и трекеров. IP не храним.</p>
+<script src="/static/pow.js" defer></script>
 <script src="/static/combo.js" defer></script>
 <script src="/static/voice.js" defer></script>
 {% endblock %}

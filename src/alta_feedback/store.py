@@ -44,6 +44,11 @@ CREATE TABLE IF NOT EXISTS accounts (
 CREATE INDEX IF NOT EXISTS accounts_ip_time ON accounts (ip_hash, created_at);
 CREATE INDEX IF NOT EXISTS accounts_time ON accounts (created_at);
 CREATE INDEX IF NOT EXISTS accounts_status ON accounts (status);
+
+CREATE TABLE IF NOT EXISTS pow_used (
+    challenge TEXT PRIMARY KEY,
+    expires_at INTEGER NOT NULL
+);
 """
 
 COLUMNS = {
@@ -150,3 +155,13 @@ class Store:
         )
         with self.connect() as db:
             return [decode_row(row) for row in db.execute(query, (limit,))]
+
+    def claim_challenge(self, challenge: str, expires_at: int, now: datetime) -> bool:
+        """Отмечает решённую задачу использованной; False — её уже предъявляли."""
+        with self.connect() as db:
+            db.execute("DELETE FROM pow_used WHERE expires_at < ?", (int(now.timestamp()),))
+            cur = db.execute(
+                "INSERT OR IGNORE INTO pow_used (challenge, expires_at) VALUES (?, ?)",
+                (challenge, expires_at),
+            )
+            return cur.rowcount == 1

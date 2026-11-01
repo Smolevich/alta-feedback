@@ -29,6 +29,8 @@ from alta_feedback.accounts import (
     labels,
     parse_account_form,
 )
+from alta_feedback.pow import create_challenge, derive_key, verify_payload
+from alta_feedback.stats import account_stats
 from alta_feedback.store import Store
 from alta_feedback.validate import (
     STATUSES,
@@ -49,7 +51,10 @@ ADMIN_PAGE_MAX = 500
 PUBLIC_ACCOUNTS_MAX = 2000
 LOCAL_TZ = ZoneInfo("Europe/Belgrade")
 STATIC_DIR = Path(__file__).parent / "static"
-SCRIPTS = frozenset({"combo.js", "voice.js"})
+SCRIPTS = frozenset({"combo.js", "pow.js", "voice.js"})
+# Среднее число попыток — половина: на телефоне это пара секунд, пока человек заполняет форму.
+POW_MAX_NUMBER = 50_000
+POW_FAILED = "Не прошла проверка от ботов. Подождите пару секунд и отправьте ещё раз."
 DEFAULT_RETURN_URL = "https://claude.ai/artifact/RrfqFLbzQh5wEkb9RxC7UQ"
 
 # Ни одного скрипта на странице нет; стили только встроенные.
@@ -197,12 +202,21 @@ def admin_set_status(table: str, statuses: frozenset[str]) -> Callable[[Request]
     return handler
 
 
-def account_context(values: dict, errors: list[str]) -> dict:
+def account_context(request: Request, values: dict, errors: list[str]) -> dict:
+    state = request.app.state
     return {
         "banks": BANKS, "cities": CITIES, "account_types": ACCOUNT_TYPES, "results": RESULTS,
         "residencies": RESIDENCIES, "documents": DOCUMENTS, "comment_max": COMMENT_MAX,
         "free_text_max": FREE_TEXT_MAX, "values": values, "errors": errors,
+        "pow": create_challenge(state.pow_key, datetime.now(UTC), state.pow_max_number),
     }
+
+
+def account_form(request: Request, values: dict, errors: list[str], status_code: int = 200) -> HTMLResponse:
+    return render(
+        "account.html", status_code=status_code, headers=ACCOUNT_PAGE_HEADERS,
+        **account_context(request, values, errors),
+    )
 
 
 def today_local() -> datetime:
@@ -211,7 +225,7 @@ def today_local() -> datetime:
 
 async def account_page(request: Request) -> HTMLResponse:
     values = {"visit_date": today_local().date().isoformat(), "docs": []}
-    return render("account.html", headers=ACCOUNT_PAGE_HEADERS, **account_context(values, []))
+    return account_form(request, values, [])
 
 
 async def account_submit(request: Request) -> Response:
@@ -222,22 +236,30 @@ async def account_submit(request: Request) -> Response:
     # Без JS документы приходят одной строкой через запятую, со скриптом — тегами.
     docs = [str(value) for value in raw.getlist("docs")] + form.get("docs_text", "").split(",")
     report, errors = parse_account_form(form, docs, today_local().date())
+    now = datetime.now(UTC)
+    solved = verify_payload(request.app.state.pow_key, form.get("altcha", ""), now)
+    if solved is None:
+        errors.append(POW_FAILED)
     if errors:
         values = {**form, "docs": [doc.strip() for doc in docs if doc.strip()]}
-        return render(
-            "account.html", status_code=400, headers=ACCOUNT_PAGE_HEADERS, **account_context(values, errors)
-        )
+        return account_form(request, values, errors, status_code=400)
     store: Store = request.app.state.store
-    now = datetime.now(UTC)
     ip_hash = ip_hash_of(request)
     if store.recent_from(ip_hash, now, RATE_WINDOW, table="accounts") >= RATE_LIMIT:
         return render("limit.html", status_code=429)
+    if not store.claim_challenge(solved.challenge, solved.expires_at, now):
+        return account_form(request, {**form, "docs": docs}, [POW_FAILED], status_code=400)
     store.add_account(report, ip_hash, request.headers.get("user-agent", "")[:UA_MAX], now)
     return RedirectResponse("/account/spasibo", status_code=303)
 
 
 async def account_thanks(request: Request) -> HTMLResponse:
     return render("account_thanks.html")
+
+
+async def account_stats_page(request: Request) -> HTMLResponse:
+    items = request.app.state.store.public_accounts(PUBLIC_ACCOUNTS_MAX)
+    return render("stats.html", stats=account_stats(items), results=RESULTS)
 
 
 async def public_accounts(request: Request) -> JSONResponse:
@@ -258,7 +280,10 @@ async def healthz(request: Request) -> PlainTextResponse:
 
 
 def create_app(
-    data_dir: Path | None = None, admin_token: str | None = None, ip_salt: str | None = None
+    data_dir: Path | None = None,
+    admin_token: str | None = None,
+    ip_salt: str | None = None,
+    pow_max_number: int = POW_MAX_NUMBER,
 ) -> Starlette:
     app = Starlette(
         routes=[
@@ -274,6 +299,7 @@ def create_app(
             Route("/account", account_page, methods=["GET"]),
             Route("/account", account_submit, methods=["POST"]),
             Route("/account/spasibo", account_thanks, methods=["GET"]),
+            Route("/account/stats", account_stats_page, methods=["GET"]),
             Route("/static/{name}", static_script, methods=["GET"]),
             Route("/api/accounts/public", public_accounts, methods=["GET"]),
             Route("/admin/accounts", admin_list("accounts", ACCOUNT_STATUSES), methods=["GET"]),
@@ -290,4 +316,6 @@ def create_app(
     app.state.ip_salt = ip_salt if ip_salt is not None else os.environ.get("IP_SALT", "")
     if not app.state.ip_salt:
         raise RuntimeError("IP_SALT не задан: без соли хэш IP подбирается перебором")
+    app.state.pow_key = derive_key(app.state.ip_salt)
+    app.state.pow_max_number = pow_max_number
     return app
