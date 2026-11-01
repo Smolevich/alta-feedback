@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Где открыли счёт{% endblock %}
+{% macro chips(name, options, selected, kind="radio", other=False) -%}
+<div class="chips">
+  {%- for code, label in options.items() %}
+  <label class="chip"><input type="{{ kind }}" name="{{ name }}" value="{{ code }}"
+    {%- if (kind == "radio" and selected == code) or (kind == "checkbox" and code in selected) %} checked{% endif %}><span>{{ label }}</span></label>
+  {%- endfor %}
+  {%- if other %}
+  <label class="chip"><input type="radio" name="{{ name }}" value="other"{% if selected == "other" %} checked{% endif %}><span>Другой</span></label>
+  {%- endif %}
+</div>
+{%- endmacro %}
+{% block content %}
+<div class="card">
+  <h1>Где вам открыли счёт</h1>
+  <p class="lead">После ALTA все ищут, где открыть новый счёт. Отметьте, как прошло у вас, — это займёт полминуты. Анонимно: без имени, телефона и входа. Проверенные ответы появятся в общей таблице.</p>
+  {% if errors %}
+  <div class="errors" role="alert">{% for e in errors %}<p>{{ e }}</p>{% endfor %}</div>
+  {% endif %}
+  <form method="post" action="/account">
+    <fieldset>
+      <legend>Банк</legend>
+      {{ chips("bank", banks, values.bank, other=True) }}
+      <input class="other-field" type="text" name="bank_other" maxlength="{{ other_max }}"
+             value="{{ values.bank_other or "" }}" placeholder="Какой банк" aria-label="Другой банк">
+    </fieldset>
+
+    <fieldset>
+      <legend>Город отделения</legend>
+      {{ chips("city", cities, values.city, other=True) }}
+      <input class="other-field" type="text" name="city_other" maxlength="{{ other_max }}"
+             value="{{ values.city_other or "" }}" placeholder="Какой город" aria-label="Другой город">
+    </fieldset>
+
+    <fieldset>
+      <legend>Какой счёт</legend>
+      {{ chips("account_type", account_types, values.account_type) }}
+    </fieldset>
+
+    <fieldset>
+      <legend>Чем закончилось</legend>
+      {{ chips("result", results, values.result) }}
+    </fieldset>
+
+    <fieldset>
+      <legend><label for="visit_date">Дата визита</label></legend>
+      <input type="date" id="visit_date" name="visit_date" value="{{ values.visit_date or "" }}" required>
+    </fieldset>
+
+    <fieldset>
+      <legend>Статус в Сербии <span class="hint">Необязательно, но важно для отказов</span></legend>
+      {{ chips("residency", residencies, values.residency) }}
+    </fieldset>
+
+    <fieldset>
+      <legend>Какие документы просили <span class="hint">Отметьте всё, что спрашивали</span></legend>
+      {{ chips("docs", documents, values.docs, kind="checkbox") }}
+    </fieldset>
+
+    <fieldset>
+      <legend><label for="comment">Что ещё спрашивали, комментарий</label>
+        <span class="hint">Например: сколько ждали, что сказали про ИП, в каком отделении</span></legend>
+      <textarea id="comment" name="comment" maxlength="{{ comment_max }}"
+                placeholder="Можно надиктовать">{{ values.comment or "" }}</textarea>
+      <button type="button" id="mic" class="mic" hidden>
+        <span aria-hidden="true">🎤</span> <span id="mic-label">Надиктовать</span>
+      </button>
+      <p id="mic-status" class="hint" role="status"></p>
+      <p class="warn">Не пишите номера паспорта, JMBG, счетов и телефоны — мы их всё равно вырежем.</p>
+    </fieldset>
+
+    <div class="trap" aria-hidden="true">
+      <label for="website">Не заполняйте это поле</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <button type="submit">Отправить</button>
+  </form>
+  <a class="back" href="{{ return_url }}">← вернуться к странице про ALTA</a>
+</div>
+<p class="foot">Без рекламы и трекеров. IP не храним. Ответы публикуются после проверки, без даты отправки.</p>
+<script src="/static/voice.js" defer></script>
+{% endblock %}
