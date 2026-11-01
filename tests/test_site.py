@@ -72,3 +72,12 @@ def test_hashed_assets_are_cached_and_pages_are_not(client):
 def test_without_a_built_site_root_falls_back_to_the_form(tmp_path):
     app = create_app(data_dir=tmp_path, admin_token="t", ip_salt="salt", site_dir=tmp_path / "missing")
     assert "<form" in TestClient(app).get("/").text
+
+
+def test_pdf_may_be_embedded_by_the_same_origin_only(client, site):
+    (site / "docs").mkdir()
+    (site / "docs" / "a.pdf").write_bytes(b"%PDF-1.4")
+    pdf = client.get("/docs/a.pdf").headers["content-security-policy"]
+    page = client.get("/").headers["content-security-policy"]
+    assert "frame-ancestors 'self'" in pdf
+    assert "frame-ancestors 'none'" in page and "object-src 'self'" in page
