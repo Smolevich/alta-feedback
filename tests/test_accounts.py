@@ -47,23 +47,23 @@ def test_bank_code_becomes_bank_name():
     assert report.bank == "Banca Intesa"
 
 
-def test_other_bank_takes_free_text():
-    report, _ = parse(bank="other", bank_other="  Novа   banka ")
-    assert report.bank == "Novа banka"
+def test_bank_label_typed_in_any_case_becomes_bank_name():
+    report, _ = parse(bank="  otp BANKA ")
+    assert report.bank == "OTP banka"
 
 
-def test_other_city_is_scrubbed():
-    report, _ = parse(city="other", city_other="Zrenjanin 0631234567")
+def test_own_bank_text_is_kept():
+    report, _ = parse(bank="  Nova   banka ")
+    assert report.bank == "Nova banka"
+
+
+def test_own_city_is_scrubbed():
+    report, _ = parse(city="Zrenjanin 0631234567")
     assert "0631234567" not in report.city
 
 
-def test_other_bank_without_text_is_rejected():
-    _, errors = parse(bank="other", bank_other=" ")
-    assert errors
-
-
-def test_unknown_bank_code_is_rejected():
-    _, errors = parse(bank="alta")
+def test_empty_bank_is_rejected():
+    _, errors = parse(bank=" ")
     assert errors
 
 
@@ -79,13 +79,33 @@ def test_future_old_or_garbage_visit_date_is_rejected(visit):
     assert errors
 
 
-def test_unknown_documents_are_dropped():
-    report, _ = parse(docs=["passport", "<script>", "apr"])
-    assert report.documents == ("passport", "apr")
+def test_document_labels_become_codes_and_own_text_is_kept():
+    report, _ = parse(docs=["Паспорт", "apr", "Справка из налоговой"])
+    assert report.documents == ("passport", "apr", "Справка из налоговой")
 
 
-def test_unknown_residency_becomes_empty():
-    report, _ = parse(residency="martian")
+def test_documents_drop_blanks_and_repeats():
+    report, _ = parse(docs=["Паспорт", " ", "passport", "паспорт"])
+    assert report.documents == ("passport",)
+
+
+def test_own_document_text_is_scrubbed():
+    report, _ = parse(docs=["выписка по счёту 160-0000000123456-78"])
+    assert "0000000123456" not in report.documents[0]
+
+
+def test_residency_label_becomes_code():
+    report, _ = parse(residency="Только белый картон")
+    assert report.residency == "white_card"
+
+
+def test_own_residency_text_is_kept():
+    report, _ = parse(residency="Виза D")
+    assert report.residency == "Виза D"
+
+
+def test_empty_residency_stays_empty():
+    report, _ = parse(residency="")
     assert report.residency == ""
 
 

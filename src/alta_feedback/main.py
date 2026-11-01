@@ -23,7 +23,7 @@ from alta_feedback.accounts import (
     CITIES,
     COMMENT_MAX,
     DOCUMENTS,
-    OTHER_MAX,
+    FREE_TEXT_MAX,
     RESIDENCIES,
     RESULTS,
     labels,
@@ -49,6 +49,7 @@ ADMIN_PAGE_MAX = 500
 PUBLIC_ACCOUNTS_MAX = 2000
 LOCAL_TZ = ZoneInfo("Europe/Belgrade")
 STATIC_DIR = Path(__file__).parent / "static"
+SCRIPTS = frozenset({"combo.js", "voice.js"})
 DEFAULT_RETURN_URL = "https://claude.ai/artifact/RrfqFLbzQh5wEkb9RxC7UQ"
 
 # Ни одного скрипта на странице нет; стили только встроенные.
@@ -62,7 +63,7 @@ SECURITY_HEADERS = {
     "Cache-Control": "no-store",
 }
 
-# Страница отчёта о счёте грузит один свой скрипт (микрофон) и больше ничего.
+# Страница отчёта о счёте грузит только свои скрипты: списки с поиском и микрофон.
 ACCOUNT_PAGE_HEADERS = {
     "Content-Security-Policy": (
         "default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; "
@@ -200,7 +201,7 @@ def account_context(values: dict, errors: list[str]) -> dict:
     return {
         "banks": BANKS, "cities": CITIES, "account_types": ACCOUNT_TYPES, "results": RESULTS,
         "residencies": RESIDENCIES, "documents": DOCUMENTS, "comment_max": COMMENT_MAX,
-        "other_max": OTHER_MAX, "values": values, "errors": errors,
+        "free_text_max": FREE_TEXT_MAX, "values": values, "errors": errors,
     }
 
 
@@ -218,10 +219,11 @@ async def account_submit(request: Request) -> Response:
     form = {key: str(value) for key, value in raw.items()}
     if is_bot(form):
         return RedirectResponse("/account/spasibo", status_code=303)
-    docs = [str(value) for value in raw.getlist("docs")]
+    # Без JS документы приходят одной строкой через запятую, со скриптом — тегами.
+    docs = [str(value) for value in raw.getlist("docs")] + form.get("docs_text", "").split(",")
     report, errors = parse_account_form(form, docs, today_local().date())
     if errors:
-        values = {**form, "docs": docs}
+        values = {**form, "docs": [doc.strip() for doc in docs if doc.strip()]}
         return render(
             "account.html", status_code=400, headers=ACCOUNT_PAGE_HEADERS, **account_context(values, errors)
         )
@@ -243,8 +245,11 @@ async def public_accounts(request: Request) -> JSONResponse:
     return JSONResponse({"count": len(items), "items": items, "labels": labels()})
 
 
-async def voice_script(request: Request) -> Response:
-    body = (STATIC_DIR / "voice.js").read_text(encoding="utf-8")
+async def static_script(request: Request) -> Response:
+    name = request.path_params["name"]
+    if name not in SCRIPTS:
+        return PlainTextResponse("not found", status_code=404)
+    body = (STATIC_DIR / name).read_text(encoding="utf-8")
     return Response(body, media_type="text/javascript; charset=utf-8", headers={"Cache-Control": "no-cache"})
 
 
@@ -269,7 +274,7 @@ def create_app(
             Route("/account", account_page, methods=["GET"]),
             Route("/account", account_submit, methods=["POST"]),
             Route("/account/spasibo", account_thanks, methods=["GET"]),
-            Route("/static/voice.js", voice_script, methods=["GET"]),
+            Route("/static/{name}", static_script, methods=["GET"]),
             Route("/api/accounts/public", public_accounts, methods=["GET"]),
             Route("/admin/accounts", admin_list("accounts", ACCOUNT_STATUSES), methods=["GET"]),
             Route(
