@@ -49,8 +49,11 @@ jobs:
           uv run --frozen ruff check src tests
           uv run --frozen pytest -q
 
+  # Секреты деплоя лежат в environment production, который пускает только main: workflow
+  # из чужой ветки их не получит, а в main попадают только через PR с ревью CODEOWNERS.
   deploy:
     needs: preflight
+    environment: production
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
