@@ -13,6 +13,9 @@ on:
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 concurrency:
   group: deploy-alta-feedback
   cancel-in-progress: false
@@ -21,18 +24,22 @@ env:
   UV_VERSION: "0.8.11"
 
 jobs:
-  deploy:
+  # Код репозитория (uv sync, тесты) исполняется только здесь, где секретов нет: иначе правка
+  # с правом записи могла бы вытащить ключи из памяти раннера.
+  preflight:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.vars.outputs.version }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Get version
         id: vars
-        run: |
-          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+        run: echo "version=$(date +'%Y-%m-%d')-$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with:
           version: ${{ env.UV_VERSION }}
 
@@ -42,115 +49,151 @@ jobs:
           uv run --frozen ruff check src tests
           uv run --frozen pytest -q
 
+  deploy:
+    needs: preflight
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
       - name: Connect to Tailscale
-        uses: tailscale/github-action@v2
+        uses: tailscale/github-action@064b10558093f38325e838ddea35486bdc6b1d5c # v4.4.0
         with:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:gha-runner
 
+      # Хост сверяется с known_hosts из секрета: подменённый сервер не получит ни код, ни
+      # подпись ключа. HostKeyAlias отвязывает проверку от того, IP или имя лежит в VDS_HOST.
+      - name: Set up SSH
+        env:
+          SSH_KEY: ${{ secrets.VDS_SSH_KEY }}
+          SSH_PASSPHRASE: ${{ secrets.VDS_SSH_PASSPHRASE }}
+          KNOWN_HOSTS: ${{ secrets.VDS_KNOWN_HOSTS }}
+          VDS_HOST: ${{ secrets.VDS_HOST }}
+          VDS_PORT: ${{ secrets.VDS_PORT }}
+          VDS_USER: ${{ secrets.VDS_USER }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          cat > ~/.ssh/config <<EOF
+          Host vds
+            HostName $VDS_HOST
+            Port $VDS_PORT
+            User $VDS_USER
+            HostKeyAlias vds
+            StrictHostKeyChecking yes
+            UserKnownHostsFile ~/.ssh/known_hosts
+            BatchMode yes
+          EOF
+          eval "$(ssh-agent -s)" > /dev/null
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> "$GITHUB_ENV"
+          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> "$GITHUB_ENV"
+          askpass="$RUNNER_TEMP/askpass"
+          cat > "$askpass" <<'EOF'
+          #!/bin/sh
+          printf '%s\n' "$SSH_PASSPHRASE"
+          EOF
+          chmod 700 "$askpass"
+          printf '%s\n' "$SSH_KEY" | SSH_ASKPASS="$askpass" SSH_ASKPASS_REQUIRE=force DISPLAY=none ssh-add -q -
+          rm -f "$askpass"
+
       - name: Copy files to server
-        uses: appleboy/scp-action@v1.0.0
-        with:
-          host: ${{ secrets.VDS_HOST }}
-          port: ${{ secrets.VDS_PORT }}
-          username: ${{ secrets.VDS_USER }}
-          key: ${{ secrets.VDS_SSH_KEY }}
-          passphrase: ${{ secrets.VDS_SSH_PASSPHRASE }}
-          source: "src/**,deploy/alta-feedback.service,pyproject.toml,uv.lock,.python-version"
-          target: /tmp/deploy-alta-feedback
-          overwrite: true
+        run: |
+          ssh vds 'rm -rf /tmp/deploy-alta-feedback && mkdir -p /tmp/deploy-alta-feedback'
+          rsync -aR --exclude __pycache__ src deploy/alta-feedback.service pyproject.toml uv.lock .python-version \
+            vds:/tmp/deploy-alta-feedback/
 
       - name: Install and restart
-        uses: appleboy/ssh-action@v1.2.5
-        with:
-          host: ${{ secrets.VDS_HOST }}
-          port: ${{ secrets.VDS_PORT }}
-          username: ${{ secrets.VDS_USER }}
-          key: ${{ secrets.VDS_SSH_KEY }}
-          passphrase: ${{ secrets.VDS_SSH_PASSPHRASE }}
-          script: |
-            set -e
-            APP_DIR=/opt/alta-feedback
-            STAGE=/tmp/deploy-alta-feedback
+        run: |
+          ssh vds 'bash -s' <<'REMOTE'
+          set -e
+          APP_DIR=/opt/alta-feedback
+          STAGE=/tmp/deploy-alta-feedback
 
-            sudo mkdir -p "$APP_DIR/data"
-            sudo chmod 700 "$APP_DIR/data"
-            sudo rsync -a --delete "$STAGE/src/" "$APP_DIR/src/"
-            sudo cp "$STAGE/pyproject.toml" "$STAGE/uv.lock" "$STAGE/.python-version" "$APP_DIR/"
-            sudo install -m 0644 "$STAGE/deploy/alta-feedback.service" \
-              /etc/systemd/system/alta-feedback.service
-            rm -rf "$STAGE"
+          sudo mkdir -p "$APP_DIR/data"
+          sudo chmod 700 "$APP_DIR/data"
+          sudo rsync -a --delete "$STAGE/src/" "$APP_DIR/src/"
+          sudo cp "$STAGE/pyproject.toml" "$STAGE/uv.lock" "$STAGE/.python-version" "$APP_DIR/"
+          sudo install -m 0644 "$STAGE/deploy/alta-feedback.service" \
+            /etc/systemd/system/alta-feedback.service
+          rm -rf "$STAGE"
 
-            cd "$APP_DIR"
-            UV_VERSION="${{ env.UV_VERSION }}"
-            if [ "$(uv --version 2>/dev/null | awk '{print $2}')" != "$UV_VERSION" ]; then
-              curl -LsSf "https://astral.sh/uv/$UV_VERSION/install.sh" \
-                | sudo env UV_INSTALL_DIR=/usr/local/bin sh
-            fi
-            sudo uv sync --frozen --no-dev
+          cd "$APP_DIR"
+          UV_VERSION="${{ env.UV_VERSION }}"
+          if [ "$(uv --version 2>/dev/null | awk '{print $2}')" != "$UV_VERSION" ]; then
+            curl -LsSf "https://astral.sh/uv/$UV_VERSION/install.sh" \
+              | sudo env UV_INSTALL_DIR=/usr/local/bin sh
+          fi
+          sudo uv sync --frozen --no-dev
 
-            # Вход в Vault по AppRole: role_id и secret_id лежат файлами на сервере, не секретом
-            # репо. Пути — в переменных репозитория. Тело логина через stdin, токен живёт
-            # 15 минут и отзывается сразу после чтения.
-            export VAULT_ADDR=http://127.0.0.1:8200
-            ROLE_ID_FILE="${{ vars.VAULT_ROLE_ID_FILE }}"
-            SECRET_ID_FILE="${{ vars.VAULT_SECRET_ID_FILE }}"
-            ADMIN_TOKEN_PATH="${{ vars.VAULT_ADMIN_TOKEN_PATH }}"
-            IP_SALT_PATH="${{ vars.VAULT_IP_SALT_PATH }}"
-            if [ ! -r "$ROLE_ID_FILE" ] || [ ! -r "$SECRET_ID_FILE" ]; then
-              echo "ERROR: нет файлов AppRole (переменные VAULT_ROLE_ID_FILE / VAULT_SECRET_ID_FILE)" >&2
-              exit 1
-            fi
-            VAULT_TOKEN=$(jq -n --rawfile r "$ROLE_ID_FILE" --rawfile s "$SECRET_ID_FILE" \
-                '{role_id: ($r | rtrimstr("\n")), secret_id: ($s | rtrimstr("\n"))}' \
-              | VAULT_TOKEN= vault write -field=token auth/approle/login - 2>/dev/null || true)
-            ADMIN_TOKEN=""
-            IP_SALT=""
-            if [ -n "$VAULT_TOKEN" ]; then
-              ADMIN_TOKEN=$(VAULT_TOKEN=$VAULT_TOKEN vault kv get -field=token "$ADMIN_TOKEN_PATH" 2>/dev/null || true)
-              IP_SALT=$(VAULT_TOKEN=$VAULT_TOKEN vault kv get -field=salt "$IP_SALT_PATH" 2>/dev/null || true)
-              VAULT_TOKEN=$VAULT_TOKEN vault token revoke -self >/dev/null 2>&1 \
-                || echo "::warning::vault token revoke -self не прошёл — токен истечёт сам через 15 минут"
-            else
-              echo "::warning::вход AppRole не прошёл — Vault недоступен или role_id/secret_id неверны"
-            fi
-            unset VAULT_TOKEN
-            # Не прочитали — берём прежнее значение: смена соли обнулила бы лимит
-            # по IP, а пустой токен молча закрыл бы чтение правок.
-            prev() { sudo sed -n "s/^$1=//p" "$APP_DIR/.env" 2>/dev/null | head -1 || true; }
-            [ -n "$ADMIN_TOKEN" ] || { ADMIN_TOKEN=$(prev ADMIN_TOKEN); echo "::warning::admin_token из прежнего .env"; }
-            [ -n "$IP_SALT" ] || { IP_SALT=$(prev IP_SALT); echo "::warning::ip_salt из прежнего .env"; }
-            if [ -z "$IP_SALT" ]; then
-              echo "ERROR: нет соли IP ни в Vault, ни в прежнем .env" >&2
-              exit 1
-            fi
+          # Вход в Vault по AppRole: role_id и secret_id лежат файлами на сервере, не секретом
+          # репо. Пути — в переменных репозитория. Тело логина через stdin, токен живёт
+          # 15 минут и отзывается сразу после чтения.
+          export VAULT_ADDR=http://127.0.0.1:8200
+          ROLE_ID_FILE="${{ vars.VAULT_ROLE_ID_FILE }}"
+          SECRET_ID_FILE="${{ vars.VAULT_SECRET_ID_FILE }}"
+          ADMIN_TOKEN_PATH="${{ vars.VAULT_ADMIN_TOKEN_PATH }}"
+          IP_SALT_PATH="${{ vars.VAULT_IP_SALT_PATH }}"
+          if [ ! -r "$ROLE_ID_FILE" ] || [ ! -r "$SECRET_ID_FILE" ]; then
+            echo "ERROR: нет файлов AppRole (переменные VAULT_ROLE_ID_FILE / VAULT_SECRET_ID_FILE)" >&2
+            exit 1
+          fi
+          VAULT_TOKEN=$(jq -n --rawfile r "$ROLE_ID_FILE" --rawfile s "$SECRET_ID_FILE" \
+              '{role_id: ($r | rtrimstr("\n")), secret_id: ($s | rtrimstr("\n"))}' \
+            | VAULT_TOKEN= vault write -field=token auth/approle/login - 2>/dev/null || true)
+          ADMIN_TOKEN=""
+          IP_SALT=""
+          if [ -n "$VAULT_TOKEN" ]; then
+            ADMIN_TOKEN=$(VAULT_TOKEN=$VAULT_TOKEN vault kv get -field=token "$ADMIN_TOKEN_PATH" 2>/dev/null || true)
+            IP_SALT=$(VAULT_TOKEN=$VAULT_TOKEN vault kv get -field=salt "$IP_SALT_PATH" 2>/dev/null || true)
+            VAULT_TOKEN=$VAULT_TOKEN vault token revoke -self >/dev/null 2>&1 \
+              || echo "::warning::vault token revoke -self не прошёл — токен истечёт сам через 15 минут"
+          else
+            echo "::warning::вход AppRole не прошёл — Vault недоступен или role_id/secret_id неверны"
+          fi
+          unset VAULT_TOKEN
+          # Не прочитали — берём прежнее значение: смена соли обнулила бы лимит
+          # по IP, а пустой токен молча закрыл бы чтение правок.
+          prev() { sudo sed -n "s/^$1=//p" "$APP_DIR/.env" 2>/dev/null | head -1 || true; }
+          [ -n "$ADMIN_TOKEN" ] || { ADMIN_TOKEN=$(prev ADMIN_TOKEN); echo "::warning::admin_token из прежнего .env"; }
+          [ -n "$IP_SALT" ] || { IP_SALT=$(prev IP_SALT); echo "::warning::ip_salt из прежнего .env"; }
+          if [ -z "$IP_SALT" ]; then
+            echo "ERROR: нет соли IP ни в Vault, ни в прежнем .env" >&2
+            exit 1
+          fi
 
-            TMP_ENV=$(sudo mktemp "$APP_DIR/.env.XXXXXX")
-            sudo chmod 600 "$TMP_ENV"
-            cat << EOF | sudo tee "$TMP_ENV" > /dev/null
-            DATA_DIR=$APP_DIR/data
-            ADMIN_TOKEN=$ADMIN_TOKEN
-            IP_SALT=$IP_SALT
-            APP_VERSION=${{ steps.vars.outputs.date }}-${{ steps.vars.outputs.sha_short }}
-            EOF
-            sudo mv -f "$TMP_ENV" "$APP_DIR/.env"
+          TMP_ENV=$(sudo mktemp "$APP_DIR/.env.XXXXXX")
+          sudo chmod 600 "$TMP_ENV"
+          cat << EOF | sudo tee "$TMP_ENV" > /dev/null
+          DATA_DIR=$APP_DIR/data
+          ADMIN_TOKEN=$ADMIN_TOKEN
+          IP_SALT=$IP_SALT
+          APP_VERSION=${{ needs.preflight.outputs.version }}
+          EOF
+          sudo mv -f "$TMP_ENV" "$APP_DIR/.env"
 
-            sudo systemctl daemon-reload
-            sudo systemctl enable alta-feedback
-            sudo systemctl restart alta-feedback
+          sudo systemctl daemon-reload
+          sudo systemctl enable alta-feedback
+          sudo systemctl restart alta-feedback
 
-            # Type=simple: active ещё до того, как uvicorn займёт сокет — ждём ответ.
-            for _ in $(seq 1 30); do
-              curl -fsS -o /dev/null http://127.0.0.1:8101/healthz && break
-              sleep 1
-            done
-            if ! curl -fsS -o /dev/null http://127.0.0.1:8101/healthz; then
-              sudo systemctl status alta-feedback --no-pager | tail -20 >&2
-              sudo journalctl -u alta-feedback --since "2 min ago" --no-pager | tail -40 >&2
-              exit 1
-            fi
-            curl -fsS -o /dev/null -w 'form %{http_code}\n' 'http://127.0.0.1:8101/?s=a1'
-            curl -fsS -o /dev/null -w 'account form %{http_code}\n' http://127.0.0.1:8101/account
-            curl -fsS -o /dev/null -w 'account stats %{http_code}\n' http://127.0.0.1:8101/account/stats
-            curl -sS -o /dev/null -w 'admin without token %{http_code}\n' http://127.0.0.1:8101/admin/suggestions
+          # Type=simple: active ещё до того, как uvicorn займёт сокет — ждём ответ.
+          for _ in $(seq 1 30); do
+            curl -fsS -o /dev/null http://127.0.0.1:8101/healthz && break
+            sleep 1
+          done
+          if ! curl -fsS -o /dev/null http://127.0.0.1:8101/healthz; then
+            sudo systemctl status alta-feedback --no-pager | tail -20 >&2
+            sudo journalctl -u alta-feedback --since "2 min ago" --no-pager | tail -40 >&2
+            exit 1
+          fi
+          curl -fsS -o /dev/null -w 'form %{http_code}\n' 'http://127.0.0.1:8101/?s=a1'
+          curl -fsS -o /dev/null -w 'account form %{http_code}\n' http://127.0.0.1:8101/account
+          curl -fsS -o /dev/null -w 'account stats %{http_code}\n' http://127.0.0.1:8101/account/stats
+          curl -sS -o /dev/null -w 'admin without token %{http_code}\n' http://127.0.0.1:8101/admin/suggestions
+          REMOTE
+
+      - name: Stop ssh-agent
+        if: always()
+        run: ssh-agent -k > /dev/null 2>&1 || true
