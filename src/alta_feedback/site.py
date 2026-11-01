@@ -16,7 +16,9 @@ SITE_CSP = (
 )
 # Встроенный просмотр PDF на странице документов: страница разрешает object и frame со своего адреса,
 # а сам PDF разрешает показывать себя только странице с того же адреса.
-SITE_CSP = SITE_CSP.replace("form-action", "object-src 'self'; frame-src 'self'; form-action")
+# Первоисточники по Univerzal открываются прямо на aod.rs: сайт агентства отдаёт PDF без запрета на встраивание.
+EMBED = "'self' https://www.aod.rs"
+SITE_CSP = SITE_CSP.replace("form-action", f"object-src {EMBED}; frame-src {EMBED}; form-action")
 PDF_CSP = SITE_CSP.replace("frame-ancestors 'none'", "frame-ancestors 'self'")
 # Имена в /_astro/ содержат хэш содержимого, остальное (в том числе индекс поиска) меняется
 # без смены имени, и Cloudflare не должен держать его в кэше.
