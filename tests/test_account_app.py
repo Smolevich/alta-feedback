@@ -65,11 +65,12 @@ def test_form_defaults_visit_date_to_today(client):
 
 def test_form_allows_only_own_script(client):
     csp = client.get("/account").headers["content-security-policy"]
-    assert "script-src 'self'" in csp
+    assert "script-src 'self'" in csp and "static.cloudflareinsights.com" in csp
 
 
 def test_suggestion_form_still_has_no_scripts(client):
-    assert "script-src" not in client.get("/").headers["content-security-policy"]
+    csp = client.get("/").headers["content-security-policy"]
+    assert "script-src https://static.cloudflareinsights.com;" in csp
 
 
 def test_voice_script_is_served(client):
@@ -237,7 +238,8 @@ def test_stats_page_counts_only_accepted(client):
 
 
 def test_stats_page_has_no_scripts(client):
-    assert "script-src" not in client.get("/account/stats").headers["content-security-policy"]
+    csp = client.get("/account/stats").headers["content-security-policy"]
+    assert "script-src https://static.cloudflareinsights.com;" in csp
 
 
 def test_form_links_to_stats(client):

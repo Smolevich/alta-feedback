@@ -10,13 +10,15 @@ DEFAULT_SITE_DIR = Path("/var/www/alta-bankruptcy")
 # Starlight вставляет встроенные скрипты и стили, а поиск Pagefind грузит wasm со своего же
 # адреса; всё остальное закрыто. Формы сервиса в этот CSP не попадают: у них свой.
 SITE_CSP = (
-    "default-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; "
-    "style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; "
+    "default-src 'none'; "
+    "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://static.cloudflareinsights.com; "
+    "style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; "
+    "connect-src 'self' https://cloudflareinsights.com; "
     "form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
 )
 # Встроенный просмотр PDF на странице документов: страница разрешает object и frame со своего адреса,
 # а сам PDF разрешает показывать себя только странице с того же адреса.
-# Первоисточники по Univerzal открываются прямо на aod.rs: сайт агентства отдаёт PDF без запрета на встраивание.
+# Первоисточники по Univerzal открываются прямо на aod.rs: он отдаёт PDF без запрета на встраивание.
 EMBED = "'self' https://www.aod.rs"
 SITE_CSP = SITE_CSP.replace("form-action", f"object-src {EMBED}; frame-src {EMBED}; form-action")
 PDF_CSP = SITE_CSP.replace("frame-ancestors 'none'", "frame-ancestors 'self'")

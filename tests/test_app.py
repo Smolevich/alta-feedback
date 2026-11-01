@@ -33,7 +33,7 @@ def test_form_escapes_title_from_link(client):
 
 def test_form_page_loads_no_scripts(client):
     csp = client.get("/").headers["content-security-policy"]
-    assert "script-src" not in csp and "default-src 'none'" in csp
+    assert "script-src https://static.cloudflareinsights.com;" in csp and "default-src 'none'" in csp
 
 
 def test_submit_redirects_to_thanks(client):
@@ -122,3 +122,8 @@ def test_unknown_status_is_rejected(client):
 def test_app_refuses_to_start_without_salt(tmp_path):
     with pytest.raises(RuntimeError):
         create_app(data_dir=tmp_path, admin_token=TOKEN, ip_salt="")
+
+
+def test_form_pages_carry_the_analytics_beacon(client):
+    assert 'data-cf-beacon=\'{"token": "fe16933a65524594b31524da4c01f99c"}\'' in client.get("/").text
+    assert "data-cf-beacon" in client.get("/account").text

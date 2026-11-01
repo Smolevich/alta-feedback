@@ -67,11 +67,15 @@ POW_MAX_NUMBER = 200_000
 POW_FAILED = "Не прошла проверка от ботов. Подождите пару секунд и отправьте ещё раз."
 DEFAULT_RETURN_URL = "https://claude.ai/artifact/RrfqFLbzQh5wEkb9RxC7UQ"
 
-# Ни одного скрипта на странице нет; стили только встроенные.
+# Счётчик посещений Cloudflare Web Analytics: единственный разрешённый чужой скрипт и адрес отправки данных.
+CF_SCRIPT = "https://static.cloudflareinsights.com"
+CF_CONNECT = "https://cloudflareinsights.com"
+
+# Своих скриптов на странице нет; стили только встроенные.
 SECURITY_HEADERS = {
     "Content-Security-Policy": (
-        "default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; "
-        "form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
+        f"default-src 'none'; script-src {CF_SCRIPT}; connect-src {CF_CONNECT}; style-src 'unsafe-inline'; "
+        "img-src 'self' data:; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
     ),
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "no-referrer",
@@ -82,8 +86,8 @@ SECURITY_HEADERS = {
 # connect-src — только за новой задачей, когда старая протухла, пока форма была открыта.
 ACCOUNT_PAGE_HEADERS = {
     "Content-Security-Policy": (
-        "default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'unsafe-inline'; "
-        "img-src 'self' data:; "
+        f"default-src 'none'; script-src 'self' {CF_SCRIPT}; connect-src 'self' {CF_CONNECT}; "
+        "style-src 'unsafe-inline'; img-src 'self' data:; "
         "form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
     ),
     "Permissions-Policy": "microphone=(self)",
