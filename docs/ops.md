@@ -1,50 +1,51 @@
-# Эксплуатация
+# Operations
 
-## Ссылки для кнопок на странице разбора
+## Links for the buttons on the write-up page
 
 ```
-https://alta.smolevich.com/?s=<id раздела>&t=<заголовок раздела, urlencoded>
+https://alta.smolevich.com/?s=<section id>&t=<section title, urlencoded>
 https://alta.smolevich.com/account
 https://alta.smolevich.com/account/stats
 ```
 
-`s` — id из `<h2 id="…">` (буквы, цифры, `_`, `-`, до 40 знаков; иначе отбрасывается),
-`t` — подставляется в поле «Раздел», человек может его поправить. Ссылки открываются в
-новой вкладке (`target="_blank" rel="noopener"`): разбор живёт в iframe и сам слать
-запросы сюда не может.
+`s` is the id from `<h2 id="…">` (letters, digits, `_`, `-`, up to 40 characters;
+anything else is dropped), `t` prefills the "Section" field, which the person can edit.
+Links open in a new tab (`target="_blank" rel="noopener"`): the write-up lives in an
+iframe and cannot send requests here itself.
 
-## Модерация
+## Moderation
 
-Всё под `/admin/` закрыто токеном `ADMIN_TOKEN` (заголовок `Authorization: Bearer …`).
-Токен в argv не кладём — curl читает заголовок из stdin:
+Everything under `/admin/` requires the `ADMIN_TOKEN` (header
+`Authorization: Bearer …`). Keep the token out of argv — curl reads the header from stdin:
 
 ```bash
-# правки; since — ISO в UTC, строго позже; status=new — непросмотренные
+# corrections; since — ISO in UTC, strictly after; status=new — not yet reviewed
 printf 'Authorization: Bearer %s\n' "$ADMIN_TOKEN" | curl -fsS -H @- \
   'https://alta.smolevich.com/admin/suggestions?since=2026-10-31T00:00:00Z&status=new' | jq
 
-# отчёты о счетах
+# account reports
 printf 'Authorization: Bearer %s\n' "$ADMIN_TOKEN" | curl -fsS -H @- \
   'https://alta.smolevich.com/admin/accounts?status=new' | jq
 
-# сменить статус: new, accepted, rejected, test, spam
+# change status: new, accepted, rejected, test, spam
 printf 'Authorization: Bearer %s\n' "$ADMIN_TOKEN" | curl -fsS -H @- \
   -H 'Content-Type: application/json' -d '{"status":"accepted"}' \
   https://alta.smolevich.com/admin/accounts/7/status
 ```
 
-Ответ списка: `{"count": N, "items": [...]}` по возрастанию `id`, до 500 за раз.
+A list response is `{"count": N, "items": [...]}`, ascending by `id`, up to 500 at a time.
 
-- Правка: `{id, created_at, section_id, section_title, text, source, contact, ip_hash,
-  user_agent_short, status}`. `contact` не публикуется — это обещано на форме.
-- Отчёт: `{id, created_at, bank, city, account_type, result, visit_date, residency,
+- Correction: `{id, created_at, section_id, section_title, text, source, contact, ip_hash,
+  user_agent_short, status}`. `contact` is never published — the form promises that.
+- Report: `{id, created_at, bank, city, account_type, result, visit_date, residency,
   documents, comment, ip_hash, user_agent_short, status}`.
 
-В статистику и публичный JSON попадают только отчёты со статусом `accepted`.
+Only reports with status `accepted` make it into the stats and the public JSON.
 
-## Публичный JSON
+## Public JSON
 
-`GET /api/accounts/public` — без токена, только `accepted`, свежие визиты сверху, до 2000:
+`GET /api/accounts/public` — no token, `accepted` only, most recent visits first, up to
+2000:
 
 ```json
 {"count": 1,
@@ -54,19 +55,20 @@ printf 'Authorization: Bearer %s\n' "$ADMIN_TOKEN" | curl -fsS -H @- \
  "labels": {"account_type": {…}, "result": {…}, "residency": {…}, "documents": {…}}}
 ```
 
-`bank` и `city` — готовые названия; `account_type`, `result`, `residency`, `documents` —
-коды с подписями в `labels`. В `residency` и `documents` может прийти и свой текст
-человека, если он вписал значение не из списка.
+`bank` and `city` are display names; `account_type`, `result`, `residency`, `documents`
+are codes with captions in `labels`. `residency` and `documents` may also hold the
+person's own text if they entered a value outside the list.
 
-## Деплой
+## Deploy
 
-GitHub Actions `deploy.yml` на push в `main` (и вручную): тесты и линт → копирование на
-сервер через Tailscale → `uv sync` → перезапуск systemd-юнита → проверка `/healthz` и
-страниц. `ADMIN_TOKEN` и `IP_SALT` деплой читает из Vault и кладёт в `.env` рядом с
-приложением; прочитать не вышло — оставляет прежние значения.
+GitHub Actions `deploy.yml` on push to `main` (and manually): tests and lint → copy to the
+server over Tailscale → `uv sync` → restart the systemd unit → check `/healthz` and the
+pages. The deploy reads `ADMIN_TOKEN` and `IP_SALT` from Vault and writes them to `.env`
+next to the app; if the read fails, the previous values are kept.
 
-- Секреты репозитория: `TS_OAUTH_CLIENT_ID`, `TS_OAUTH_SECRET`, `VDS_HOST`, `VDS_PORT`,
+- Repository secrets: `TS_OAUTH_CLIENT_ID`, `TS_OAUTH_SECRET`, `VDS_HOST`, `VDS_PORT`,
   `VDS_USER`, `VDS_SSH_KEY`, `VDS_SSH_PASSPHRASE`.
-- Переменные репозитория: `VAULT_ROLE_ID_FILE`, `VAULT_SECRET_ID_FILE` (файлы AppRole на
-  сервере), `VAULT_ADMIN_TOKEN_PATH`, `VAULT_IP_SALT_PATH` (пути секретов в Vault).
-- **Соль не менять без причины:** с ней меняются все хэши IP, и лимит частоты обнуляется.
+- Repository variables: `VAULT_ROLE_ID_FILE`, `VAULT_SECRET_ID_FILE` (AppRole files on the
+  server), `VAULT_ADMIN_TOKEN_PATH`, `VAULT_IP_SALT_PATH` (secret paths in Vault).
+- **Do not change the salt without a reason:** every IP hash changes with it and the rate
+  limit resets.

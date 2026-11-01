@@ -1,67 +1,73 @@
 # alta-feedback
 
-Обратная связь к публичному разбору про банк ALTA (Сербия): что случилось с банком и
-что делать вкладчикам — <https://claude.ai/artifact/RrfqFLbzQh5wEkb9RxC7UQ>.
+Feedback for a public write-up about the bank ALTA (Serbia): what happened to the bank
+and what its depositors should do — <https://claude.ai/artifact/RrfqFLbzQh5wEkb9RxC7UQ>.
 
-Сервис живёт на <https://alta.smolevich.com/> и собирает два вида ответов:
+The forms and pages are in Russian. Issues and pull requests are welcome in English,
+Serbian or Russian.
 
-- **«Предложить правку»** (`/`) — у каждого раздела разбора есть кнопка: человек пишет,
-  что неточно, и по желанию источник.
-- **«Где открыли счёт»** (`/account`) — после отзыва лицензии у ALTA вкладчики ищут, где
-  открыть новый счёт. Анонимная форма на полминуты: банк, город, личный счёт или ИП,
-  чем закончилось, какие документы просили. Проверенные ответы видны всем на
-  [`/account/stats`](https://alta.smolevich.com/account/stats) и в JSON
+The service runs at <https://alta.smolevich.com/> and collects two kinds of answers:
+
+- **"Suggest a correction"** (`/`) — every section of the write-up has a button: a person
+  writes what is inaccurate and, optionally, a source.
+- **"Where did you open an account"** (`/account`) — after ALTA lost its licence,
+  depositors are looking for a new bank. A thirty-second anonymous form: bank, city,
+  personal or sole-proprietor (preduzetnik) account, the outcome, which documents were
+  requested. Verified answers are public at
+  [`/account/stats`](https://alta.smolevich.com/account/stats) and as JSON at
   [`/api/accounts/public`](https://alta.smolevich.com/api/accounts/public).
 
-Без логинов, рекламы и сторонних скриптов: страницы грузят только свои стили и три своих
-маленьких скрипта.
+No logins, ads or third-party scripts: pages load only their own styles and three small
+scripts of their own.
 
-## Что хранится
+## What is stored
 
-Код открыт, чтобы это можно было проверить. Всё лежит в одной базе SQLite на сервере.
+The code is open so that this can be checked. Everything lives in one SQLite database on
+the server.
 
-**Правка:** раздел страницы, текст, источник, контакт (если оставили — не публикуется),
-время отправки.
+**Correction:** page section, text, source, contact (if given — never published),
+submission time.
 
-**Отчёт о счёте:** банк, город, личный счёт или ИП, результат, дата визита, статус в
-Сербии (если указали), какие документы просили, комментарий, время отправки.
+**Account report:** bank, city, personal or sole-proprietor account, outcome, visit date,
+residence status in Serbia (if given), requested documents, comment, submission time.
 
-**В отчётах о счетах номера вычищаются до записи.** Из комментария и полей со своим текстом сервер вырезает
-всё похожее на email, IBAN, номер счёта (18 цифр или 3-13-2), JMBG (13 цифр) и любые
-группы от 9 цифр — телефоны, номера паспортов. Вместо них сохраняется `[скрыто]`. Код —
-`scrub_pii` в [`src/alta_feedback/accounts.py`](src/alta_feedback/accounts.py).
+**Numbers are scrubbed from account reports before they are written.** From the comment
+and any custom-text field the server removes anything that looks like an email, IBAN,
+account number (18 digits or 3-13-2), JMBG (13 digits) and any group of 9+ digits —
+phone and passport numbers. They are replaced with `[скрыто]` ("hidden"). The code is
+`scrub_pii` in [`src/alta_feedback/accounts.py`](src/alta_feedback/accounts.py).
 
-**IP не сохраняется.** Для защиты от спама (не больше 5 отправок в час с одного адреса)
-хранится только хэш: первые 32 знака `sha256("<секретная соль>:<IP>")`. Соль знает
-только сервер, поэтому по хэшу IP не восстановить. Ещё сохраняются первые 120 знаков
-названия браузера (User-Agent) — чтобы отличать ботов. В журналы сервера IP тоже не
-пишется: строки доступа выключены.
+**IP is not stored.** For spam protection (at most 5 submissions per hour from one
+address) only a hash is kept: the first 32 characters of `sha256("<secret salt>:<IP>")`.
+Only the server knows the salt, so the IP cannot be recovered from the hash. The first
+120 characters of the browser name (User-Agent) are also kept to tell bots apart. The
+server logs do not record the IP either: access logs are off.
 
-**Сколько хранится.** Сами ответы — пока работает сервис. Хэш IP и название браузера
-стираются через 30 дней. Использованные задачи проверки от ботов — через 30 минут.
+**Retention.** The answers themselves — while the service runs. The IP hash and the
+browser name are wiped after 30 days. Used anti-bot challenges — after 30 minutes.
 
-**Что видно публично.** Только отчёты о счетах, которые проверил автор, и только поля
-ответа: банк, город, тип счёта, результат, дата визита, статус, документы, комментарий.
-Времени отправки, хэша и браузера в публичных данных нет. Правки публично не видны.
+**What is public.** Only account reports checked by the author, and only the answer
+fields: bank, city, account type, outcome, visit date, status, documents, comment. No
+submission time, hash or browser. Corrections are not public.
 
-**Голос.** Кнопка «Голосом» использует распознавание речи браузера: Chrome отправляет
-звук в Google, Safari — в Apple. Мы голос не получаем и не храним — к нам приходит
-только итоговый текст, если вы его отправите. Можно не пользоваться кнопкой и
-надиктовать микрофоном клавиатуры.
+**Voice.** The "Голосом" (voice) button uses the browser's speech recognition: Chrome
+sends the audio to Google, Safari to Apple. We never receive or store the audio — only
+the resulting text arrives, and only if you submit it. You can skip the button and use
+the keyboard's dictation instead.
 
-**Проверка от ботов** — proof-of-work в формате [ALTCHA](https://altcha.org): браузер пару
-секунд решает задачу, пока вы заполняете форму. Без cookie и без запросов к сторонним
-сервисам.
+**Bot check** — proof-of-work in the [ALTCHA](https://altcha.org) format: the browser
+solves a task for a couple of seconds while you fill in the form. No cookies and no
+requests to third-party services.
 
-## Хотите что-то поправить или добавить
+## Want to fix or add something
 
-Открывайте [pull request](https://github.com/Smolevich/alta-feedback/pulls) — я его
-посмотрю. Ошибки и идеи — в [issues](https://github.com/Smolevich/alta-feedback/issues).
-Правки по содержанию разбора проще прислать прямо через форму на сайте.
+Open a [pull request](https://github.com/Smolevich/alta-feedback/pulls) — I will review
+it. Bugs and ideas go to [issues](https://github.com/Smolevich/alta-feedback/issues).
+Corrections to the write-up itself are easiest to send through the form on the site.
 
-## Запуск локально
+## Running locally
 
-Нужны Python 3.13+ и [uv](https://docs.astral.sh/uv/).
+You need Python 3.13+ and [uv](https://docs.astral.sh/uv/).
 
 ```bash
 uv sync
@@ -70,20 +76,22 @@ uv run ruff check src tests
 uv run pytest -q
 ```
 
-Форма — <http://127.0.0.1:8101/account>, база — `data/feedback.db`.
+The form is at <http://127.0.0.1:8101/account>, the database at `data/feedback.db`.
 
-## Как устроено
+## How it works
 
-- Starlette + Jinja, SQLite, стили встроены в шаблоны (`src/alta_feedback/templates/`).
-- Скрипты (`src/alta_feedback/static/`): `combo.js` — списки с поиском, `pow.js` —
-  проверка от ботов, `voice.js` — голосовой ввод. Без скриптов формы тоже открываются,
-  но отчёт о счёте без проверки от ботов не примется.
-- Деплой — GitHub Actions на push в `main`: тесты и линт, затем выкладка на сервер и
-  перезапуск. Секреты — в Vault на сервере и в секретах репозитория, в коде их нет.
+- Starlette + Jinja, SQLite, styles inlined in the templates
+  (`src/alta_feedback/templates/`).
+- Scripts (`src/alta_feedback/static/`): `combo.js` — searchable lists, `pow.js` — bot
+  check, `voice.js` — voice input. The forms open without scripts too, but an account
+  report is not accepted without the bot check.
+- Deploy — GitHub Actions on push to `main`: tests and lint, then upload to the server and
+  restart. Secrets live in Vault on the server and in the repository secrets, never in the
+  code.
 
-Модерация, публичный JSON и детали деплоя — [`docs/ops.md`](docs/ops.md), почему сделано
-так — [`docs/decisions.md`](docs/decisions.md).
+Moderation, public JSON and deploy details — [`docs/ops.md`](docs/ops.md); why it is built
+this way — [`docs/decisions.md`](docs/decisions.md).
 
-## Лицензия
+## License
 
 [MIT](LICENSE) © Stanislav Shupilkin

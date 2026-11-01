@@ -1,26 +1,47 @@
-# alta-feedback — для агентов
+# alta-feedback — notes for agents
 
-Формы обратной связи к публичному разбору про банк ALTA: правки (`/`) и анонимные отчёты
-«где открыли счёт» (`/account`, статистика `/account/stats`). Репозиторий публичный.
+`CLAUDE.md` is a symlink to this file: one source for Claude Code and Codex.
 
-- Стек: Python 3.13, Starlette + Jinja, SQLite. Свои скрипты в `src/alta_feedback/static/`,
-  без библиотек и сборщика.
-- Тесты и линт: `uv run pytest -q`, `uv run ruff check src tests`. Запуск —
-  `IP_SALT=dev ADMIN_TOKEN=dev uv run uvicorn --factory alta_feedback.main:create_app --port 8101`.
+Feedback forms for a public write-up about the Serbian bank ALTA: corrections to the
+write-up (`/`) and anonymous "where did you open an account" reports (`/account`, stats at
+`/account/stats`, JSON at `/api/accounts/public`). The repository is public. The forms
+and pages are in Russian; issues and PRs may be in English, Serbian or Russian.
 
-## Правила
+- Stack: Python 3.13, Starlette + Jinja, SQLite. Own scripts live in
+  `src/alta_feedback/static/` — no libraries, no bundler.
+- Code: `main.py` routes and middleware, `accounts.py` account-report parsing and
+  `scrub_pii`, `validate.py` correction form and IP hashing, `store.py` SQLite,
+  `pow.py` ALTCHA-style proof-of-work, `stats.py` public stats.
 
-- **Персональные данные не сохраняем.** Никаких логинов, IP, контактов в отчётах о
-  счетах. Любой свободный текст перед записью проходит `accounts.scrub_pii` — новое
-  текстовое поле без вычистки не принимается. IP — только солёный хэш, и он стирается
-  через 30 дней.
-- **Публично — только `accepted`** и только поля ответа, без `ip_hash`, UA, `created_at`.
-- **Никаких сторонних скриптов, шрифтов и трекеров.** CSP `default-src 'none'`; на
-  `/account` — только `script-src 'self'`.
-- **Тест на каждое поведение и регрессионный тест на каждый баг**, pytest по поведению.
-- **Деплой только через CI** (push в `main`), правок на сервере руками нет. Секретов и
-  адресов серверов в репозитории нет — они в секретах и переменных GitHub.
-- Светлая тема всегда, тексты на страницах — простым русским.
+```bash
+uv sync
+uv run pytest -q
+uv run ruff check src tests
+IP_SALT=dev ADMIN_TOKEN=dev uv run uvicorn --factory alta_feedback.main:create_app --port 8101
+```
 
-Что хранится и почему — `README.md`, модерация и деплой — `docs/ops.md`, решения —
+The database goes to `$DATA_DIR/feedback.db` (default `data/`).
+
+## Rules
+
+- **No personal data is stored.** No logins, raw IPs or contacts in account reports.
+  Every free-text value of an account report (comment, custom bank/city/status/document)
+  goes through `accounts.scrub_pii` before it is written — a new text field without it is
+  not accepted. Corrections (`/`) are not scrubbed: their optional `contact` is private
+  and never published.
+- **IP is only a salted hash.** It and the short User-Agent are wiped after 30 days
+  (`TRACE_TTL`); the wipe runs lazily on the next submission of either form.
+- **Public output is `accepted` reports only**, answer fields only
+  (`PUBLIC_ACCOUNT_COLUMNS`) — no `ip_hash`, User-Agent or `created_at`. Corrections are
+  never public.
+- **No third-party scripts, fonts or trackers.** CSP is `default-src 'none'`; only
+  `/account` adds `script-src 'self'`.
+- **A test for every behaviour and a regression test for every bug**; pytest tests
+  behaviour, not implementation.
+- **Deploy only through CI** (push to `main`), no manual changes on the server. No secrets
+  or server addresses in the repository — they live in GitHub secrets and variables.
+- Light theme always; page texts in plain Russian. Code comments and UI strings stay in
+  Russian.
+
+What is stored and why — `README.md`; moderation and deploy — `docs/ops.md`; decisions —
 `docs/decisions.md`.
