@@ -14,6 +14,10 @@ SITE_CSP = (
     "style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; "
     "form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
 )
+# Встроенный просмотр PDF на странице документов: страница разрешает object и frame со своего адреса,
+# а сам PDF разрешает показывать себя только странице с того же адреса.
+SITE_CSP = SITE_CSP.replace("form-action", "object-src 'self'; frame-src 'self'; form-action")
+PDF_CSP = SITE_CSP.replace("frame-ancestors 'none'", "frame-ancestors 'self'")
 # Имена в /_astro/ содержат хэш содержимого, остальное (в том числе индекс поиска) меняется
 # без смены имени, и Cloudflare не должен держать его в кэше.
 IMMUTABLE = "public, max-age=31536000, immutable"
@@ -30,7 +34,7 @@ class SiteFiles(StaticFiles):
 
     async def get_response(self, path: str, scope: Scope):
         response = await super().get_response(path, scope)
-        response.headers["Content-Security-Policy"] = SITE_CSP
+        response.headers["Content-Security-Policy"] = PDF_CSP if path.endswith(".pdf") else SITE_CSP
         cache = IMMUTABLE if path.startswith("_astro/") and response.status_code == 200 else REVALIDATE
         response.headers["Cache-Control"] = cache
         return response
