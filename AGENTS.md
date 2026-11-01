@@ -4,7 +4,8 @@
 iframe с CSP `connect-src 'self'`, поэтому сама слать сюда ничего не может: у каждого
 раздела кнопка-ссылка открывает в новой вкладке форму на `https://alta.smolevich.com/`.
 
-- Starlette + Jinja, одна HTML-форма без JS, SQLite `data/feedback.db`.
+- Starlette + Jinja, SQLite `data/feedback.db`. Две формы: правки (`/`, без JS) и анонимный
+  отчёт «где открыли счёт» (`/account`, один свой скрипт — микрофон).
 - Прод: `bot-server`, `/opt/alta-feedback`, юнит `alta-feedback.service`, `127.0.0.1:8101`,
   наружу — туннель `telegram-bot` (ingress в `infra/fleet/hardening/cloudflared/config.yml`),
   **без** Cloudflare Access: форма публичная.
@@ -23,7 +24,11 @@ uv run pytest -q
 ## Что знать до правок
 
 - **Никаких сторонних скриптов и трекеров.** CSP `default-src 'none'`, стили встроенные;
-  JS на странице нет вовсе — форма работает обычным POST с редиректом на `/spasibo`.
+  формы работают обычным POST с редиректом. JS есть только на `/account`: свой
+  `/static/voice.js` (Web Speech API), CSP там `script-src 'self'`, без скрипта форма тоже работает.
+- **Отчёты о счетах анонимны.** Никаких логинов и контактов; email, JMBG, номера счетов,
+  телефоны и паспорта вырезаются на сервере до записи (`accounts.scrub_pii`). Публично
+  (`/api/accounts/public`) — только `accepted` и без `ip_hash`/UA/времени отправки.
 - **IP не хранится.** Только `sha256(соль:ip)`, соль `secret/alta-feedback/ip_salt`. Смена
   соли обнуляет лимит 5 правок/час с адреса — не менять без причины.
 - **Спам:** скрытое поле `website` (заполнено — молча «спасибо», в базу не пишем), лимит
