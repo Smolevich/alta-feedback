@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Где открывают счета{% endblock %}
+{% block head %}
+<style>
+  main.stats-main { padding: 12px 12px 32px; }
+  .stats-card { padding: 16px 14px; }
+  .stats-card h1 { font-size: 20px; margin: 0 0 4px; }
+  .stats-card .lead { font-size: 14px; margin: 0 0 12px; line-height: 1.4; }
+  .stats-card h2 { font-size: 16px; margin: 22px 0 8px; }
+  .stats-card a { color: var(--accent); }
+  .cta { display: inline-block; font-weight: 600; text-decoration: none; }
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .tile { border: 1px solid var(--line); border-radius: 10px; padding: 8px; text-align: center; }
+  .tile b { display: block; font-size: 22px; line-height: 1.1; }
+  .tile span { font-size: 12px; color: var(--muted); }
+  .tile.opened b { color: var(--ok); }
+  .tile.refused b { color: var(--danger); }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; }
+  .c-opened { background: var(--ok); }
+  .c-refused { background: var(--danger); }
+  .c-pending { background: #b9b6ad; }
+  .group { padding: 8px 0; border-top: 1px solid var(--line); }
+  .group:first-of-type { border-top: 0; }
+  .group-head { display: flex; justify-content: space-between; gap: 8px; font-size: 15px; }
+  .group-head b { font-weight: 600; overflow-wrap: anywhere; }
+  .group-head span { color: var(--muted); white-space: nowrap; font-size: 13px; }
+  .bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: #eceae4; margin: 6px 0 4px; }
+  .bar i { display: block; height: 100%; }
+  .group-note { font-size: 12px; color: var(--muted); }
+  .doc { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; font-size: 14px; padding: 5px 0; }
+  .doc .bar { grid-column: 1 / -1; margin: 2px 0 0; }
+  .doc .bar i { background: var(--accent); }
+  .doc span { color: var(--muted); font-size: 13px; }
+  .entries { display: grid; gap: 8px; }
+  .entry { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+  .entry-head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+  .entry-head b { overflow-wrap: anywhere; }
+  .badge { flex: none; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .badge.opened { background: var(--ok); }
+  .badge.refused { background: var(--danger); }
+  .badge.pending { background: #8b887f; }
+  .entry-meta { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .entry-docs { margin-top: 4px; font-size: 13px; }
+  .entry-comment { margin: 6px 0 0; overflow-wrap: anywhere; }
+  .empty { text-align: center; color: var(--muted); padding: 24px 0 8px; }
+</style>
+{% endblock %}
+{% block main_class %}stats-main{% endblock %}
+{% macro group(tally, show_types=True) -%}
+<div class="group">
+  <div class="group-head"><b>{{ tally.name }}</b><span>{{ tally.total }} {{ answers(tally.total) }}</span></div>
+  <div class="bar" role="img" aria-label="открыли {{ tally.results.opened }}, отказали {{ tally.results.refused }}, в процессе {{ tally.results.pending }}">
+    <i class="c-opened" style="width: {{ tally.share('opened') }}%"></i><i class="c-refused" style="width: {{ tally.share('refused') }}%"></i><i class="c-pending" style="width: {{ tally.share('pending') }}%"></i>
+  </div>
+  <div class="group-note">открыли {{ tally.results.opened }} · отказали {{ tally.results.refused }} · в процессе {{ tally.results.pending }}
+    {%- if show_types %} · личный {{ tally.types.personal }}, ИП {{ tally.types.entrepreneur }}{% endif %}</div>
+</div>
+{%- endmacro %}
+{% macro answers(n) -%}
+{%- if n % 10 == 1 and n % 100 != 11 %}ответ{% elif n % 10 in [2, 3, 4] and n % 100 not in [12, 13, 14] %}ответа{% else %}ответов{% endif -%}
+{%- endmacro %}
+{% block content %}
+<div class="card stats-card">
+  <h1>Где открывают счета после ALTA</h1>
+  <p class="lead">Ответы вкладчиков, которые мы проверили. Это опыт людей, а не правила банков: в другом отделении может быть иначе.</p>
+  <a class="cta" href="/account">+ Добавить свой ответ</a>
+
+  {% if not stats.total %}
+  <p class="empty">Пока нет проверенных ответов. Будьте первым — это займёт полминуты.</p>
+  {% else %}
+  <h2>Всего {{ stats.total }} {{ answers(stats.total) }}</h2>
+  <div class="tiles">
+    <div class="tile opened"><b>{{ stats.results.opened }}</b><span>открыли</span></div>
+    <div class="tile refused"><b>{{ stats.results.refused }}</b><span>отказали</span></div>
+    <div class="tile"><b>{{ stats.results.pending }}</b><span>в процессе</span></div>
+  </div>
+  <div class="legend"><span><i class="dot c-opened"></i>открыли</span><span><i class="dot c-refused"></i>отказали</span><span><i class="dot c-pending"></i>в процессе</span></div>
+
+  <h2>По банкам</h2>
+  {% for tally in stats.banks %}{{ group(tally) }}{% endfor %}
+
+  <h2>По городам</h2>
+  {% for tally in stats.cities %}{{ group(tally) }}{% endfor %}
+
+  <h2>По статусу в Сербии</h2>
+  {% for tally in stats.residencies %}{{ group(tally) }}{% endfor %}
+
+  {% if stats.documents %}
+  <h2>Какие документы просили</h2>
+  {% for doc in stats.documents %}
+  <div class="doc"><b>{{ doc.name }}</b><span>{{ doc.count }} из {{ stats.total }}</span>
+    <div class="bar"><i style="width: {{ doc.percent }}%"></i></div></div>
+  {% endfor %}
+  {% endif %}
+
+  <h2>Последние ответы</h2>
+  <div class="entries">
+    {% for item in stats.recent %}
+    <article class="entry">
+      <div class="entry-head"><b>{{ item.bank }}</b><span class="badge {{ item.result }}">{{ item.result_label }}</span></div>
+      <div class="entry-meta">{{ item.city }} · {{ item.account_type }}{% if item.residency %} · {{ item.residency }}{% endif %} · {{ item.visit_date }}</div>
+      {% if item.documents %}<div class="entry-docs">Просили: {{ item.documents | join(", ") }}</div>{% endif %}
+      {% if item.comment %}<p class="entry-comment">{{ item.comment }}</p>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <a class="back" href="{{ return_url }}">← к странице про ALTA</a>
+</div>
+<p class="foot">Без рекламы и трекеров. Данные в JSON: <a href="/api/accounts/public">/api/accounts/public</a></p>
+{% endblock %}

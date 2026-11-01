@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% block title %}Где открыли счёт{% endblock %}
+{% block head %}
+<style>
+  main.acc-main { padding: 12px 12px 32px; }
+  .acc-card { padding: 16px 14px; }
+  .acc-card h1 { font-size: 20px; margin: 0 0 2px; }
+  .acc-card .lead { font-size: 14px; margin: 0 0 10px; line-height: 1.4; }
+  .acc .field { margin-top: 10px; min-width: 0; }
+  .acc .lbl, .acc label.lbl {
+    display: block; font-weight: 600; font-size: 13px; color: var(--muted); margin: 0 0 4px;
+  }
+  .acc .opt { font-weight: 400; }
+  .acc .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .acc input[type=text], .acc input[type=date], .acc textarea {
+    display: block; width: 100%; min-width: 0; font: inherit; font-size: 16px; color: var(--ink);
+    background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; min-height: 42px;
+  }
+  .acc input[type=date] { -webkit-appearance: none; appearance: none; padding: 8px 10px; }
+  .acc textarea { min-height: 76px; resize: vertical; }
+
+  .combo { position: relative; }
+  .combo > input[type=text] { padding-right: 24px; }
+  .combo::after {
+    content: ""; position: absolute; right: 10px; top: 18px; width: 7px; height: 7px; pointer-events: none;
+    border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg);
+  }
+  .combo[data-multi]::after { top: auto; bottom: 17px; }
+  .acc .row2.wide-right { grid-template-columns: 4fr 6fr; }
+  .combo-list {
+    position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 10; margin: 0; padding: 4px 0;
+    list-style: none; background: #fff; border: 1px solid var(--line); border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12); max-height: 232px; overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .combo-list li { padding: 10px 12px; font-size: 15px; cursor: pointer; }
+  .combo-list li.active, .combo-list li:hover { background: #eef3f7; }
+  .combo-list li.custom { color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tags:not(:empty) { margin-bottom: 6px; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 2px; padding: 3px 4px 3px 9px; font-size: 13px;
+    background: #e6eef5; color: var(--accent); border-radius: 999px; line-height: 1.3;
+  }
+  .tag button {
+    all: unset; cursor: pointer; width: 22px; height: 22px; text-align: center; line-height: 22px;
+    border-radius: 50%; font-size: 15px;
+  }
+  .tag button:hover { background: #d3e1ec; }
+
+  .seg { display: flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; }
+  .seg label { flex: 1 1 0; margin: 0; position: relative; min-width: 0; }
+  .seg label + label { border-left: 1px solid var(--line); }
+  .seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .seg span {
+    display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 4px;
+    font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .seg input:checked + span { background: var(--accent); color: var(--accent-ink); }
+  .seg input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: -3px; }
+
+  .lbl-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+  .lbl-row .lbl { margin: 0; }
+  button.mic {
+    display: inline-flex; align-items: center; gap: 4px; width: auto; min-height: 30px; margin: 0;
+    padding: 2px 10px; background: #fff; color: var(--accent); border: 1px solid var(--accent);
+    font-size: 13px; font-weight: 600; border-radius: 999px;
+  }
+  button.mic[hidden] { display: none; }
+  button.mic.on { background: var(--danger); border-color: var(--danger); color: #fff; }
+  .acc .warn { color: var(--muted); font-size: 12px; margin: 4px 0 0; line-height: 1.35; }
+  .acc .hint { margin: 2px 0 0; }
+  .acc button[type=submit] { margin-top: 10px; min-height: 46px; }
+  .pow { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .pow-mark {
+    flex: none; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line);
+  }
+  .pow[data-state=working] .pow-mark { border-top-color: var(--accent); animation: spin .8s linear infinite; }
+  .pow[data-state=done] { color: var(--ok); }
+  .pow[data-state=done] .pow-mark { background: var(--ok); border-color: var(--ok); }
+  .pow[data-state=error] { color: var(--danger); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .acc-card .lead a { color: var(--accent); }
+  .acc-card .back { margin-top: 12px; font-size: 14px; }
+  .acc-card .errors { margin-bottom: 4px; }
+</style>
+{% endblock %}
+{% block main_class %}acc-main{% endblock %}
+{% block content %}
+{% set result_short = {"opened": "Открыли", "refused": "Отказали", "pending": "В процессе"} %}
+{% set type_short = {"personal": "Личный", "entrepreneur": "ИП"} %}
+<div class="card acc-card">
+  <h1>Где вам открыли счёт</h1>
+  <p class="lead">Анонимно, полминуты. Проверенные ответы попадут в <a href="/account/stats">общую статистику</a>.</p>
+  {% if errors %}
+  <div class="errors" role="alert">{% for e in errors %}<p>{{ e }}</p>{% endfor %}</div>
+  {% endif %}
+  <form method="post" action="/account" class="acc">
+    <div class="field">
+      <label class="lbl" for="bank">Банк</label>
+      <div class="combo"><input type="text" id="bank" name="bank" list="bank-list" data-combo
+        maxlength="{{ free_text_max }}" autocomplete="off" required placeholder="Выберите или впишите"
+        value="{{ values.bank or "" }}"></div>
+      <datalist id="bank-list">{% for label in banks.values() %}<option value="{{ label }}">{% endfor %}</datalist>
+    </div>
+
+    <div class="row2 wide-right">
+      <div class="field">
+        <label class="lbl" for="city">Город</label>
+        <div class="combo"><input type="text" id="city" name="city" list="city-list" data-combo
+          maxlength="{{ free_text_max }}" autocomplete="off" required placeholder="Город"
+          value="{{ values.city or "" }}"></div>
+        <datalist id="city-list">{% for label in cities.values() %}<option value="{{ label }}">{% endfor %}</datalist>
+      </div>
+      <div class="field">
+        <label class="lbl" for="residency">Статус <span class="opt">(необяз.)</span></label>
+        <div class="combo"><input type="text" id="residency" name="residency" list="residency-list" data-combo
+          maxlength="{{ free_text_max }}" autocomplete="off" placeholder="ВНЖ, турист…"
+          value="{{ values.residency or "" }}"></div>
+        <datalist id="residency-list">{% for label in residencies.values() %}<option value="{{ label }}">{% endfor %}</datalist>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="lbl" id="result-lbl">Чем закончилось</span>
+      <div class="seg" role="radiogroup" aria-labelledby="result-lbl">
+        {%- for code in results %}
+        <label><input type="radio" name="result" value="{{ code }}"{% if loop.first %} required{% endif %}
+          {%- if values.result == code %} checked{% endif %}><span>{{ result_short[code] }}</span></label>
+        {%- endfor %}
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <span class="lbl" id="type-lbl">Счёт</span>
+        <div class="seg" role="radiogroup" aria-labelledby="type-lbl">
+          {%- for code in account_types %}
+          <label><input type="radio" name="account_type" value="{{ code }}"{% if loop.first %} required{% endif %}
+            {%- if values.account_type == code %} checked{% endif %}><span>{{ type_short[code] }}</span></label>
+          {%- endfor %}
+        </div>
+      </div>
+      <div class="field">
+        <label class="lbl" for="visit_date">Дата визита</label>
+        <input type="date" id="visit_date" name="visit_date" value="{{ values.visit_date or "" }}" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="docs_text">Какие документы просили</label>
+      <div class="combo" data-multi="docs">
+        <div class="tags">{% for doc in values.docs %}<input type="hidden" name="docs" value="{{ doc }}">{% endfor %}</div>
+        <input type="text" id="docs_text" name="docs_text" list="docs-list" data-combo
+          maxlength="{{ free_text_max }}" autocomplete="off" placeholder="Паспорт, боравак…">
+      </div>
+      <datalist id="docs-list">{% for label in documents.values() %}<option value="{{ label }}">{% endfor %}</datalist>
+    </div>
+
+    <div class="field">
+      <div class="lbl-row">
+        <label class="lbl" for="comment">Что ещё спрашивали</label>
+        <button type="button" id="mic" class="mic" hidden><span aria-hidden="true">🎤</span><span id="mic-label">Голосом</span></button>
+      </div>
+      <textarea id="comment" name="comment" maxlength="{{ comment_max }}" rows="3"
+                placeholder="Сколько ждали, что сказали про ИП…">{{ values.comment or "" }}</textarea>
+      <p id="mic-status" class="hint" role="status"></p>
+      <p id="mic-note" class="warn" hidden>Кнопка «Голосом»: речь распознаёт ваш браузер — Chrome отправляет звук в Google, Safari — в Apple. Мы голос не получаем. Можно надиктовать и микрофоном клавиатуры.</p>
+      <p class="warn">Не пишите номера паспорта, JMBG, счетов и телефоны — мы их всё равно вырежем.</p>
+    </div>
+
+    <div class="trap" aria-hidden="true">
+      <label for="website">Не заполняйте это поле</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div id="pow" class="pow" data-algorithm="{{ pow.algorithm }}" data-challenge="{{ pow.challenge }}"
+         data-salt="{{ pow.salt }}" data-signature="{{ pow.signature }}" data-maxnumber="{{ pow.maxnumber }}">
+      <input type="hidden" name="altcha" value="">
+      <span class="pow-mark" aria-hidden="true"></span><span id="pow-status" role="status">Нужен JavaScript для проверки от ботов</span>
+    </div>
+
+    <button type="submit">Отправить</button>
+  </form>
+  <a class="back" href="{{ return_url }}">← к странице про ALTA</a>
+</div>
+<p class="foot"><a href="/account/stats">Статистика ответов</a> · Без рекламы и трекеров. IP не сохраняем — для защиты от спама только его необратимый хэш.</p>
+<script src="/static/pow.js" defer></script>
+<script src="/static/combo.js" defer></script>
+<script src="/static/voice.js" defer></script>
+{% endblock %}

@@ -1,33 +1,26 @@
-# alta-feedback
+# alta-feedback — для агентов
 
-Приём правок к публичной странице про банк ALTA (артефакт claude.ai). Страница живёт в
-iframe с CSP `connect-src 'self'`, поэтому сама слать сюда ничего не может: у каждого
-раздела кнопка-ссылка открывает в новой вкладке форму на `https://alta.smolevich.com/`.
+Формы обратной связи к публичному разбору про банк ALTA: правки (`/`) и анонимные отчёты
+«где открыли счёт» (`/account`, статистика `/account/stats`). Репозиторий публичный.
 
-- Starlette + Jinja, одна HTML-форма без JS, SQLite `data/feedback.db`.
-- Прод: `bot-server`, `/opt/alta-feedback`, юнит `alta-feedback.service`, `127.0.0.1:8101`,
-  наружу — туннель `telegram-bot` (ingress в `infra/fleet/hardening/cloudflared/config.yml`),
-  **без** Cloudflare Access: форма публичная.
-- Деплой только GitHub Actions (`deploy.yml`, push в `main`). Секреты — Vault через AppRole
-  `alta-feedback-deploy` (политика и роль в репо `infra`).
+- Стек: Python 3.13, Starlette + Jinja, SQLite. Свои скрипты в `src/alta_feedback/static/`,
+  без библиотек и сборщика.
+- Тесты и линт: `uv run pytest -q`, `uv run ruff check src tests`. Запуск —
+  `IP_SALT=dev ADMIN_TOKEN=dev uv run uvicorn --factory alta_feedback.main:create_app --port 8101`.
 
-## Запуск
+## Правила
 
-```bash
-uv sync
-IP_SALT=dev ADMIN_TOKEN=dev uv run uvicorn --factory alta_feedback.main:create_app --port 8101
-uv run ruff check src tests
-uv run pytest -q
-```
+- **Персональные данные не сохраняем.** Никаких логинов, IP, контактов в отчётах о
+  счетах. Любой свободный текст перед записью проходит `accounts.scrub_pii` — новое
+  текстовое поле без вычистки не принимается. IP — только солёный хэш, и он стирается
+  через 30 дней.
+- **Публично — только `accepted`** и только поля ответа, без `ip_hash`, UA, `created_at`.
+- **Никаких сторонних скриптов, шрифтов и трекеров.** CSP `default-src 'none'`; на
+  `/account` — только `script-src 'self'`.
+- **Тест на каждое поведение и регрессионный тест на каждый баг**, pytest по поведению.
+- **Деплой только через CI** (push в `main`), правок на сервере руками нет. Секретов и
+  адресов серверов в репозитории нет — они в секретах и переменных GitHub.
+- Светлая тема всегда, тексты на страницах — простым русским.
 
-## Что знать до правок
-
-- **Никаких сторонних скриптов и трекеров.** CSP `default-src 'none'`, стили встроенные;
-  JS на странице нет вовсе — форма работает обычным POST с редиректом на `/spasibo`.
-- **IP не хранится.** Только `sha256(соль:ip)`, соль `secret/alta-feedback/ip_salt`. Смена
-  соли обнуляет лимит 5 правок/час с адреса — не менять без причины.
-- **Спам:** скрытое поле `website` (заполнено — молча «спасибо», в базу не пишем), лимит
-  5/час по хэшу IP (считается по базе, переживает рестарт), тело запроса до 16 КБ.
-- **Чтение правок — только токеном** (`secret/alta-feedback/admin_token`), уведомлений в
-  Telegram нет намеренно: координатор забирает сам, команда — в `README.md`.
-- Тёмной темы нет: светлая всегда (правило Стаса).
+Что хранится и почему — `README.md`, модерация и деплой — `docs/ops.md`, решения —
+`docs/decisions.md`.

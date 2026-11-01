@@ -54,9 +54,10 @@
     h1 { font-size: 26px; }
   }
 </style>
+{% block head %}{% endblock %}
 </head>
 <body>
-<main>
+<main class="{% block main_class %}{% endblock %}">
 {% block content %}{% endblock %}
 </main>
 </body>

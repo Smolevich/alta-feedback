@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Спасибо{% endblock %}
+{% block content %}
+<div class="card">
+  <p class="done" aria-hidden="true">✓</p>
+  <h1>Спасибо, это поможет другим</h1>
+  <p class="lead">Ответ получен. После проверки он появится в общей таблице на странице про ALTA.</p>
+  <a class="back" href="{{ return_url }}">← вернуться к странице про ALTA</a>
+</div>
+{% endblock %}
