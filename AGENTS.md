@@ -35,7 +35,7 @@ The database goes to `$DATA_DIR/feedback.db` (default `data/`).
   (`PUBLIC_ACCOUNT_COLUMNS`) — no `ip_hash`, User-Agent or `created_at`. Corrections are
   never public.
 - **No third-party scripts, fonts or trackers.** CSP is `default-src 'none'`; only
-  `/account` adds `script-src 'self'`.
+  `/account` adds `script-src 'self'` and `connect-src 'self'` (fresh PoW challenge).
 - **A test for every behaviour and a regression test for every bug**; pytest tests
   behaviour, not implementation.
 - **Deploy only through CI** (push to `main`), no manual changes on the server. No secrets

@@ -24,10 +24,16 @@
   documents need tags.
 - **Proof-of-work instead of a captcha.** ALTCHA format, but our own implementation
   (~100 lines): the challenge is HMAC-signed and embedded in the page, so there are no
-  external requests, cookies or `connect-src`. Cloudflare Turnstile was rejected — it is a
+  external requests or cookies. Cloudflare Turnstile was rejected — it is a
   third-party script. PoW will not stop a persistent bot with a real browser, but it makes
   mass submission expensive; together with the rate limit and the `website` honeypot that
   is enough for a form with no spam value.
+- **The check is a visible "I'm not a robot" checkbox, not a silent background solve.**
+  A check that passed by itself on page load looked like no check at all. The solve
+  starts on tick (Space/Enter work too), shows a spinner for at least 0.7 s and takes
+  ~0.4 s on a Mac (`POW_MAX_NUMBER = 200_000`), 1–3 s on a phone. A ticked box resets
+  20 s before the challenge expires; ticking again fetches a fresh one from
+  `/account/challenge`, so `/account` allows `connect-src 'self'` — same origin only.
 - **The IP hash and browser name live 30 days.** The rate limit needs an hour; the rest is
   headroom to sort out a spam wave. After that the fields are wiped on the next
   submission of either form.

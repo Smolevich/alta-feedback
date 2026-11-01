@@ -199,6 +199,30 @@ def test_same_solution_cannot_be_used_twice(client):
     assert report(client, altcha=payload).status_code == 400
 
 
+def test_robot_checkbox_starts_unchecked(client):
+    page = client.get("/account").text
+    assert re.search(r'role="checkbox" aria-checked="false"', page)
+
+
+def test_page_does_not_carry_a_solution(client):
+    assert 'name="altcha" value=""' in client.get("/account").text
+
+
+def test_fresh_challenge_solution_is_accepted(client):
+    challenge = Challenge(**{
+        key: value for key, value in client.get("/account/challenge").json().items() if key != "ttl"
+    })
+    assert report(client, altcha=encode_payload(challenge, solve(challenge))).status_code == 303
+
+
+def test_fresh_challenge_is_not_cached(client):
+    assert client.get("/account/challenge").headers["cache-control"] == "no-store"
+
+
+def test_account_page_may_fetch_only_own_origin(client):
+    assert "connect-src 'self'" in client.get("/account").headers["content-security-policy"]
+
+
 def test_stats_page_shows_empty_state(client):
     assert "Пока нет проверенных ответов" in client.get("/account/stats").text
 
