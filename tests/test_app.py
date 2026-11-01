@@ -127,3 +127,8 @@ def test_app_refuses_to_start_without_salt(tmp_path):
 def test_form_pages_carry_the_analytics_beacon(client):
     assert 'data-cf-beacon=\'{"token": "fe16933a65524594b31524da4c01f99c"}\'' in client.get("/").text
     assert "data-cf-beacon" in client.get("/account").text
+
+
+def test_form_pages_link_the_site_favicon(client):
+    page = client.get("/").text
+    assert 'rel="icon" href="/favicon.svg"' in page and 'rel="apple-touch-icon"' in page
