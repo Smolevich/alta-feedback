@@ -15,6 +15,7 @@ from alta_feedback.accounts import BANKS, match_label
 from alta_feedback.branches import fold
 
 TOP = 10
+SOURCE_URL = "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive"
 # Банк без лицензии: в справке по размеру остаётся для сравнения, с ответами формы не сопоставляется.
 DEFUNCT = frozenset({"alta"})
 
@@ -60,6 +61,7 @@ class Row:
 
     label: str
     text: str
+    amount: str
     source_url: str
     also: tuple[str, ...]
 
@@ -84,6 +86,15 @@ class Bank:
     @property
     def rows(self) -> list[Row]:
         return [r for metric in METRICS if (r := row(metric, self.figures.get(metric.key), " %"))]
+
+    @property
+    def share(self) -> Row | None:
+        return next((r for r in self.rows if r.label == METRICS[0].label), None)
+
+    @property
+    def details(self) -> list[Row]:
+        """Показатели, которые видны после раскрытия строки банка: всё, кроме доли рынка."""
+        return [r for r in self.rows if r.label != METRICS[0].label]
 
 
 @dataclass(frozen=True)
@@ -110,8 +121,14 @@ class Snapshot:
                 return bank
         return None
 
-    def for_names(self, names: list[str]) -> dict[str, Bank]:
-        return {name: bank for name in names if (bank := self.find(name))}
+    def listing(self, names: list[str]) -> tuple[list[Bank], list[Bank]]:
+        """Банки из ответов формы (в их порядке, без повторов) и остальные из топа по размеру."""
+        reported: list[Bank] = []
+        for name in names:
+            bank = self.find(name)
+            if bank and bank not in reported:
+                reported.append(bank)
+        return reported, [bank for bank in self.top() if bank not in reported]
 
 
 def called(wanted: str, alias: str) -> bool:
@@ -132,7 +149,8 @@ def sourced(figure: Figure | None) -> bool:
 def row(metric: Metric, figure: Figure | None, unit: str) -> Row | None:
     if not sourced(figure):
         return None
-    return Row(metric.label, number(figure.value, metric.digits) + unit, figure.source_url, figure.also)
+    amount = number(figure.value, metric.digits)
+    return Row(metric.label, amount + unit, amount, figure.source_url, figure.also)
 
 
 def parse_figure(raw: dict) -> Figure:

@@ -234,7 +234,7 @@ def test_stats_page_counts_only_accepted(client):
     raiffeisen = admin_items(client)[0]
     client.post(f"/admin/accounts/{raiffeisen['id']}/status", json={"status": "accepted"}, headers=AUTH)
     page = client.get("/account/stats").text
-    # Справка NBS по размеру называет все крупные банки, поэтому смотрим именно заголовки групп ответов.
+    # Блок NBS называет все крупные банки, поэтому смотрим именно заголовки групп ответов.
     heads = ('<div class="group-head"><b>Raiffeisen</b>', '<div class="group-head"><b>Banca Intesa</b>')
     assert tuple(head in page for head in heads) == (True, False)
 
@@ -332,14 +332,45 @@ def test_stats_page_hides_branch_with_one_report(client):
     assert "Ekspozitura kod Slavije" not in client.get("/account/stats").text
 
 
-def test_stats_page_shows_nbs_figures_with_source_under_reported_bank(client):
+def nbs_block(page: str) -> str:
+    return page.split('<details class="nbs"')[1].split("</details>\n  <a class=\"back\"")[0]
+
+
+def nbs_bank_names(page: str) -> list[str]:
+    rows = nbs_block(page).split('<details class="nbs-bank">')[1:]
+    return [row.split("</i> ")[1].split("<")[0] for row in rows]
+
+
+def test_stats_page_keeps_nbs_figures_out_of_answer_groups(client):
     report(client, bank="unicredit")
     accept_all(client)
     page = client.get("/account/stats").text
     group = page.split('<div class="group-head"><b>UniCredit</b>')[1].split('<div class="group">')[0]
-    assert "NationalCode=17324918" in group and "780,0 млрд RSD" in group
+    assert "nbs.rs" not in group
+
+
+def test_stats_page_puts_nbs_block_below_answers_collapsed(client):
+    report(client, bank="unicredit")
+    accept_all(client)
+    page = client.get("/account/stats").text
+    assert page.index("Последние ответы") < page.index('<details class="nbs" id="nbs">')
+
+
+def test_stats_page_lists_reported_banks_first_in_nbs_block(client):
+    report(client, bank="unicredit")
+    accept_all(client)
+    names = nbs_bank_names(client.get("/account/stats").text)
+    assert names[:2] == ["UniCredit", "Banca Intesa"] and names.count("UniCredit") == 1
+
+
+def test_stats_page_nbs_row_links_every_figure_to_its_report(client):
+    report(client, bank="unicredit")
+    accept_all(client)
+    row = nbs_block(client.get("/account/stats").text).split('<details class="nbs-bank">')[1]
+    assert "780,0" in row and "NationalCode=17324918" in row
 
 
 def test_stats_page_lists_largest_banks_even_without_answers(client):
-    page = client.get("/account/stats").text
-    assert "Банки Сербии по размеру (NBS, 30.06.2026)" in page and "1. Banca Intesa" in page
+    names = nbs_bank_names(client.get("/account/stats").text)
+    assert names == ["Banca Intesa", "OTP banka", "Raiffeisen", "UniCredit", "NLB Banka", "AikBank",
+                     "Poštanska štedionica", "Erste", "ALTA banka", "ProCredit"]
