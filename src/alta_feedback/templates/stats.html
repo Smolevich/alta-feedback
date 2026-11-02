@@ -92,7 +92,7 @@
   html, body { overflow-x: clip; }
   body { font: 16px/1.75 ui-sans-serif, 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif; }
   .site-header {
-    position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between;
     gap: 12px; height: 56px; padding: 0 16px; background: var(--nav); border-bottom: 1px solid var(--line);
   }
   .site-title { min-width: 0; font: 600 16px/1.15 var(--serif); color: var(--accent); text-decoration: none; }
@@ -121,24 +121,92 @@
   .entry.opened { border-left-color: var(--ok); }
   .entry.refused { border-left-color: var(--accent); }
   .filters {
-    display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin: 0 0 4px; padding: 14px;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 10px; margin: 0 0 4px; padding: 16px 14px;
     background: var(--surface); border: 2px solid var(--ink); border-radius: 4px; box-shadow: 4px 4px 0 var(--seal-soft);
   }
-  .filters label { margin: 0; font-size: 13px; font-weight: 700; min-width: 0; line-height: 1.4; }
-  .filters select, .filters input[type=date] {
-    display: block; width: 100%; min-width: 0; max-width: 100%; margin-top: 4px; min-height: 42px;
-    font: inherit; font-size: 16px; font-weight: 400; color: var(--ink); background: #fff;
-    border: 1px solid var(--line); border-radius: 3px; padding: 8px 10px;
+  .field { grid-column: 1 / -1; min-width: 0; }
+  .field:has(input[type=date]) { grid-column: auto; }
+  .field label {
+    display: block; margin: 0 0 6px; font-size: 12px; font-weight: 700; line-height: 1.3;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+  }
+  /* Общий вид поля; select и date без скрипта выглядят так же, только со стрелкой браузера внутри. */
+  .filters select, .filters input[type=date], .combo-input, .date {
+    display: block; width: 100%; min-width: 0; max-width: 100%; margin: 0; height: 46px;
+    font: inherit; font-size: 16px; font-weight: 400; line-height: 1.2; color: var(--ink); background: #fff;
+    border: 1px solid #c9bfa8; border-radius: 4px; padding: 0 12px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .filters select {
+    -webkit-appearance: none; appearance: none; padding-right: 36px;
+    background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+    background-position: calc(100% - 19px) 52%, calc(100% - 14px) 52%; background-size: 5px 5px; background-repeat: no-repeat;
   }
   .filters input[type=date] { -webkit-appearance: none; appearance: none; }
-  .filters select:focus, .filters input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-  .filter-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .filters select:hover, .combo-input:hover, .date:hover { border-color: var(--ink); }
+  .filters select:focus, .filters input[type=date]:focus, .combo-input:focus, .date:focus-within {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--seal-soft);
+  }
+  .filters select[hidden] { display: none; }
+  .field { scroll-margin-top: 68px; }
+  .combo { position: relative; }
+  .combo-input { padding-right: 44px; text-overflow: ellipsis; }
+  .combo-input::placeholder { color: var(--ink); opacity: 1; }
+  .combo.chosen .combo-input { font-weight: 700; }
+  .combo::after {
+    content: ""; position: absolute; right: 17px; top: 50%; width: 7px; height: 7px; margin-top: -6px;
+    border: solid var(--ink); border-width: 0 2px 2px 0; transform: rotate(45deg); pointer-events: none;
+    transition: transform 0.15s, margin-top 0.15s;
+  }
+  .combo.open::after { transform: rotate(-135deg); margin-top: -1px; }
+  .combo.chosen::after { display: none; }
+  .filters .combo-clear, .filters .date-clear {
+    position: absolute; z-index: 2; right: 3px; top: 50%; transform: translateY(-50%);
+    display: flex; align-items: center; justify-content: center; width: 40px; min-height: 0; height: 40px;
+    margin: 0; padding: 0; border: 0; border-radius: 3px; background: none; color: var(--muted); cursor: pointer;
+  }
+  .filters .combo-clear[hidden], .filters .date-clear[hidden] { display: none; }
+  .combo-clear::before, .date-clear::before { content: "×"; font-size: 24px; line-height: 1; }
+  .filters .combo-clear:hover, .filters .date-clear:hover { color: var(--accent); background: var(--seal-soft); filter: none; }
+  .combo-list {
+    position: absolute; z-index: 5; top: calc(100% + 6px); left: 0; min-width: 100%; width: max-content;
+    max-width: min(420px, calc(100vw - 32px)); max-height: 340px; margin: 0; padding: 4px; list-style: none;
+    overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+    background: var(--surface); border: 2px solid var(--ink); border-radius: 4px; box-shadow: 4px 4px 0 var(--seal-soft);
+  }
+  .combo-list[hidden] { display: none; }
+  .combo-list.up { top: auto; bottom: calc(100% + 6px); }
+  .combo-list.end { left: auto; right: 0; }
+  .combo-option {
+    position: relative; display: flex; align-items: center; min-height: 46px; padding: 8px 12px 8px 34px;
+    border-radius: 3px; font-size: 16px; line-height: 1.3; cursor: pointer; overflow-wrap: anywhere;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .combo-option.all { color: var(--muted); }
+  .combo-option[aria-selected=true] { font-weight: 700; }
+  .combo-option[aria-selected=true]::before {
+    content: ""; position: absolute; left: 13px; top: 50%; width: 5px; height: 10px; margin-top: -7px;
+    border: solid var(--accent); border-width: 0 2px 2px 0; transform: rotate(45deg);
+  }
+  .combo-option.active, .combo-option:hover { background: #f1e9d6; }
+  .combo-option mark { background: none; color: var(--accent); font-weight: 700; }
+  .combo-empty { padding: 12px; font-size: 14px; color: var(--muted); }
+  .date { position: relative; display: flex; align-items: center; gap: 10px; padding-right: 44px; cursor: pointer; }
+  .date-icon { display: flex; flex: none; color: var(--accent); }
+  .date-face { flex: 1; min-width: 0; white-space: nowrap; font-variant-numeric: tabular-nums; color: #8f8573; }
+  .date.chosen .date-face { color: var(--ink); font-weight: 700; }
+  .filters .date-native {
+    position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0;
+    border: 0; opacity: 0; cursor: pointer; font-size: 16px; box-shadow: none;
+  }
+  .date-native::-webkit-calendar-picker-indicator { position: absolute; inset: 0; width: auto; height: auto; cursor: pointer; }
+  .filter-actions { grid-column: 1 / -1; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 2px; }
   .filter-actions button {
-    width: auto; flex: 1 1 auto; margin: 0; min-height: 42px; padding: 0 18px; border-radius: 4px;
+    width: auto; flex: 1 1 auto; margin: 0; min-height: 46px; padding: 0 22px; border-radius: 4px;
     font-size: 16px; font-weight: 700;
   }
   .reset {
-    flex: none; display: inline-flex; align-items: center; min-height: 42px; padding: 0 14px;
+    flex: none; display: inline-flex; align-items: center; min-height: 46px; padding: 0 16px;
     border: 1.5px solid var(--accent); border-radius: 4px; color: var(--accent); background: var(--surface);
     font-weight: 700; text-decoration: none;
   }
@@ -161,10 +229,13 @@
     .card.stats-card { padding: 0; }
     .page-title { padding: 40px 0 24px; }
     .stats-card h1 { font-size: 35px; }
-    .filters { grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: end; }
-    .filters select, .filters input[type=date] { font-size: 15px; padding: 8px 6px; }
-    .filter-actions { grid-column: 1 / -1; }
-    .filter-actions button { flex: 0 0 auto; }
+    .filters { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px 12px; padding: 18px; align-items: end; }
+    .field, .field:has(input[type=date]) { grid-column: span 2; }
+    .filters select, .filters input[type=date], .combo-input, .date { height: 44px; font-size: 15px; }
+    .combo-option { min-height: 38px; font-size: 15px; }
+    .filter-actions { grid-column: span 2; flex-wrap: nowrap; margin: 0; }
+    .filter-actions button { min-height: 44px; padding: 0 14px; }
+    .reset { min-height: 44px; padding: 0 12px; }
   }
 </style>
 {% endblock %}
@@ -227,21 +298,21 @@
   <p class="empty">Пока нет проверенных ответов. Будьте первым — это займёт полминуты.</p>
   {% else %}
   <form class="filters" method="get" action="/account/stats">
-    <label>Банк
-      <select name="bank"><option value="">Все банки</option>
-        {%- for code, name in banks.items() %}<option value="{{ code }}"{% if filter.bank == code %} selected{% endif %}>{{ name }}</option>{% endfor %}</select></label>
-    <label>Город
-      <select name="city"><option value="">Все города</option>
-        {%- for code, name in cities.items() %}<option value="{{ code }}"{% if filter.city == code %} selected{% endif %}>{{ name }}</option>{% endfor %}</select></label>
-    <label>Чем закончилось
-      <select name="result"><option value="">Всё</option>
-        {%- for code, name in results.items() %}<option value="{{ code }}"{% if filter.result == code %} selected{% endif %}>{{ name }}</option>{% endfor %}</select></label>
-    <label>Визит с<input type="date" name="from" value="{{ filter.date_from or '' }}"></label>
-    <label>Визит по<input type="date" name="to" value="{{ filter.date_to or '' }}"></label>
+    <div class="field field-bank"><label for="f-bank">Банк</label>
+      <select id="f-bank" name="bank"><option value="">Все банки</option>
+        {%- for code, name in banks.items() %}<option value="{{ code }}"{% if filter.bank == code %} selected{% endif %}>{{ name }}</option>{% endfor %}</select></div>
+    <div class="field"><label for="f-city">Город</label>
+      <select id="f-city" name="city"><option value="">Все города</option>
+        {%- for code, name in cities.items() %}<option value="{{ code }}"{% if filter.city == code %} selected{% endif %}>{{ name }}</option>{% endfor %}</select></div>
+    <div class="field"><label for="f-result">Чем закончилось</label>
+      <select id="f-result" name="result"><option value="">Всё</option>
+        {%- for code, name in results.items() %}<option value="{{ code }}"{% if filter.result == code %} selected{% endif %}>{{ name }}</option>{% endfor %}</select></div>
+    <div class="field"><label for="f-from">Визит с</label><input type="date" id="f-from" name="from" value="{{ filter.date_from or '' }}"></div>
+    <div class="field"><label for="f-to">Визит по</label><input type="date" id="f-to" name="to" value="{{ filter.date_to or '' }}"></div>
     <div class="filter-actions"><button type="submit">Показать</button>{% if filter.active %}<a class="reset" href="/account/stats">Сбросить</a>{% endif %}</div>
   </form>
   {% if filter.active %}
-  <p class="filter-note">Все цифры ниже — <b>с учётом фильтра</b>{% if filter.bank %} · {{ banks[filter.bank] }}{% endif %}{% if filter.city %} · {{ cities[filter.city] }}{% endif %}{% if filter.result %} · {{ results[filter.result] }}{% endif %}{% if filter.date_from %} · с {{ filter.date_from }}{% endif %}{% if filter.date_to %} · по {{ filter.date_to }}{% endif %}</p>
+  <p class="filter-note">Все цифры ниже — <b>с учётом фильтра</b>{% if filter.bank %} · {{ banks[filter.bank] }}{% endif %}{% if filter.city %} · {{ cities[filter.city] }}{% endif %}{% if filter.result %} · {{ results[filter.result] }}{% endif %}{% if filter.date_from %} · с {{ filter.date_from.split('-') | reverse | join('.') }}{% endif %}{% if filter.date_to %} · по {{ filter.date_to.split('-') | reverse | join('.') }}{% endif %}</p>
   {% endif %}
 
   {% if not stats.total %}
@@ -319,4 +390,5 @@
   <a class="back" href="{{ return_url }}">← к странице про ALTA</a>
 </div>
 <p class="foot">Без рекламы и трекеров.</p>
+<script src="/static/filters.js" defer></script>
 {% endblock %}

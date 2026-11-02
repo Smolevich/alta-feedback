@@ -74,7 +74,7 @@ ADMIN_PAGE_MAX = 500
 PUBLIC_ACCOUNTS_MAX = 2000
 LOCAL_TZ = ZoneInfo("Europe/Belgrade")
 STATIC_DIR = Path(__file__).parent / "static"
-SCRIPTS = frozenset({"branch.js", "combo.js", "pow.js", "voice.js"})
+SCRIPTS = frozenset({"branch.js", "combo.js", "filters.js", "pow.js", "voice.js"})
 # Перебор запускает отметка «Я не робот»; среднее число попыток — половина, на Mac ~0,4 с, на телефоне 1–3 с.
 POW_MAX_NUMBER = 200_000
 POW_FAILED = "Не прошла проверка от ботов. Подождите пару секунд и отправьте ещё раз."
@@ -104,6 +104,13 @@ ACCOUNT_PAGE_HEADERS = {
         "form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
     ),
     "Permissions-Policy": "microphone=(self)",
+}
+
+# Сводке нужен только свой скрипт фильтров: списки с поиском и поля дат; в сеть он не ходит.
+STATS_PAGE_HEADERS = {
+    "Content-Security-Policy": SECURITY_HEADERS["Content-Security-Policy"].replace(
+        f"script-src {CF_SCRIPT};", f"script-src 'self' {CF_SCRIPT};"
+    ),
 }
 
 templates = Environment(
@@ -341,7 +348,8 @@ async def account_stats_page(request: Request) -> HTMLResponse:
     nbs = snapshot()
     reported, others = nbs.listing([tally.name for tally in stats.banks])
     return render(
-        "stats.html", stats=stats, results=RESULTS, nbs=nbs, metrics=(ASSETS, *METRICS),
+        "stats.html", headers=STATS_PAGE_HEADERS, stats=stats, results=RESULTS, nbs=nbs,
+        metrics=(ASSETS, *METRICS),
         nbs_reported=reported, nbs_others=others, nbs_source=SOURCE_URL,
         banks=BANKS, cities=CITIES, filter=answer_filter, has_any=has_any,
         entries=answer_cards(page.items, counts), first=first, last=first + len(page.items) - 1,
