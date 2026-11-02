@@ -1,0 +1,780 @@
+{
+ "as_of": "2026-06-30",
+ "bank_count": 19,
+ "market_assets_bn": 7288.2,
+ "banks": [
+  {
+   "code": "intesa",
+   "name": "Banca Intesa",
+   "national_code": "7759231",
+   "rank": 1,
+   "aliases": [
+    "intesa",
+    "banca intesa",
+    "banka intesa"
+   ],
+   "figures": {
+    "assets": {
+     "value": 1118.6,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7759231&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 15.3,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7759231&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 11.6,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7759231&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 25.3,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7759231&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 83,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7759231&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 2.77,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7759231&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7759231&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7759231&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7759231&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "otp",
+   "name": "OTP banka",
+   "national_code": "8603537",
+   "rank": 2,
+   "aliases": [
+    "otp"
+   ],
+   "figures": {
+    "assets": {
+     "value": 1013.4,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8603537&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 13.9,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8603537&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 13.0,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8603537&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 20.8,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8603537&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 111,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8603537&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 2.01,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=8603537&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=8603537&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=8603537&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8603537&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "raiffeisen",
+   "name": "Raiffeisen",
+   "national_code": "17335600",
+   "rank": 3,
+   "aliases": [
+    "raiffeisen",
+    "rajfajzen"
+   ],
+   "figures": {
+    "assets": {
+     "value": 818.2,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335600&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 11.2,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335600&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 11.8,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335600&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 34.0,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335600&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 64,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335600&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 3.66,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17335600&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17335600&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17335600&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335600&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "unicredit",
+   "name": "UniCredit",
+   "national_code": "17324918",
+   "rank": 4,
+   "aliases": [
+    "unicredit",
+    "уникредит"
+   ],
+   "figures": {
+    "assets": {
+     "value": 780.0,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17324918&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 10.7,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17324918&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 13.8,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17324918&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 36.2,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17324918&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 92,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17324918&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 2.86,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17324918&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17324918&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17324918&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17324918&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "nlb",
+   "name": "NLB Banka",
+   "national_code": "7737068",
+   "rank": 5,
+   "aliases": [
+    "nlb",
+    "komercijalna"
+   ],
+   "figures": {
+    "assets": {
+     "value": 764.2,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7737068&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 10.5,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7737068&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 12.2,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7737068&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 29.6,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7737068&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 81,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7737068&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 2.05,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7737068&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7737068&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7737068&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7737068&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "aik",
+   "name": "AikBank",
+   "national_code": "6876366",
+   "rank": 6,
+   "aliases": [
+    "aik",
+    "aikbank"
+   ],
+   "figures": {
+    "assets": {
+     "value": 727.4,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=6876366&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 10.0,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=6876366&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 13.6,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=6876366&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 24.8,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=6876366&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 89,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=6876366&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 1.26,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=6876366&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=6876366&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=6876366&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=6876366&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "postanska",
+   "name": "Poštanska štedionica",
+   "national_code": "7004893",
+   "rank": 7,
+   "aliases": [
+    "postanska",
+    "pbs"
+   ],
+   "figures": {
+    "assets": {
+     "value": 622.4,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7004893&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 8.5,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7004893&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 8.4,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7004893&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 36.7,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7004893&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 65,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7004893&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 1.36,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7004893&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7004893&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7004893&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7004893&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "erste",
+   "name": "Erste",
+   "national_code": "8063818",
+   "rank": 8,
+   "aliases": [
+    "erste"
+   ],
+   "figures": {
+    "assets": {
+     "value": 465.4,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8063818&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 6.4,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8063818&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 13.9,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8063818&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 27.9,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8063818&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 97,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8063818&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 1.36,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=8063818&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=8063818&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=8063818&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8063818&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "alta",
+   "name": "ALTA banka",
+   "national_code": "7074433",
+   "rank": 9,
+   "aliases": [
+    "alta"
+   ],
+   "figures": {
+    "assets": {
+     "value": 214.9,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7074433&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 2.9,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7074433&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 13.0,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7074433&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 39.3,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7074433&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 62,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7074433&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 0.18,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7074433&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7074433&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7074433&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7074433&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "procredit",
+   "name": "ProCredit",
+   "national_code": "17335677",
+   "rank": 10,
+   "aliases": [
+    "procredit",
+    "pro credit"
+   ],
+   "figures": {
+    "assets": {
+     "value": 180.7,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335677&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 2.5,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335677&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 12.2,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335677&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 15.5,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335677&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 102,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335677&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 1.05,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17335677&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17335677&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17335677&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17335677&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "halkbank",
+   "name": "Halkbank",
+   "national_code": "7601093",
+   "rank": 11,
+   "aliases": [
+    "halkbank",
+    "halk"
+   ],
+   "figures": {
+    "assets": {
+     "value": 178.6,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7601093&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 2.5,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7601093&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 19.0,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7601093&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 25.0,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7601093&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 90,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7601093&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 1.0,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7601093&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7601093&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7601093&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7601093&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "addiko",
+   "name": "Addiko",
+   "national_code": "7726716",
+   "rank": 12,
+   "aliases": [
+    "addiko"
+   ],
+   "figures": {
+    "assets": {
+     "value": 121.4,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7726716&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 1.7,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7726716&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 19.3,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7726716&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 29.0,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7726716&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 91,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7726716&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 1.13,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7726716&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7726716&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7726716&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7726716&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "srpska",
+   "name": "Srpska banka",
+   "national_code": "7092288",
+   "rank": 13,
+   "aliases": [
+    "srpska banka"
+   ],
+   "figures": {
+    "assets": {
+     "value": 62.5,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7092288&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 0.9,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7092288&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 8.5,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7092288&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 50.7,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7092288&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 13,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7092288&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 0.78,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7092288&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7092288&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7092288&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7092288&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "bankofchina",
+   "name": "Bank of China",
+   "national_code": "21251640",
+   "rank": 14,
+   "aliases": [
+    "bank of china"
+   ],
+   "figures": {
+    "assets": {
+     "value": 60.1,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21251640&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 0.8,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21251640&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 14.7,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21251640&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 39.6,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21251640&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 0,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21251640&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 3.88,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=21251640&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=21251640&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=21251640&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21251640&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "yettel",
+   "name": "Yettel Bank",
+   "national_code": "17138669",
+   "rank": 15,
+   "aliases": [
+    "yettel",
+    "mobi banka"
+   ],
+   "figures": {
+    "assets": {
+     "value": 55.1,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17138669&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 0.8,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17138669&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 11.4,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17138669&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 37.8,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17138669&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 69,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17138669&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 0.02,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17138669&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17138669&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=17138669&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=17138669&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "3banka",
+   "name": "3 Banka",
+   "national_code": "8761132",
+   "rank": 16,
+   "aliases": [
+    "3 banka",
+    "treca banka"
+   ],
+   "figures": {
+    "assets": {
+     "value": 37.1,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8761132&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 0.5,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8761132&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 18.4,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8761132&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 18.2,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8761132&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 120,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8761132&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 2.52,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=8761132&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=8761132&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=8761132&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=8761132&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "adriatic",
+   "name": "Adriatic Bank",
+   "national_code": "7534183",
+   "rank": 17,
+   "aliases": [
+    "adriatic"
+   ],
+   "figures": {
+    "assets": {
+     "value": 33.6,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7534183&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 0.5,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7534183&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 17.6,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7534183&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 41.2,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7534183&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 48,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7534183&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 3.59,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7534183&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7534183&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=7534183&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=7534183&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "api",
+   "name": "API Bank",
+   "national_code": "20439866",
+   "rank": 18,
+   "aliases": [
+    "api bank",
+    "api banka"
+   ],
+   "figures": {
+    "assets": {
+     "value": 23.4,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=20439866&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 0.3,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=20439866&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 24.6,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=20439866&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 53.1,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=20439866&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 33,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=20439866&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": 6.56,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=20439866&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=20439866&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=20439866&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=20439866&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  },
+  {
+   "code": "mirabank",
+   "name": "Mirabank",
+   "national_code": "21080608",
+   "rank": 19,
+   "aliases": [
+    "mirabank",
+    "mira bank"
+   ],
+   "figures": {
+    "assets": {
+     "value": 11.1,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21080608&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "share": {
+     "value": 0.2,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21080608&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "equity_ratio": {
+     "value": 71.7,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21080608&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "liquidity": {
+     "value": 28.8,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21080608&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "loan_deposit": {
+     "value": 203,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21080608&isSearchExecuted=true&Year=2026&Quarter=2"
+    },
+    "roa": {
+     "value": -0.21,
+     "source_url": "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=21080608&isSearchExecuted=true&Year=2026&Quarter=2",
+     "also": [
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=21080608&isSearchExecuted=true&Year=2025&Quarter=4",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialIncomeStatement/IndexArchive?NationalCode=21080608&isSearchExecuted=true&Year=2025&Quarter=2",
+      "https://webappcenter.nbs.rs/WebApp/FinInstBank/BankFinancialBalanceSheet/IndexArchive?NationalCode=21080608&isSearchExecuted=true&Year=2026&Quarter=2"
+     ]
+    }
+   }
+  }
+ ]
+}

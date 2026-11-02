@@ -38,6 +38,7 @@ from alta_feedback.accounts import (
     parse_account_form,
 )
 from alta_feedback.branches import BRANCH_MAX, NOT_SURE, branch_options, city_key, directory
+from alta_feedback.nbs import ASSETS, METRICS, snapshot
 from alta_feedback.pow import CHALLENGE_TTL, Challenge, create_challenge, derive_key, verify_payload
 from alta_feedback.site import DEFAULT_SITE_DIR, REVALIDATE, SITE_CSP, SiteFiles, index_file
 from alta_feedback.stats import account_stats, hide_rare_branches
@@ -313,7 +314,12 @@ async def account_thanks(request: Request) -> HTMLResponse:
 
 async def account_stats_page(request: Request) -> HTMLResponse:
     items = request.app.state.store.public_accounts(PUBLIC_ACCOUNTS_MAX)
-    return render("stats.html", stats=account_stats(items), results=RESULTS)
+    stats = account_stats(items)
+    nbs = snapshot()
+    return render(
+        "stats.html", stats=stats, results=RESULTS, nbs=nbs, metrics=(ASSETS, *METRICS),
+        nbs_banks=nbs.for_names([tally.name for tally in stats.banks]),
+    )
 
 
 async def public_accounts(request: Request) -> JSONResponse:

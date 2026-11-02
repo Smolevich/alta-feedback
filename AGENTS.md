@@ -12,7 +12,10 @@ and pages are in Russian; issues and PRs may be in English, Serbian or Russian.
 - Code: `main.py` routes and middleware, `accounts.py` account-report parsing and
   `scrub_pii`, `validate.py` correction form and IP hashing, `store.py` SQLite,
   `pow.py` ALTCHA-style proof-of-work, `stats.py` public stats, `branches.py` the bank
-  branch directory (`data/branches.json`, rebuilt by `uv run scripts/build_branches.py`).
+  branch directory (`data/branches.json`, rebuilt by `uv run scripts/build_branches.py`), `nbs.py`
+  official National Bank of Serbia figures per bank on the stats page (`data/nbs_banks.json`,
+  quarter 2026Q2, computed from each bank's NBS balance sheet and income statement; a figure
+  without an https `source_url` is not rendered).
 
 ```bash
 uv sync

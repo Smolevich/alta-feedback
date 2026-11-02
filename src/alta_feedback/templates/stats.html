@@ -52,10 +52,49 @@
   .entry-docs { margin-top: 4px; font-size: 13px; }
   .entry-comment { margin: 6px 0 0; overflow-wrap: anywhere; }
   .empty { text-align: center; color: var(--muted); padding: 24px 0 8px; }
+  .nbs { margin: 8px 0 2px; padding: 8px 10px; background: #f3f6f9; border-radius: 8px; font-size: 13px; }
+  .nbs-head { margin-bottom: 4px; }
+  .nbs-head b { font-weight: 600; }
+  .nbs-rows { margin: 0; }
+  .nbs-row { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; border-top: 1px dashed var(--line); }
+  .nbs-row dt { color: var(--muted); }
+  .nbs-row dd { margin: 0; text-align: right; white-space: nowrap; }
+  .nbs-row dd b { font-weight: 600; }
+  .nbs a, .nbs-help a { font-size: 12px; }
+  .nbs-help, .nbs-top { margin: 6px 0 10px; font-size: 13px; }
+  .nbs-help summary, .nbs-top summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+  .nbs-help dl { margin: 6px 0; }
+  .nbs-help dt { font-weight: 600; margin-top: 6px; }
+  .nbs-help dd { margin: 0; color: var(--muted); }
+  .nbs-help p, .nbs-top p { color: var(--muted); margin: 6px 0; }
+  .nbs-top h2 { margin-top: 0; }
+  .nbs-card { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; margin-top: 8px; }
+  .nbs-card .nbs { margin: 4px 0 0; background: none; padding: 0; }
+  .nbs-card-head { display: flex; justify-content: space-between; gap: 8px; font-size: 15px; }
+  .nbs-card-head b { overflow-wrap: anywhere; }
+  .nbs-card-head span { flex: none; color: var(--muted); font-size: 13px; }
+  .nbs-card.gone { background: #f6f5f1; }
+  .nbs-card .gone-note { font-size: 12px; color: var(--danger); }
 </style>
 {% endblock %}
 {% block main_class %}stats-main{% endblock %}
-{% macro group(tally, show_types=True) -%}
+{% macro source(row) -%}
+<a href="{{ row.source_url }}" rel="noopener noreferrer">NBS</a>
+{%- for url in row.also %} <a href="{{ url }}" rel="noopener noreferrer" title="ещё один отчёт NBS, из которого посчитано число">{{ loop.index + 1 }}</a>{% endfor %}
+{%- endmacro %}
+{% macro nbs_figures(bank, head=True) -%}
+<div class="nbs">
+  {%- if head and bank.size %}
+  <div class="nbs-head">Нацбанк Сербии на {{ nbs.day }}: активы <b>{{ bank.size.text }}</b>, {{ bank.rank }}-е место из {{ nbs.bank_count }} банков · {{ source(bank.size) }}</div>
+  {%- endif %}
+  <dl class="nbs-rows">
+    {%- for row in bank.rows %}
+    <div class="nbs-row"><dt>{{ row.label }}</dt><dd><b>{{ row.text }}</b> · {{ source(row) }}</dd></div>
+    {%- endfor %}
+  </dl>
+</div>
+{%- endmacro %}
+{% macro group(tally, show_types=True, bank=None) -%}
 <div class="group">
   <div class="group-head"><b>{{ tally.name }}</b><span>{{ tally.total }} {{ answers(tally.total) }}</span></div>
   <div class="bar" role="img" aria-label="открыли {{ tally.results.opened }}, отказали {{ tally.results.refused }}, в процессе {{ tally.results.pending }}">
@@ -63,6 +102,7 @@
   </div>
   <div class="group-note">открыли {{ tally.results.opened }} · отказали {{ tally.results.refused }} · в процессе {{ tally.results.pending }}
     {%- if show_types %} · личный {{ tally.types.personal }}, ИП {{ tally.types.entrepreneur }}{% endif %}</div>
+  {%- if bank %}{{ nbs_figures(bank) }}{% endif %}
   {%- if tally.branches %}
   <div class="branches">
     <div class="branches-title">По отделениям (отделение видно, если о нём минимум два ответа)</div>
@@ -94,7 +134,16 @@
   <div class="legend"><span><i class="dot c-opened"></i>открыли</span><span><i class="dot c-refused"></i>отказали</span><span><i class="dot c-pending"></i>в процессе</span></div>
 
   <h2>По банкам</h2>
-  {% for tally in stats.banks %}{{ group(tally) }}{% endfor %}
+  <details class="nbs-help">
+    <summary>Что значат цифры Нацбанка</summary>
+    <p>Под банками — официальные данные Народного банка Сербии (NBS) из квартальных отчётов банков на {{ nbs.day }}. Ссылка «NBS» ведёт на отчёт, из которого взято число; отчёты выходят раз в квартал. Это цифры, а не оценка надёжности.</p>
+    <dl>
+      {%- for metric in metrics %}
+      <dt>{{ metric.label }}</dt><dd>{{ metric.explain }}</dd>
+      {%- endfor %}
+    </dl>
+  </details>
+  {% for tally in stats.banks %}{{ group(tally, bank=nbs_banks.get(tally.name)) }}{% endfor %}
 
   <h2>По городам</h2>
   {% for tally in stats.cities %}{{ group(tally) }}{% endfor %}
@@ -122,6 +171,17 @@
     {% endfor %}
   </div>
   {% endif %}
+  <details class="nbs-top">
+    <summary>Банки Сербии по размеру (NBS, {{ nbs.day }})</summary>
+    <p>Десять крупнейших банков по активам на {{ nbs.day }}, по отчётам банков на сайте Народного банка Сербии. Что значат цифры — в пояснении выше, в разделе «По банкам».</p>
+    {%- for bank in nbs.top() %}
+    <div class="nbs-card{% if bank.defunct %} gone{% endif %}">
+      <div class="nbs-card-head"><b>{{ bank.rank }}. {{ bank.name }}</b>{% if bank.size %}<span>{{ bank.size.text }} · {{ source(bank.size) }}</span>{% endif %}</div>
+      {%- if bank.defunct %}<div class="gone-note">Для сравнения: ALTA до краха — счёт здесь не открыть</div>{% endif %}
+      {{ nbs_figures(bank, head=False) }}
+    </div>
+    {%- endfor %}
+  </details>
   <a class="back" href="{{ return_url }}">← к странице про ALTA</a>
 </div>
 <p class="foot">Без рекламы и трекеров.</p>
