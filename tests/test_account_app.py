@@ -239,9 +239,35 @@ def test_stats_page_counts_only_accepted(client):
     assert tuple(head in page for head in heads) == (True, False)
 
 
-def test_stats_page_has_no_scripts(client):
+def csp_directives(csp: str) -> dict[str, str]:
+    return dict(part.strip().partition(" ")[::2] for part in csp.split(";") if part.strip())
+
+
+def test_stats_page_allows_own_filter_script(client):
     csp = client.get("/account/stats").headers["content-security-policy"]
-    assert "script-src https://static.cloudflareinsights.com;" in csp
+    assert csp_directives(csp)["script-src"] == "'self' https://static.cloudflareinsights.com"
+
+
+def test_stats_page_csp_is_strict_apart_from_own_script(client):
+    stats = csp_directives(client.get("/account/stats").headers["content-security-policy"])
+    strict = csp_directives(client.get("/spasibo").headers["content-security-policy"])
+    assert {**stats, "script-src": None} == {**strict, "script-src": None}
+
+
+def test_stats_page_loads_filter_script(client):
+    seed(client, 1)
+    assert '<script src="/static/filters.js" defer></script>' in client.get("/account/stats").text
+
+
+def test_stats_filters_work_without_script(client):
+    seed(client, 1)
+    page = client.get("/account/stats").text
+    assert all(f'<select id="f-{name}" name="{name}">' in page for name in ("bank", "city", "result"))
+
+
+def test_filters_script_is_served_as_javascript(client):
+    response = client.get("/static/filters.js")
+    assert (response.status_code, response.headers["content-type"]) == (200, "text/javascript; charset=utf-8")
 
 
 def test_form_links_to_stats(client):
@@ -530,3 +556,9 @@ def test_public_json_page_keeps_branch_named_twice_overall(client):
 
 def test_stats_page_header_links_to_guide(client):
     assert '<a class="site-title" href="/">' in client.get("/account/stats").text
+
+
+def test_stats_filter_note_shows_dates_in_russian(client):
+    seed(client, 3)
+    page = client.get("/account/stats", params={"from": "2026-10-05", "to": "2026-10-30"}).text
+    assert "· с 05.10.2026 · по 30.10.2026" in page
