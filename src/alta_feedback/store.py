@@ -2,12 +2,14 @@
 
 import json
 import sqlite3
+from collections import Counter
 from collections.abc import Iterator
 from contextlib import contextmanager
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 from alta_feedback.accounts import AccountReport
+from alta_feedback.stats import AnswerFilter
 from alta_feedback.validate import Suggestion
 
 SCHEMA = """
@@ -44,6 +46,7 @@ CREATE TABLE IF NOT EXISTS accounts (
 CREATE INDEX IF NOT EXISTS accounts_ip_time ON accounts (ip_hash, created_at);
 CREATE INDEX IF NOT EXISTS accounts_time ON accounts (created_at);
 CREATE INDEX IF NOT EXISTS accounts_status ON accounts (status);
+CREATE INDEX IF NOT EXISTS accounts_public ON accounts (status, visit_date DESC, id DESC);
 
 CREATE TABLE IF NOT EXISTS pow_used (
     challenge TEXT PRIMARY KEY,
@@ -81,6 +84,22 @@ def add_missing_columns(db: sqlite3.Connection) -> None:
         existing = {row[1] for row in db.execute(f"PRAGMA table_info({table})")}
         if column not in existing:
             db.execute(f"ALTER TABLE {table} ADD COLUMN {column} {kind}")
+
+
+def public_conditions(answer_filter: AnswerFilter) -> tuple[list[str], list[str | int]]:
+    """WHERE для публичной выборки; имена колонок — только из equals(), значения — параметрами."""
+    clauses = ["status = 'accepted'"]
+    args: list[str | int] = []
+    for column, value in answer_filter.equals().items():
+        clauses.append(f"{column} = ?")
+        args.append(value)
+    if answer_filter.date_from:
+        clauses.append("visit_date >= ?")
+        args.append(answer_filter.date_from)
+    if answer_filter.date_to:
+        clauses.append("visit_date <= ?")
+        args.append(answer_filter.date_to)
+    return clauses, args
 
 
 def decode_row(row: sqlite3.Row) -> dict:
@@ -162,14 +181,38 @@ class Store:
             cur = db.execute(f"UPDATE {table} SET status = ? WHERE id = ?", (status, item_id))
             return cur.rowcount == 1
 
-    def public_accounts(self, limit: int) -> list[dict]:
-        """Только принятые отчёты и только публичные поля, свежие визиты сверху."""
+    def public_accounts(
+        self,
+        answer_filter: AnswerFilter | None = None,
+        before: tuple[str, int] | None = None,
+        limit: int | None = None,
+    ) -> list[dict]:
+        """Только принятые отчёты и только публичные поля, свежие визиты сверху.
+
+        before — (visit_date, id) последней показанной записи: следующая страница идёт строго после неё.
+        """
+        clauses, args = public_conditions(answer_filter or AnswerFilter())
+        if before:
+            clauses.append("(visit_date < ? OR (visit_date = ? AND id < ?))")
+            args += [before[0], before[0], before[1]]
         query = (
-            f"SELECT {', '.join(PUBLIC_ACCOUNT_COLUMNS)} FROM accounts WHERE status = 'accepted'"
-            " ORDER BY visit_date DESC, id DESC LIMIT ?"
+            f"SELECT {', '.join(PUBLIC_ACCOUNT_COLUMNS)} FROM accounts WHERE {' AND '.join(clauses)}"
+            " ORDER BY visit_date DESC, id DESC"
+        )
+        if limit is not None:
+            query += " LIMIT ?"
+            args.append(limit)
+        with self.connect() as db:
+            return [decode_row(row) for row in db.execute(query, args)]
+
+    def public_branch_counts(self) -> Counter:
+        """Число принятых ответов по (банк, отделение) — по всем, без фильтров и страниц."""
+        query = (
+            "SELECT bank, branch, COUNT(*) FROM accounts"
+            " WHERE status = 'accepted' AND branch IS NOT NULL AND branch != '' GROUP BY bank, branch"
         )
         with self.connect() as db:
-            return [decode_row(row) for row in db.execute(query, (limit,))]
+            return Counter({(bank, branch): count for bank, branch, count in db.execute(query)})
 
     def claim_challenge(self, challenge: str, expires_at: int, now: datetime) -> bool:
         """Отмечает решённую задачу использованной; False — её уже предъявляли."""

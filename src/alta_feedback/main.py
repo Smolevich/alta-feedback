@@ -41,7 +41,17 @@ from alta_feedback.branches import BRANCH_MAX, NOT_SURE, branch_options, city_ke
 from alta_feedback.nbs import ASSETS, METRICS, SOURCE_URL, snapshot
 from alta_feedback.pow import CHALLENGE_TTL, Challenge, create_challenge, derive_key, verify_payload
 from alta_feedback.site import DEFAULT_SITE_DIR, REVALIDATE, SITE_CSP, SiteFiles, index_file
-from alta_feedback.stats import account_stats, hide_rare_branches
+from alta_feedback.stats import (
+    PAGE_SIZE,
+    AnswerFilter,
+    account_stats,
+    answer_cards,
+    answer_page,
+    hide_rare_branches,
+    parse_cursor,
+    parse_filter,
+    shown_before,
+)
 from alta_feedback.store import Store
 from alta_feedback.validate import (
     STATUSES,
@@ -312,20 +322,53 @@ async def account_thanks(request: Request) -> HTMLResponse:
     return render("account_thanks.html")
 
 
+def stats_url(answer_filter: AnswerFilter, before: str | None = None) -> str:
+    query = urlencode({**answer_filter.query(), **({"before": before} if before else {})})
+    return f"/account/stats?{query}#answers" if query else "/account/stats#answers"
+
+
 async def account_stats_page(request: Request) -> HTMLResponse:
-    items = request.app.state.store.public_accounts(PUBLIC_ACCOUNTS_MAX)
-    stats = account_stats(items)
+    """Сводка и все ответы по фильтру; ответы листаются по 20 курсором before."""
+    store: Store = request.app.state.store
+    answer_filter = parse_filter(request.query_params)
+    before = parse_cursor(request.query_params.get("before"))
+    counts = store.public_branch_counts()
+    items = store.public_accounts(answer_filter)
+    stats = account_stats(items, counts)
+    page = answer_page(store.public_accounts(answer_filter, before, PAGE_SIZE + 1), PAGE_SIZE)
+    first = shown_before(items, before) + 1
+    has_any = bool(stats.total or store.public_accounts(limit=1))
     nbs = snapshot()
     reported, others = nbs.listing([tally.name for tally in stats.banks])
     return render(
         "stats.html", stats=stats, results=RESULTS, nbs=nbs, metrics=(ASSETS, *METRICS),
         nbs_reported=reported, nbs_others=others, nbs_source=SOURCE_URL,
+        banks=BANKS, cities=CITIES, filter=answer_filter, has_any=has_any,
+        entries=answer_cards(page.items, counts), first=first, last=first + len(page.items) - 1,
+        next_url=stats_url(answer_filter, page.next_cursor) if page.next_cursor else None,
+        start_url=stats_url(answer_filter) if before else None, page_size=PAGE_SIZE,
     )
 
 
+def parse_limit(raw: str | None) -> int:
+    """Размер страницы JSON: 1…PUBLIC_ACCOUNTS_MAX; не число — как раньше, максимум."""
+    if not (raw or "").isdigit() or int(raw) < 1:
+        return PUBLIC_ACCOUNTS_MAX
+    return min(int(raw), PUBLIC_ACCOUNTS_MAX)
+
+
 async def public_accounts(request: Request) -> JSONResponse:
-    items = hide_rare_branches(request.app.state.store.public_accounts(PUBLIC_ACCOUNTS_MAX))
-    return JSONResponse({"count": len(items), "items": items, "labels": labels()})
+    """Без limit и cursor ответ прежний; с ними — ещё next_cursor для следующей страницы."""
+    store: Store = request.app.state.store
+    params = request.query_params
+    limit = parse_limit(params.get("limit"))
+    rows = store.public_accounts(before=parse_cursor(params.get("cursor")), limit=limit + 1)
+    page = answer_page(rows, limit)
+    items = hide_rare_branches(page.items, store.public_branch_counts())
+    body: dict = {"count": len(items), "items": items, "labels": labels()}
+    if params.keys() & {"limit", "cursor"}:
+        body["next_cursor"] = page.next_cursor
+    return JSONResponse(body)
 
 
 async def static_script(request: Request) -> Response:

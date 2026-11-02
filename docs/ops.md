@@ -47,7 +47,10 @@ Only reports with status `accepted` make it into the stats and the public JSON.
 ## Public JSON
 
 `GET /api/accounts/public` — no token, `accepted` only, most recent visits first, up to
-2000:
+2000. Optional `limit` (1–2000) and `cursor` page through the rest: with either of them the
+response also has `next_cursor` (`<visit_date>_<id>` of the last item, `null` on the last page),
+passed back as `cursor`. A broken cursor starts from the top. Without them the response is the
+same as before:
 
 ```json
 {"count": 1,
@@ -57,8 +60,8 @@ Only reports with status `accepted` make it into the stats and the public JSON.
  "labels": {"account_type": {…}, "result": {…}, "residency": {…}, "documents": {…}}}
 ```
 
-`branch` is shown only if at least two accepted reports name that branch of that bank,
-otherwise it is `null` (the same rule as the stats page). `bank` and `city` are display names; `account_type`, `result`, `residency`, `documents`
+`branch` is shown only if at least two accepted reports name that branch of that bank (counted
+over all accepted reports, not the page), otherwise it is `null` (the same rule as the stats page). `bank` and `city` are display names; `account_type`, `result`, `residency`, `documents`
 are codes with captions in `labels`. `residency` and `documents` may also hold the
 person's own text if they entered a value outside the list.
 
