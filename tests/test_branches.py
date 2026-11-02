@@ -1,4 +1,5 @@
 import sqlite3
+from collections import Counter
 from datetime import date
 
 from alta_feedback.accounts import BANKS, parse_account_form
@@ -11,7 +12,7 @@ from alta_feedback.branches import (
     directory,
     fold,
 )
-from alta_feedback.stats import OTHER_BRANCHES, account_stats, hide_rare_branches
+from alta_feedback.stats import OTHER_BRANCHES, account_stats, answer_cards, hide_rare_branches
 from alta_feedback.store import Store
 
 TODAY = date(2026, 11, 1)
@@ -135,8 +136,19 @@ def test_same_branch_name_counts_separately_per_bank():
     assert [tally.branches for tally in stats.banks] == [[], []]
 
 
-def test_recent_cards_hide_rare_branch():
-    assert account_stats([item("Resavska 1")]).recent[0]["branch"] is None
+def test_answer_cards_hide_rare_branch():
+    assert answer_cards([item("Resavska 1")])[0]["branch"] is None
+
+
+def test_branch_seen_twice_overall_stays_visible_on_partial_list():
+    counts = Counter({(BANKS["raiffeisen"], "Resavska 1"): 2})
+    assert answer_cards([item("Resavska 1")], counts)[0]["branch"] == "Resavska 1"
+
+
+def test_branch_seen_once_overall_stays_hidden_in_filtered_stats():
+    counts = Counter({(BANKS["raiffeisen"], "Resavska 1"): 1})
+    stats = account_stats([item("Resavska 1"), item("Resavska 1")], counts)
+    assert stats.banks[0].branches == []
 
 
 def test_public_items_keep_branch_seen_twice():

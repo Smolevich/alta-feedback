@@ -1,6 +1,6 @@
 import html
 import re
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 import pytest
 from starlette.testclient import TestClient
@@ -353,7 +353,7 @@ def test_stats_page_puts_nbs_block_below_answers_collapsed(client):
     report(client, bank="unicredit")
     accept_all(client)
     page = client.get("/account/stats").text
-    assert page.index("Последние ответы") < page.index('<details class="nbs" id="nbs">')
+    assert page.index("Все ответы") < page.index('<details class="nbs" id="nbs">')
 
 
 def test_stats_page_lists_reported_banks_first_in_nbs_block(client):
@@ -374,3 +374,155 @@ def test_stats_page_lists_largest_banks_even_without_answers(client):
     names = nbs_bank_names(client.get("/account/stats").text)
     assert names == ["Banca Intesa", "OTP banka", "Raiffeisen", "UniCredit", "NLB Banka", "AikBank",
                      "Poštanska štedionica", "Erste", "ALTA banka", "ProCredit"]
+
+
+def seed(client: TestClient, count: int, start: date = date(2026, 10, 31), **fields) -> None:
+    """count принятых ответов, по одному в день назад от start; id растут от свежих к старым."""
+    rows = []
+    for day in range(count):
+        values = {
+            "bank": "OTP banka", "city": "Белград", "result": "opened", "branch": None,
+            "visit_date": (start - timedelta(days=day)).isoformat(), **fields,
+        }
+        rows.append(tuple(values[key] for key in ("bank", "city", "result", "visit_date", "branch")))
+    with client.app.state.store.connect() as db:
+        db.executemany(
+            "INSERT INTO accounts (created_at, bank, city, account_type, result, visit_date, residency,"
+            " documents, comment, ip_hash, user_agent_short, status, branch)"
+            " VALUES ('2026-10-31T10:00:00Z', ?, ?, 'personal', ?, ?, 'boravak', '[\"passport\"]', '',"
+            " '', '', 'accepted', ?)",
+            rows,
+        )
+
+
+def answer_ids(page: str) -> list[str]:
+    return re.findall(r'<article class="entry" data-id="(\d+)"', page)
+
+
+def next_link(page: str) -> str:
+    return html.unescape(re.search(r'<a class="more" href="([^"]+)"', page).group(1))
+
+
+def test_stats_pages_cover_all_answers_without_overlap(client):
+    seed(client, 45)
+    seen, url = [], "/account/stats"
+    while url:
+        page = client.get(url).text
+        seen += answer_ids(page)
+        url = next_link(page) if '<a class="more"' in page else None
+    assert seen == [str(n) for n in range(1, 46)]
+
+
+def test_stats_first_page_shows_twenty_newest(client):
+    seed(client, 25)
+    assert answer_ids(client.get("/account/stats").text) == [str(n) for n in range(1, 21)]
+
+
+def test_stats_page_says_which_answers_are_shown(client):
+    seed(client, 25)
+    page = client.get(next_link(client.get("/account/stats").text)).text
+    assert "Показаны 21–25 из 25" in page
+
+
+def test_stats_later_page_links_back_to_start(client):
+    seed(client, 25)
+    page = client.get(next_link(client.get("/account/stats").text)).text
+    assert 'class="start" href="/account/stats#answers"' in page
+
+
+def test_stats_broken_cursor_shows_first_page(client):
+    seed(client, 3)
+    response = client.get("/account/stats", params={"before": "2026-99-99_abc"})
+    assert (response.status_code, answer_ids(response.text)) == (200, ["1", "2", "3"])
+
+
+def test_stats_filter_by_bank(client):
+    seed(client, 2)
+    seed(client, 1, bank="Erste")
+    assert answer_ids(client.get("/account/stats", params={"bank": "erste"}).text) == ["3"]
+
+
+def test_stats_filter_by_visit_dates(client):
+    seed(client, 10)
+    page = client.get("/account/stats", params={"from": "2026-10-25", "to": "2026-10-27"}).text
+    assert answer_ids(page) == ["5", "6", "7"]
+
+
+def test_stats_unknown_filter_value_is_ignored(client):
+    seed(client, 2)
+    assert answer_ids(client.get("/account/stats", params={"bank": "<script>"}).text) == ["1", "2"]
+
+
+def test_stats_aggregates_follow_filter(client):
+    seed(client, 2)
+    seed(client, 1, bank="Erste")
+    page = client.get("/account/stats", params={"bank": "erste"}).text
+    heads = ('<div class="group-head"><b>Erste</b>', '<div class="group-head"><b>OTP banka</b>')
+    assert tuple(head in page for head in heads) == (True, False)
+
+
+def test_stats_filtered_aggregates_are_labelled_and_resettable(client):
+    seed(client, 1)
+    page = client.get("/account/stats", params={"result": "opened"}).text
+    assert "с учётом фильтра" in page and 'class="reset" href="/account/stats"' in page
+
+
+def test_stats_filter_survives_paging(client):
+    seed(client, 25, bank="Erste")
+    assert "bank=erste" in next_link(client.get("/account/stats", params={"bank": "erste"}).text)
+
+
+def test_stats_aggregates_count_answers_beyond_two_thousand(client):
+    seed(client, 2001)
+    assert "Всего 2001 ответ" in client.get("/account/stats").text
+
+
+def test_stats_empty_filter_result_offers_reset(client):
+    seed(client, 1)
+    assert "По этому фильтру ответов нет" in client.get("/account/stats", params={"bank": "erste"}).text
+
+
+def test_stats_hides_rare_branch_when_filtered(client):
+    seed(client, 1, branch="Ekspozitura kod Slavije")
+    seed(client, 1, start=date(2026, 9, 1))
+    page = client.get("/account/stats", params={"from": "2026-10-01"}).text
+    assert "Ekspozitura kod Slavije" not in page
+
+
+def test_stats_branch_named_twice_overall_survives_filter_that_keeps_one(client):
+    seed(client, 1, branch="Ekspozitura kod Slavije")
+    seed(client, 1, start=date(2026, 9, 1), branch="Ekspozitura kod Slavije")
+    page = client.get("/account/stats", params={"from": "2026-10-01"}).text
+    assert "Ekspozitura kod Slavije" in page
+
+
+def test_public_json_without_params_keeps_old_shape(client):
+    seed(client, 3)
+    body = client.get("/api/accounts/public").json()
+    assert (set(body), body["count"]) == ({"count", "items", "labels"}, 3)
+
+
+def test_public_json_pages_by_cursor(client):
+    seed(client, 5)
+    first = client.get("/api/accounts/public", params={"limit": 3}).json()
+    second = client.get("/api/accounts/public", params={"limit": 3, "cursor": first["next_cursor"]}).json()
+    ids = [item["id"] for item in first["items"] + second["items"]]
+    assert (ids, second["next_cursor"]) == ([1, 2, 3, 4, 5], None)
+
+
+def test_public_json_limit_is_capped_at_two_thousand(client):
+    seed(client, 2001)
+    assert client.get("/api/accounts/public", params={"limit": 999999}).json()["count"] == 2000
+
+
+def test_public_json_broken_cursor_starts_from_top(client):
+    seed(client, 2)
+    body = client.get("/api/accounts/public", params={"cursor": "nonsense"}).json()
+    assert [item["id"] for item in body["items"]] == [1, 2]
+
+
+def test_public_json_page_keeps_branch_named_twice_overall(client):
+    seed(client, 1, branch="Ekspozitura kod Slavije")
+    seed(client, 1, start=date(2026, 9, 1), branch="Ekspozitura kod Slavije")
+    items = client.get("/api/accounts/public", params={"limit": 1}).json()["items"]
+    assert items[0]["branch"] == "Ekspozitura kod Slavije"

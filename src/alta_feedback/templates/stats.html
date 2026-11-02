@@ -81,6 +81,30 @@
   .nbs-more dd { margin: 0; white-space: nowrap; }
   .nbs-more a, .nbs-source a { color: var(--accent); }
   .nbs-source { font-size: 12px; color: var(--muted); margin: 10px 0 0; }
+  .filters { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin: 16px 0 0; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: #faf9f6; }
+  .filters label { margin: 0; font-size: 13px; font-weight: 600; min-width: 0; }
+  .filters select, .filters input[type=date] {
+    display: block; width: 100%; min-width: 0; max-width: 100%; margin-top: 3px; min-height: 42px;
+    font: inherit; font-size: 16px; font-weight: 400; color: var(--ink); background: #fff;
+    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px;
+  }
+  .filters input[type=date] { -webkit-appearance: none; appearance: none; }
+  .filter-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .filter-actions button { width: auto; flex: 1 1 auto; margin: 0; min-height: 42px; font-size: 16px; padding: 0 18px; }
+  .reset { flex: none; display: inline-flex; align-items: center; min-height: 42px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; color: var(--accent); background: #fff; font-weight: 600; text-decoration: none; }
+  .filter-note { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+  .filter-note b { color: var(--ink); font-weight: 600; }
+  .shown { font-size: 13px; color: var(--muted); margin: -4px 0 8px; }
+  .pager { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .pager a { flex: 1 1 auto; display: inline-flex; justify-content: center; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 10px; font-weight: 600; text-decoration: none; }
+  .pager .more { background: var(--accent); color: var(--accent-ink); }
+  .pager .start { flex: 0 1 auto; border: 1px solid var(--line); color: var(--accent); }
+  @media (min-width: 720px) {
+    main.stats-main { max-width: 820px; }
+    .filters { grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: end; }
+    .filter-actions { grid-column: 1 / -1; }
+    .filter-actions button { flex: 0 0 auto; }
+  }
 </style>
 {% endblock %}
 {% block main_class %}stats-main{% endblock %}
@@ -130,10 +154,31 @@
   <p class="lead">Ответы вкладчиков, которые мы проверили. Это опыт людей, а не правила банков: в другом отделении может быть иначе.</p>
   <a class="cta" href="/account">+ Добавить свой ответ</a>
 
-  {% if not stats.total %}
+  {% if not has_any %}
   <p class="empty">Пока нет проверенных ответов. Будьте первым — это займёт полминуты.</p>
   {% else %}
-  <h2>Всего {{ stats.total }} {{ answers(stats.total) }}</h2>
+  <form class="filters" method="get" action="/account/stats">
+    <label>Банк
+      <select name="bank"><option value="">Все банки</option>
+        {%- for code, name in banks.items() %}<option value="{{ code }}"{% if filter.bank == code %} selected{% endif %}>{{ name }}</option>{% endfor %}</select></label>
+    <label>Город
+      <select name="city"><option value="">Все города</option>
+        {%- for code, name in cities.items() %}<option value="{{ code }}"{% if filter.city == code %} selected{% endif %}>{{ name }}</option>{% endfor %}</select></label>
+    <label>Чем закончилось
+      <select name="result"><option value="">Всё</option>
+        {%- for code, name in results.items() %}<option value="{{ code }}"{% if filter.result == code %} selected{% endif %}>{{ name }}</option>{% endfor %}</select></label>
+    <label>Визит с<input type="date" name="from" value="{{ filter.date_from or '' }}"></label>
+    <label>Визит по<input type="date" name="to" value="{{ filter.date_to or '' }}"></label>
+    <div class="filter-actions"><button type="submit">Показать</button>{% if filter.active %}<a class="reset" href="/account/stats">Сбросить</a>{% endif %}</div>
+  </form>
+  {% if filter.active %}
+  <p class="filter-note">Все цифры ниже — <b>с учётом фильтра</b>{% if filter.bank %} · {{ banks[filter.bank] }}{% endif %}{% if filter.city %} · {{ cities[filter.city] }}{% endif %}{% if filter.result %} · {{ results[filter.result] }}{% endif %}{% if filter.date_from %} · с {{ filter.date_from }}{% endif %}{% if filter.date_to %} · по {{ filter.date_to }}{% endif %}</p>
+  {% endif %}
+
+  {% if not stats.total %}
+  <p class="empty">По этому фильтру ответов нет. <a href="/account/stats">Сбросить фильтр</a></p>
+  {% else %}
+  <h2>{% if filter.active %}По фильтру{% else %}Всего{% endif %} {{ stats.total }} {{ answers(stats.total) }}</h2>
   <div class="tiles">
     <div class="tile opened"><b>{{ stats.results.opened }}</b><span>открыли</span></div>
     <div class="tile refused"><b>{{ stats.results.refused }}</b><span>отказали</span></div>
@@ -158,10 +203,15 @@
   {% endfor %}
   {% endif %}
 
-  <h2>Последние ответы</h2>
+  <h2 id="answers">{% if filter.active %}Ответы по фильтру{% else %}Все ответы{% endif %}</h2>
+  {% if entries %}
+  <p class="shown">Показаны {{ first }}–{{ last }} из {{ stats.total }}, свежие визиты сверху</p>
+  {% else %}
+  <p class="shown">Дальше ответов нет.</p>
+  {% endif %}
   <div class="entries">
-    {% for item in stats.recent %}
-    <article class="entry">
+    {% for item in entries %}
+    <article class="entry" data-id="{{ item.id }}">
       <div class="entry-head"><b>{{ item.bank }}</b><span class="badge {{ item.result }}">{{ item.result_label }}</span></div>
       <div class="entry-meta">{{ item.city }}{% if item.branch %} · {{ item.branch }}{% endif %} · {{ item.account_type }}{% if item.residency %} · {{ item.residency }}{% endif %} · {{ item.visit_date }}</div>
       {% if item.documents %}<div class="entry-docs">Просили: {{ item.documents | join(", ") }}</div>{% endif %}
@@ -169,6 +219,13 @@
     </article>
     {% endfor %}
   </div>
+  {% if next_url or start_url %}
+  <nav class="pager" aria-label="Страницы ответов">
+    {%- if next_url %}<a class="more" href="{{ next_url }}">Показать ещё {{ [page_size, stats.total - last] | min }}</a>{% endif %}
+    {%- if start_url %}<a class="start" href="{{ start_url }}">↑ В начало</a>{% endif %}
+  </nav>
+  {% endif %}
+  {% endif %}
   {% endif %}
   <details class="nbs" id="nbs">
     <summary>Официальные цифры Нацбанка по банкам<span>на {{ nbs.day }}, по квартальным отчётам банков</span></summary>
