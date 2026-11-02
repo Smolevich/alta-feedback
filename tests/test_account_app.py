@@ -396,7 +396,7 @@ def seed(client: TestClient, count: int, start: date = date(2026, 10, 31), **fie
 
 
 def answer_ids(page: str) -> list[str]:
-    return re.findall(r'<article class="entry" data-id="(\d+)"', page)
+    return re.findall(r'<article class="entry[^"]*" data-id="(\d+)"', page)
 
 
 def next_link(page: str) -> str:
@@ -526,3 +526,7 @@ def test_public_json_page_keeps_branch_named_twice_overall(client):
     seed(client, 1, start=date(2026, 9, 1), branch="Ekspozitura kod Slavije")
     items = client.get("/api/accounts/public", params={"limit": 1}).json()["items"]
     assert items[0]["branch"] == "Ekspozitura kod Slavije"
+
+
+def test_stats_page_header_links_to_guide(client):
+    assert '<a class="site-title" href="/">' in client.get("/account/stats").text
