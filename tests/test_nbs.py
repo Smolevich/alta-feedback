@@ -67,3 +67,15 @@ def test_numbers_are_written_the_russian_way():
 def test_figure_keeps_extra_sources():
     bank = Bank("x", "X", 1, (), {"roa": Figure(2.86, BALANCE, ("https://a", "https://b"))})
     assert bank.rows[0].also == ("https://a", "https://b")
+
+
+def test_listing_puts_reported_banks_first_without_repeats():
+    reported, others = snapshot().listing(["Yettel Bank", "UniCredit", "Уникредит", "Мой банк"])
+    assert ([b.code for b in reported], [b.code for b in others][:4]) == (
+        ["yettel", "unicredit"], ["intesa", "otp", "raiffeisen", "nlb"])
+
+
+def test_share_is_in_the_summary_not_in_details():
+    bank = snapshot().find("UniCredit")
+    assert (bank.share.label, [row.label for row in bank.details]) == (
+        "Доля рынка", ["Капитал к активам", "Деньги под рукой", "Кредиты к вкладам", "Прибыльность (ROA)"])
