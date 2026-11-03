@@ -81,6 +81,29 @@ If a bank's site fails, the bank keeps its previous list and date; a bank with n
 `/account/branches?bank=…&city=…` for hints of that bank in that city. The file lives in the
 package, not in `data/`: `data/` is the database directory and the deploy copies only `src/`.
 
+## AOD PDF archive
+
+The write-up shows PDFs from www.aod.rs (quarterly bankruptcy reports, the AOD monograph, legal
+framework) from our own copy, so they stay readable if AOD takes them down. The list is
+`src/alta_feedback/data/aod_archive.json` (`name`, original `url`, `public`, `sha256`, `bytes`,
+`fetched`); the same list lives in alta-bankruptcy `src/data/aod-archive.json` — change both.
+
+- On the server: `/opt/alta-feedback/data/aod/` — `public/` is served at `/docs/aod/<name>` (ETag,
+  Range, one day of cache); `private/` holds documents with lists of private creditors (AOD's
+  distribution notices, the 2014 Official Gazette page) and is never served — the site links to AOD
+  for those; `versions/<name>-<date>.pdf` keeps an original that changed after our copy.
+- `alta-aod-check.timer` (03:20 UTC) runs `python -m alta_feedback.aod_archive`: downloads missing
+  copies, compares every original with what we have, saves a changed one beside it, appends a line to
+  `data/aod/check.log` and prints a summary to the journal
+  (`journalctl -u alta-aod-check --since today`). An unavailable original is not a failure: the site
+  keeps serving our copy. There is no alert yet — the log is the report.
+- While a public copy is missing (before the first run), `/docs/aod/<name>` redirects to the original.
+- Backup: each run writes `/var/backups/bots/alta-aod/<date>.tar.gz` when the archive changed and
+  refreshes the previous one otherwise; the nightly `hetzner-offsite-backup` copies it to R2
+  (encrypted), and the weekly backup check verifies it.
+- The site keeps showing the copy from the manifest. To switch to a newer version, replace the file
+  in the manifest of both repositories (new `sha256`/`bytes`/`fetched`).
+
 ## Deploy
 
 GitHub Actions `deploy.yml` on push to `main` (and manually): tests and lint → copy to the
