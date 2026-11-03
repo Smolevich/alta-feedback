@@ -1,3 +1,5 @@
+Moved to Smolevich/alta-bankruptcy (backend/). Archived 2026-11-03.
+
 # alta-feedback
 
 Feedback for a public write-up about the bank ALTA (Serbia): what happened to the bank
