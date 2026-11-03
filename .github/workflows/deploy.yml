@@ -105,7 +105,7 @@ jobs:
       - name: Copy files to server
         run: |
           ssh vds 'rm -rf /tmp/deploy-alta-feedback && mkdir -p /tmp/deploy-alta-feedback'
-          rsync -aR --exclude __pycache__ src deploy/alta-feedback.service pyproject.toml uv.lock .python-version \
+          rsync -aR --exclude __pycache__ src deploy pyproject.toml uv.lock .python-version \
             vds:/tmp/deploy-alta-feedback/
 
       - name: Install and restart
@@ -119,8 +119,9 @@ jobs:
           sudo chmod 700 "$APP_DIR/data"
           sudo rsync -a --delete "$STAGE/src/" "$APP_DIR/src/"
           sudo cp "$STAGE/pyproject.toml" "$STAGE/uv.lock" "$STAGE/.python-version" "$APP_DIR/"
-          sudo install -m 0644 "$STAGE/deploy/alta-feedback.service" \
-            /etc/systemd/system/alta-feedback.service
+          for unit in alta-feedback.service alta-aod-check.service alta-aod-check.timer; do
+            sudo install -m 0644 "$STAGE/deploy/$unit" "/etc/systemd/system/$unit"
+          done
           rm -rf "$STAGE"
 
           cd "$APP_DIR"
@@ -180,6 +181,12 @@ jobs:
           sudo systemctl daemon-reload
           sudo systemctl enable alta-feedback
           sudo systemctl restart alta-feedback
+          sudo systemctl enable --now alta-aod-check.timer
+          # Первый прогон докачивает архив (~130 МБ); деплой его не ждёт — пока копии нет,
+          # /docs/aod/<name> уводит на оригинал.
+          if [ ! -d "$APP_DIR/data/aod/public" ]; then
+            sudo systemctl start --no-block alta-aod-check.service
+          fi
 
           # Type=simple: active ещё до того, как uvicorn займёт сокет — ждём ответ.
           for _ in $(seq 1 30); do

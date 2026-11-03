@@ -1,0 +1,20 @@
+[Unit]
+Description=ALTA: daily check of the AOD PDF archive (alta.smolevich.com/docs/aod)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/alta-feedback
+# .env сервиса не читаем: секреты проверке не нужны. tar.gz архива кладём к ночным бэкапам
+# ботов, откуда hetzner-offsite-backup уносит его в R2 (шифрованно).
+Environment=DATA_DIR=/opt/alta-feedback/data
+Environment=AOD_BACKUP_DIR=/var/backups/bots/alta-aod
+ExecStart=/opt/alta-feedback/.venv/bin/python -m alta_feedback.aod_archive
+TimeoutStartSec=45min
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/opt/alta-feedback/data /var/backups/bots
+PrivateTmp=yes

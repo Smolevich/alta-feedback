@@ -16,7 +16,8 @@ and pages are in Russian; issues and PRs may be in English, Serbian or Russian.
   official National Bank of Serbia figures per bank in one collapsed block below the answers on the
   stats page, reported banks first (`data/nbs_banks.json`,
   quarter 2026Q2, computed from each bank's NBS balance sheet and income statement; a figure
-  without an https `source_url` is not rendered).
+  without an https `source_url` is not rendered); `aod_archive.py` our copy of the AOD PDFs the
+  write-up links to (`data/aod_archive.json`, served at `/docs/aod/<name>`, checked daily).
 
 ```bash
 uv sync

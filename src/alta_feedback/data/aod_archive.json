@@ -1,0 +1,186 @@
+[
+ {
+  "name": "aod-monografija.pdf",
+  "url": "https://www.aod.rs/downloads/aod_monografija.pdf",
+  "public": true,
+  "sha256": "d90adad8f750e2c92875a0b1b48bad1c68b34263d7b025238bd9e8fdf2b52c76",
+  "bytes": 101838425,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "kvartalni-izvestaj-192.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/192_kvartalni_izvestaj.pdf",
+  "public": true,
+  "sha256": "70b5544cb6b0b7ef37de7b8c2a9fc62b09875ca84c094df761e10c69c5e7fe9d",
+  "bytes": 525036,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "kvartalni-izvestaj-277.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/277_kvartalni_izvestaj.pdf",
+  "public": true,
+  "sha256": "57cc1b92da5e4b5bd45e97e397c720e467be70de3d2c5b0e4478775dd14bee73",
+  "bytes": 526362,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "kvartalni-izvestaj-309.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/309_kvartalni_izvestaj.pdf",
+  "public": true,
+  "sha256": "b23e3c852fb95a16b257575f8cbfd2f15adabf8de76ade07efa1e74947c81730",
+  "bytes": 490604,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "kvartalni-izvestaj-332.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/332_kvartalni_izvestaj.pdf",
+  "public": true,
+  "sha256": "86b202881bdce5c993d6d3491ae9243862c118889deefe690179f919fc81f7f4",
+  "bytes": 493516,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "kvartalni-izvestaj-346.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/346_kvartalni_izvestaj.pdf",
+  "public": true,
+  "sha256": "d5c34a973435763402493f366bcd9d44e5d974ad468411658687a5181b338a74",
+  "bytes": 408920,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "kvartalni-izvestaj-377.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/377_kvartalni_izvestaj.pdf",
+  "public": true,
+  "sha256": "d9983214bec064bc14d2220aea91452df2de829626bdbe9be5d6f73015e3d868",
+  "bytes": 667529,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "kvartalni-izvestaj-492.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/492_kvartalni_izvestaj.pdf",
+  "public": true,
+  "sha256": "9ff3dc0dac500e2eebad865ae5a8170888d5d65954174183c81d5c3d037f313b",
+  "bytes": 335239,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "kvartalni-izvestaj-605.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/605_kvartalni_izvestaj.pdf",
+  "public": true,
+  "sha256": "368bab39b4e58d44eeae415bbfe24662ed495f92c4c52d7b7ffe8882292ebbcc",
+  "bytes": 287226,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "kvartalni-izvestaj-614.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/614_kvartalni_izvestaj.pdf",
+  "public": true,
+  "sha256": "fe390a24a2f8cd98ef174e2ae9f35eb0dced63ca8b1607a784e2aa262942b724",
+  "bytes": 292689,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "kvartalni-izvestaj-711.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/711_kvartalni_izvestaj.pdf",
+  "public": true,
+  "sha256": "456f19003d2f9ad4ea23f815658e2b2545d435cdab194b50fdc67c19a8b37824",
+  "bytes": 275213,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "nova-agrobanka-2026-q2.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/Nova%20Agrobanka_II%20kvartal%202026.pdf",
+  "public": true,
+  "sha256": "aa5936b728965501545063b50e6700c419db6531e316a3a92a73f0493e04a6aa",
+  "bytes": 266977,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "oglas-19-1.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/oglas/19_1_oglas.pdf",
+  "public": true,
+  "sha256": "183862086f6a19cd07a7cec9c5dfe4bd424aa6fe88f63ce178c1e7f3b7d735cc",
+  "bytes": 52339,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "pravni-okvir-16-cir.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/osigdepoz/pravniokvir/cir/16_pravniokvir.pdf",
+  "public": true,
+  "sha256": "ee48d13ca5c706867f04f6cf430a316e3b5d2b76dc41a52f3e196af3cf84494b",
+  "bytes": 6792489,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "univerzal-banka-2026-q2.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/kvartalniizvestaj/Univerzal%20banka_II%20kvartal%202026.pdf",
+  "public": true,
+  "sha256": "5245f9d9b8c6d71d91a1bde0921f59e1b974ee564229f8a9bc2cfa68c19f57ce",
+  "bytes": 295819,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "oglas-115-1.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/oglas/115_1_oglas.pdf",
+  "public": false,
+  "sha256": "ad386a0b64d47c8b59c89c3277db82d0f8b97989fe87cbc0b07581171f90823a",
+  "bytes": 868426,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "oglas-161-1.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/oglas/161_1_oglas.pdf",
+  "public": false,
+  "sha256": "64d2f5742e9d166f09de545922cd2b7a309447e54b917da679d552e3bba7e336",
+  "bytes": 3035222,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "oglas-212-1.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/oglas/212_1_oglas.pdf",
+  "public": false,
+  "sha256": "d6ff1e52397bcd31ca86dbc0dd6443e8e6eda7b79726f43db616b459b29d7fde",
+  "bytes": 2871663,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "oglas-24-2.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/oglas/24_2_oglas.pdf",
+  "public": false,
+  "sha256": "63df1a144574fac8f11d8f9424416909131e1b7407930b934c98fcef98c308db",
+  "bytes": 2103306,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "oglas-44-1.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/oglas/44_1_oglas.pdf",
+  "public": false,
+  "sha256": "0fca23079379ea73dddda48ad9f8daa4ab683e144ad55a6786078642f82ef8b4",
+  "bytes": 2127216,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "oglas-49-1.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/oglas/49_1_oglas.pdf",
+  "public": false,
+  "sha256": "c56bff8b833c3f2d414d4690ec5b47cccb1a0bfc259eb200e0ec2427395e2876",
+  "bytes": 1244355,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "oglas-77-1.pdf",
+  "url": "https://www.aod.rs/uploads/dokumenti/oglas/77_1_oglas.pdf",
+  "public": false,
+  "sha256": "4a9b4326cf0412a935b43d44d1ea979ce95541a6715dbd47e9c8d9af804d5f31",
+  "bytes": 3986654,
+  "fetched": "2026-11-03"
+ },
+ {
+  "name": "sluzbeni-glasnik-2014-02-10.pdf",
+  "url": "https://web.archive.org/web/20160830214352/http://aod.rs/pdf/2014-02-10-sluzbeni-glasnik-univerzal-banka.pdf",
+  "public": false,
+  "sha256": "da11111223c5056250872ae8a94a452e5b7a64c1fae08cd78b7c89bd0b382f59",
+  "bytes": 99257,
+  "fetched": "2026-11-03"
+ }
+]

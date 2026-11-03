@@ -37,10 +37,18 @@ from alta_feedback.accounts import (
     match_label,
     parse_account_form,
 )
+from alta_feedback.aod_archive import archive_root, load_manifest
 from alta_feedback.branches import BRANCH_MAX, NOT_SURE, branch_options, city_key, directory
 from alta_feedback.nbs import ASSETS, METRICS, SOURCE_URL, snapshot
 from alta_feedback.pow import CHALLENGE_TTL, Challenge, create_challenge, derive_key, verify_payload
-from alta_feedback.site import DEFAULT_SITE_DIR, REVALIDATE, SITE_CSP, SiteFiles, index_file
+from alta_feedback.site import (
+    DEFAULT_SITE_DIR,
+    REVALIDATE,
+    SITE_CSP,
+    ArchiveFiles,
+    SiteFiles,
+    index_file,
+)
 from alta_feedback.stats import (
     PAGE_SIZE,
     AnswerFilter,
@@ -399,6 +407,8 @@ def create_app(
     site_dir: Path | None = None,
 ) -> Starlette:
     site = site_dir or Path(os.environ.get("SITE_DIR", DEFAULT_SITE_DIR))
+    data = data_dir or Path(os.environ.get("DATA_DIR", "data"))
+    aod_public = archive_root(data) / "public"
     app = Starlette(
         routes=[
             Route("/", home, methods=["GET"]),
@@ -424,12 +434,12 @@ def create_app(
                 "/admin/accounts/{id:int}/status",
                 admin_set_status("accounts", ACCOUNT_STATUSES), methods=["POST"],
             ),
+            Mount("/docs/aod", app=ArchiveFiles(aod_public, load_manifest()), name="aod"),
             # Последним: всё, чего нет среди маршрутов выше, ищем в собранном справочнике.
             Mount("/", app=SiteFiles(site), name="site"),
         ],
         middleware=[Middleware(SecurityHeaders)],
     )
-    data = data_dir or Path(os.environ.get("DATA_DIR", "data"))
     app.state.store = Store(data / "feedback.db")
     app.state.admin_token = admin_token if admin_token is not None else os.environ.get("ADMIN_TOKEN", "")
     app.state.ip_salt = ip_salt if ip_salt is not None else os.environ.get("IP_SALT", "")
